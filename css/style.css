@@ -158,3 +158,109 @@ body, html {
     gap: 10px;
   }
 }
+
+/* Secção Sobre Nós (mobile-first) */
+#sobre {
+  background-color: #fafafa;
+  padding: 2rem 1rem;
+}
+
+#sobre .content {
+  max-width: 100%; /* Ocupa toda a largura no mobile */
+  margin: 0 auto;
+}
+
+#sobre h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+#sobre p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  text-align: center;
+}
+
+#sobre p strong {
+  font-size: 1rem;
+  color: #000;
+}
+
+#sobre .highlight {
+  border-left: 3px solid #e93f66;
+  padding-left: 1rem;
+}
+
+/* Aumenta padding e largura para ecrãs maiores */
+@media (min-width: 768px) {
+  #sobre {
+    padding: 4rem 1rem;
+  }
+
+  #sobre .content {
+    max-width: 700px;
+  }
+
+  #sobre h2 {
+    font-size: 2rem;
+  }
+
+  #sobre p {
+    font-size: 1.1rem;
+  }
+}
+
+#scrollUpBtn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #e93f66;
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#scrollUpBtn:hover {
+  background-color: #c22c50;
+  transform: translateY(-2px);
+}
+
+footer {
+  background-color: #111;
+  color: #f5f5f5;
+  text-align: center;
+  padding: 1rem;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.footer-content nav {
+  margin: 0.5rem 0;
+}
+
+.footer-content nav a {
+  color: #f5f5f5;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.footer-content nav a:hover {
+  color: #e93f66;
+}

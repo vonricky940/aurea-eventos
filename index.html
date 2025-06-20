@@ -21,12 +21,8 @@
     <!-- Importar fonte Poppins do Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Scroll suave -->
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    <!-- Lightbox CSS e JS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css" rel="stylesheet">
 </head>
 
 <body>
@@ -35,7 +31,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/img/logo-branco.png" alt="Áurea Eventos" style="height: 50px;">
+                <img src="assets/img/logo-branco.png" alt="Áurea Eventos">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
                 aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegação">
@@ -75,6 +71,27 @@
             <a href="#galeria" class="btn btn-light mt-3">Clique para ver mais</a>
         </div>
     </section>
+
+    <!-- Secção Sobre Nós -->
+    <section id="sobre" class="container py-5">
+        <h2 class="text-center mb-4">Sobre Nós</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 text-center">
+                <p>Áurea – Eventos Personalizados</p>
+                <p>Fazemos o Acompanhamento e Decoração de Eventos Inesquecíveis</p>
+                <p>A Áurea está presente nos momentos mais especiais da sua vida, para tornar cada detalhe memorável.
+                    Organizamos e decoramos festas de aniversário, batizados, comunhões, baby showers, casamentos e
+                    muitos outros momentos únicos.</p>
+                <p><strong>Telefone:</strong> +351 913 771 563</p>
+                <p><strong>Entre em contacto para pedir o seu
+                        <a href="#contacto">
+                            orçamento personalizado
+                        </a>!
+                    </strong></p>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Galeria de Eventos -->
     <section id="galeria" class="container py-5">
@@ -143,6 +160,9 @@
     <section id="contacto" class="container py-5">
         <h2 class="text-center mb-4">Fale connosco</h2>
         <p class="text-center mb-4">Envie-nos uma mensagem ou peça um orçamento personalizado.</p>
+        <p class="text-center mb-4">Em alternativa, pode ligar-nos para o
+            <strong>+351 913 771 563</strong>.
+        </p>
 
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -211,44 +231,34 @@
         </div>
     </div>
 
-    <!-- Script de reCAPTCHA v3 + Modal -->
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const form = this;
-
-            grecaptcha.ready(function () {
-                grecaptcha.execute('6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vlBrs', { action: 'submit' }).then(function (token) {
-                    document.getElementById('g-recaptcha-response').value = token;
-
-                    fetch(form.action, {
-                        method: "POST",
-                        body: new FormData(form),
-                    }).then(() => {
-                        var modal = new bootstrap.Modal(document.getElementById("successModal"));
-                        modal.show();
-                        form.reset();
-                    }).catch(() => {
-                        alert("Erro ao enviar. Por favor tente novamente mais tarde.");
-                    });
-                });
-            });
-        });
-    </script>
-
     <!-- Botões flutuantes para redes sociais -->
     <div class="fixed-social-icons">
         <a href="https://instagram.com/aurea_eventospersonalizados" target="_blank" title="Instagram">
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://www.facebook.com/p/Aurea-Eventos-Personalizados-100063625506661" target="_blank" title="Facebook">
+        <a href="https://www.facebook.com/p/Aurea-Eventos-Personalizados-100063625506661" target="_blank"
+            title="Facebook">
             <i class="fab fa-facebook-f"></i>
         </a>
     </div>
 
+    <!-- Botão de scroll up -->
+    <button id="scrollUpBtn" title="Voltar para cima">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Áurea - Eventos Personalizados. Todos os direitos reservados.</p>
+            <nav>
+                <a href="#sobre">Sobre</a> |
+                <a href="#formulario">Contacto</a>
+            </nav>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.js"></script>
 
 </body>
 
