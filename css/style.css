@@ -30,6 +30,7 @@
 
 .logo {
   height: 48px;
+  filter: none; /* garante que não fique escuro/transparente */
 }
 
 /* Conteúdo central */
@@ -39,4 +40,15 @@
   transform: translateY(-50%);
   z-index: 1;
   padding: 2rem;
+}
+
+/* Espaço do conteúdo para não ficar por baixo da navbar */
+body {
+  padding-top: 80px; /* garante que o conteúdo descola da navbar */
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding-top: 60px;
+  }
 }
