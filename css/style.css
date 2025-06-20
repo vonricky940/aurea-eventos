@@ -35,9 +35,10 @@
 
 /* Conteúdo central */
 .content {
+  text-align: center;
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-40%);
   z-index: 1;
   padding: 2rem;
 }
@@ -51,4 +52,56 @@ body {
   .content {
     padding-top: 60px;
   }
+  .content h1 {
+    font-size: 2rem;
+  }
+  .content p {
+    font-size: 1rem;
+  }
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Botões flutuantes */
+.floating-icons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+.floating-icons .icon {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.floating-icons .icon img {
+  width: 24px;
+  height: 24px;
+  filter: grayscale(100%);
+}
+
+.floating-icons .icon:hover {
+  transform: scale(1.1);
+}
+
+.floating-icons .instagram:hover {
+  background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
+}
+
+.floating-icons .facebook:hover {
+  background-color: #3b5998;
 }
