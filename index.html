@@ -24,19 +24,8 @@
 
 <body>
 
-    <!-- Vídeo de fundo -->
-    <div class="video-background">
-        <video autoplay muted loop id="bg-video">
-            <source src="assets/video/luxury-party.mp4" type="video/mp4">
-            O seu browser não suporta vídeo em HTML5.
-        </video>
-    </div>
-
-    <!-- Overlay escura para legibilidade -->
-    <div class="overlay"></div>
-
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="assets/img/logo-branco.png" alt="Áurea Logo" class="logo">
@@ -65,17 +54,23 @@
         </div>
     </nav>
 
-    <!-- Conteúdo central -->
-    <div class="content text-center">
-        <h1 class="display-4 text-light fw-bold">Áurea - Eventos Personalizados</h1>
-        <p class="lead text-light">Decoração feita à medida, com um toque de luxo.</p>
-        <a href="#galeria" class="btn btn-light mt-3">Galeria de Eventos</a>
-    </div>
+    <!-- Hero Banner com Vídeo -->
+    <section class="hero-banner position-relative">
+        <video autoplay muted loop id="bg-video" class="w-100 h-100">
+            <source src="assets/video/luxury-party.mp4" type="video/mp4">
+            O seu browser não suporta vídeo em HTML5.
+        </video>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Áurea - Eventos Personalizados</h1>
+            <p>Decoração feita à medida, com um toque de luxo.</p>
+            <a href="#galeria" class="btn btn-light mt-3">Galeria de Eventos</a>
+        </div>
+    </section>
 
     <!-- Galeria de Eventos -->
     <section id="galeria" class="container py-5">
         <h2 class="text-center mb-4">Galeria de Eventos</h2>
-
         <ul class="nav nav-tabs justify-content-center mb-4" id="eventTabs" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="batizados-tab" data-bs-toggle="tab" data-bs-target="#batizados"
@@ -90,49 +85,46 @@
                     type="button" role="tab">Festas de Aniversário</button>
             </li>
         </ul>
-
         <div class="tab-content" id="eventTabsContent">
             <!-- Batizados -->
             <div class="tab-pane fade show active" id="batizados" role="tabpanel">
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                        <img src="assets/img/batizados/batizado1.jpg" alt="Batizado 1" class="img-fluid">
+                        <img src="assets/img/galeria/batizado1.jpg" alt="Batizado 1" class="img-fluid">
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                        <img src="assets/img/batizados/batizado2.jpg" alt="Batizado 2" class="img-fluid">
+                        <img src="assets/img/galeria/batizado2.jpg" alt="Batizado 2" class="img-fluid">
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                        <img src="assets/img/batizados/batizado3.jpg" alt="Batizado 3" class="img-fluid">
+                        <img src="assets/img/galeria/batizado3.jpg" alt="Batizado 3" class="img-fluid">
                     </div>
                 </div>
             </div>
-
             <!-- Comunhões -->
             <div class="tab-pane fade" id="comunhoes" role="tabpanel">
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                        <img src="assets/img/comunhoes/comunhao1.jpg" alt="Comunhão 1" class="img-fluid">
+                        <img src="assets/img/galeria/comunhao1.jpg" alt="Comunhão 1" class="img-fluid">
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                        <img src="assets/img/comunhoes/comunhao2.jpg" alt="Comunhão 2" class="img-fluid">
+                        <img src="assets/img/galeria/comunhao2.jpg" alt="Comunhão 2" class="img-fluid">
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                        <img src="assets/img/comunhoes/comunhao3.jpg" alt="Comunhão 3" class="img-fluid">
+                        <img src="assets/img/galeria/comunhao3.jpg" alt="Comunhão 3" class="img-fluid">
                     </div>
                 </div>
             </div>
-
             <!-- Festas de Aniversário -->
             <div class="tab-pane fade" id="aniversarios" role="tabpanel">
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                        <img src="assets/img/aniversarios/aniversario1.jpg" alt="Aniversário 1" class="img-fluid">
+                        <img src="assets/img/galeria/aniversario1.jpg" alt="Aniversário 1" class="img-fluid">
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                        <img src="assets/img/aniversarios/aniversario2.jpg" alt="Aniversário 2" class="img-fluid">
+                        <img src="assets/img/galeria/aniversario2.jpg" alt="Aniversário 2" class="img-fluid">
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                        <img src="assets/img/aniversarios/aniversario3.jpg" alt="Aniversário 3" class="img-fluid">
+                        <img src="assets/img/galeria/aniversario3.jpg" alt="Aniversário 3" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -238,7 +230,6 @@
             });
         });
     </script>
-
 
     <!-- Botões flutuantes para redes sociais -->
     <div class="floating-icons">
