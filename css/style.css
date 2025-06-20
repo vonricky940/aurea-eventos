@@ -83,27 +83,21 @@ body, html {
 }
 
 /* Botões flutuantes das redes sociais */
-.floating-icons {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.floating-icons a img {
-    width: 32px;
-    height: 32px;
-    filter: brightness(0) invert(1);
+.floating-icons a i {
+    font-size: 22px;
+    color: white;
     background: #000;
     border-radius: 50%;
-    padding: 6px;
+    padding: 10px;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    line-height: 22px;
     transition: transform 0.2s ease;
 }
-.floating-icons a:hover img {
+.floating-icons a:hover i {
     transform: scale(1.1);
-}
+}  
 
 /* Sticky Navbar */
 .navbar {
