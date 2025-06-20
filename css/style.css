@@ -1,138 +1,160 @@
 /* Reset base */
 body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    height: 100%;
-    overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 /* Hero Banner */
 .hero-banner {
-    position: relative;
-    width: 100%;
-    height: 80vh;
-    min-height: 400px;
-    max-height: 900px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 400px;
+  max-height: 900px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .hero-banner video {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 .hero-banner .overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.45);
-    z-index: 2;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 2;
 }
 .hero-banner .content {
-    position: relative;
-    z-index: 3;
-    color: #fff;
-    text-align: center;
-    padding: 2rem;
-    text-shadow: 1px 1px 4px #000;
+  position: relative;
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+  text-shadow: 1px 1px 4px #000;
 }
 .hero-banner .content h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 .hero-banner .content p {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 /* Logotipo */
 .logo {
-    height: 45px;
+  height: 45px;
 }
 
 /* Galeria */
 #galeria {
-    background: #fff;
-    padding: 4rem 1rem;
+  background: #fff;
+  padding: 4rem 1rem;
 }
 #galeria h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
 }
 .nav-tabs .nav-link.active {
-    background-color: #f8f9fa;
-    font-weight: bold;
+  background-color: #f8f9fa;
+  font-weight: bold;
 }
 .tab-content .row > div {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 .tab-content img {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
 }
 .tab-content img:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
 
-/* Botões flutuantes das redes sociais */
-.floating-icons a i {
-    font-size: 22px;
-    color: white;
-    background: #000;
-    border-radius: 50%;
-    padding: 10px;
-    width: 42px;
-    height: 42px;
-    text-align: center;
-    line-height: 22px;
-    transition: transform 0.2s ease;
+/* Ícones flutuantes de redes sociais (direita, verticalmente centrado) */
+.fixed-social-icons {
+  position: fixed;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.floating-icons a:hover i {
-    transform: scale(1.1);
-}  
+.fixed-social-icons a {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fixed-social-icons a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Remover o ícone do reCAPTCHA */
+.grecaptcha-badge {
+  display: none !important;
+  visibility: hidden !important;
+}
+.grecaptcha-logo {
+  display: none !important;
+}
 
 /* Sticky Navbar */
 .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: background-color 0.3s;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
 }
 .navbar-brand, h1, h2, h3 {
   font-family: 'Poppins', sans-serif;
 }
 .navbar-brand img {
-    height: 40px;
+  height: 40px;
 }
 .nav-link {
-    font-weight: 500;
+  font-weight: 500;
 }
 .navbar-toggler {
-    border: none;
+  border: none;
 }
 
 /* Responsivo */
 @media (max-width: 768px) {
-    .hero-banner .content h1 {
-        font-size: 2rem;
-    }
-    .hero-banner .content p {
-        font-size: 1rem;
-    }
-    .logo {
-        height: 35px;
-    }
-    #galeria {
-        padding: 2rem 1rem;
-    }
+  .hero-banner .content h1 {
+    font-size: 2rem;
+  }
+  .hero-banner .content p {
+    font-size: 1rem;
+  }
+  .logo {
+    height: 35px;
+  }
+  #galeria {
+    padding: 2rem 1rem;
+  }
+
+  .fixed-social-icons {
+    right: 10px;
+    gap: 10px;
+  }
 }
