@@ -13,6 +13,13 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/img/logo-branco.png">
+
+    <!-- Scroll suave -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,9 +47,9 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Galeria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Idioma</a>
                         <ul class="dropdown-menu">
@@ -62,10 +69,123 @@
     <div class="content text-center">
         <h1 class="display-4 text-light fw-bold">Áurea - Eventos Personalizados</h1>
         <p class="lead text-light">Decoração feita à medida, com um toque de luxo.</p>
-        <a href="#galeria" class="btn btn-light mt-3">Ver Galeria</a>
+        <a href="#galeria" class="btn btn-light mt-3">Galeria de Eventos</a>
     </div>
 
-    <script src="js/script.js"></script>
+    <!-- Galeria de Eventos -->
+    <section id="galeria" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Galeria de Eventos</h2>
+            <ul class="nav nav-pills justify-content-center mb-4" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="batizados-tab" data-bs-toggle="pill" data-bs-target="#batizados"
+                        type="button" role="tab">Batizados</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="comunhoes-tab" data-bs-toggle="pill" data-bs-target="#comunhoes"
+                        type="button" role="tab">Comunhões</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="aniversarios-tab" data-bs-toggle="pill" data-bs-target="#aniversarios"
+                        type="button" role="tab">Festas de Aniversário</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="batizados" role="tabpanel">
+                    <div class="row g-3">
+                        <div class="col-sm-6 col-md-4"><img src="assets/img/galeria/batizados/batizado1.jpg"
+                                class="img-fluid rounded shadow-sm" alt="Batizado 1"></div>
+                        <div class="col-sm-6 col-md-4"><img src="assets/img/galeria/batizados/batizado2.jpg"
+                                class="img-fluid rounded shadow-sm" alt="Batizado 2"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="comunhoes" role="tabpanel">
+                    <div class="row g-3">
+                        <div class="col-sm-6 col-md-4"><img src="assets/img/galeria/comunhoes/comunhao1.jpg"
+                                class="img-fluid rounded shadow-sm" alt="Comunhão 1"></div>
+                        <div class="col-sm-6 col-md-4"><img src="assets/img/galeria/comunhoes/comunhao2.jpg"
+                                class="img-fluid rounded shadow-sm" alt="Comunhão 2"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="aniversarios" role="tabpanel">
+                    <div class="row g-3">
+                        <div class="col-sm-6 col-md-4"><img src="assets/img/galeria/aniversarios/aniversario1.jpg"
+                                class="img-fluid rounded shadow-sm" alt="Aniversário 1"></div>
+                        <div class="col-sm-6 col-md-4"><img src="assets/img/galeria/aniversarios/aniversario2.jpg"
+                                class="img-fluid rounded shadow-sm" alt="Aniversário 2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria de Eventos -->
+    <section id="galeria" class="container py-5">
+        <h2 class="text-center mb-4">Galeria de Eventos</h2>
+
+        <ul class="nav nav-tabs justify-content-center mb-4" id="eventTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="batizados-tab" data-bs-toggle="tab" data-bs-target="#batizados"
+                    type="button" role="tab">Batizados</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="comunhoes-tab" data-bs-toggle="tab" data-bs-target="#comunhoes"
+                    type="button" role="tab">Comunhões</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="aniversarios-tab" data-bs-toggle="tab" data-bs-target="#aniversarios"
+                    type="button" role="tab">Festas de Aniversário</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="eventTabsContent">
+            <!-- Batizados -->
+            <div class="tab-pane fade show active" id="batizados" role="tabpanel">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <img src="assets/img/galeria/batizado1.jpg" alt="Batizado 1" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <img src="assets/img/galeria/batizado2.jpg" alt="Batizado 2" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <img src="assets/img/galeria/batizado3.jpg" alt="Batizado 3" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comunhões -->
+            <div class="tab-pane fade" id="comunhoes" role="tabpanel">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <img src="assets/img/galeria/comunhao1.jpg" alt="Comunhão 1" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <img src="assets/img/galeria/comunhao2.jpg" alt="Comunhão 2" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <img src="assets/img/galeria/comunhao3.jpg" alt="Comunhão 3" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Festas de Aniversário -->
+            <div class="tab-pane fade" id="aniversarios" role="tabpanel">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <img src="assets/img/galeria/aniversario1.jpg" alt="Aniversário 1" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <img src="assets/img/galeria/aniversario2.jpg" alt="Aniversário 2" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <img src="assets/img/galeria/aniversario3.jpg" alt="Aniversário 3" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Botões flutuantes para redes sociais -->
     <div class="floating-icons">
@@ -76,6 +196,10 @@
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" />
         </a>
     </div>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+
 </body>
 
 </html>

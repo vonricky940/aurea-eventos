@@ -1,107 +1,139 @@
-/* Fundo de vídeo */
+/* Reset base */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Vídeo em background */
 .video-background {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  overflow: hidden;
-  z-index: -2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    z-index: -2;
 }
-
 #bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Overlay escura para contraste */
+/* Overlay escura */
 .overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: -1;
+}
+
+/* Logotipo */
+.logo {
+    height: 45px;
+}
+
+/* Conteúdo central sobre o vídeo */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: white;
+    text-shadow: 1px 1px 4px #000;
+    padding: 2rem;
+    text-align: center;
+}
+.content h1 {
+    font-size: 2.5rem;
+}
+.content p {
+    font-size: 1.2rem;
+}
+
+/* Galeria */
+#galeria {
+    background: #fff;
+    padding: 4rem 1rem;
+}
+#galeria h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+.nav-tabs .nav-link.active {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+.tab-content .row > div {
+    margin-bottom: 1rem;
+}
+.tab-content img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.tab-content img:hover {
+    transform: scale(1.02);
+}
+
+/* Botões flutuantes das redes sociais */
+.floating-icons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.floating-icons a img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+    background: #000;
+    border-radius: 50%;
+    padding: 6px;
+    transition: transform 0.2s ease;
+}
+.floating-icons a:hover img {
+    transform: scale(1.1);
 }
 
 /* Navbar */
 .navbar {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 1rem 2rem;
+    transition: background-color 0.3s;
+}
+.navbar-brand img {
+    height: 40px;
+}
+.nav-link {
+    font-weight: 500;
+}
+.navbar-toggler {
+    border: none;
 }
 
-.logo {
-  height: 48px;
-  filter: none; /* garante que não fique escuro/transparente */
-}
-
-/* Conteúdo central */
-.content {
-  text-align: center;
-  position: relative;
-  top: 50%;
-  transform: translateY(-40%);
-  z-index: 1;
-  padding: 2rem;
-}
-
-/* Espaço do conteúdo para não ficar por baixo da navbar */
-body {
-  padding-top: 80px; /* garante que o conteúdo descola da navbar */
-}
-
+/* Responsivo */
 @media (max-width: 768px) {
-  .content {
-    padding-top: 60px;
-  }
-  .content h1 {
-    font-size: 2rem;
-  }
-  .content p {
-    font-size: 1rem;
-  }
-  .btn {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
-}
-
-/* Botões flutuantes */
-.floating-icons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 999;
-}
-
-.floating-icons .icon {
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: 50%;
-  padding: 6px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.2s;
-}
-
-.floating-icons .icon img {
-  width: 24px;
-  height: 24px;
-  filter: grayscale(100%);
-}
-
-.floating-icons .icon:hover {
-  transform: scale(1.1);
-}
-
-.floating-icons .instagram:hover {
-  background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
-}
-
-.floating-icons .facebook:hover {
-  background-color: #3b5998;
+    .content h1 {
+        font-size: 2rem;
+    }
+    .content p {
+        font-size: 1rem;
+    }
+    .logo {
+        height: 35px;
+    }
+    #galeria {
+        padding: 2rem 1rem;
+    }
 }
