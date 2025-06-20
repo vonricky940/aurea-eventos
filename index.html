@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Áurea - Eventos Personalizados</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/logo-branco.png">
+</head>
+<body>
+
+  <!-- Vídeo de fundo -->
+  <div class="video-background">
+    <video autoplay muted loop id="bg-video">
+      <source src="assets/video/luxury-party.mp4" type="video/mp4">
+      O seu browser não suporta vídeo em HTML5.
+    </video>
+  </div>
+
+  <!-- Overlay escura para legibilidade -->
+  <div class="overlay"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="assets/img/logo-branco.png" alt="Áurea Logo" class="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Galeria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Idioma</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" onclick="changeLanguage('pt')">🇵🇹 Português</a></li>
+              <li><a class="dropdown-item" href="#" onclick="changeLanguage('br')">🇧🇷 Português (BR)</a></li>
+              <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">🇬🇧 English</a></li>
+              <li><a class="dropdown-item" href="#" onclick="changeLanguage('fr')">🇫🇷 Français</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo central -->
+  <div class="content text-center">
+    <h1 class="display-4 text-light fw-bold">Áurea - Eventos Personalizados</h1>
+    <p class="lead text-light">Decoração feita à medida, com um toque de luxo.</p>
+    <a href="#galeria" class="btn btn-light mt-3">Ver Galeria</a>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

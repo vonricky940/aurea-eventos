@@ -1,0 +1,42 @@
+/* Fundo de vídeo */
+.video-background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: -2;
+}
+
+#bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay escura para contraste */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem 2rem;
+}
+
+.logo {
+  height: 48px;
+}
+
+/* Conteúdo central */
+.content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  padding: 2rem;
+}
