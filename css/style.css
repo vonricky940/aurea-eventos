@@ -264,3 +264,31 @@ footer {
 .footer-content nav a:hover {
   color: #e93f66;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar-brand img {
+  height: 50px;
+}
+
+#sobre a {
+  color: #e93f66;
+  text-decoration: underline;
+}
+
+#scrollUpBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 0.8rem;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
