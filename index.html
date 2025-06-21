@@ -37,23 +37,28 @@
                 aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <!-- Botões de idioma (apenas visível em DESKTOP) -->
+            <div class="d-none d-lg-flex align-items-center ms-auto me-2">
+                <div class="language-selector">
+                    <button class="btn btn-sm btn-outline-secondary me-1" onclick="changeLanguage('pt')">PT</button>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="changeLanguage('en')">EN</button>
+                </div>
+            </div>
+
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Idioma</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" onclick="changeLanguage('pt')">🇵🇹 Português</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeLanguage('br')">🇧🇷 Português (BR)</a>
-                            </li>
-                            <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">🇬🇧 English</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeLanguage('fr')">🇫🇷 Français</a></li>
-                        </ul>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="#" data-i18n="menu.home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeria" data-i18n="menu.gallery">Galeria</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre" data-i18n="menu.about">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto" data-i18n="menu.contact">Contacto</a></li>
                 </ul>
+
+                <!-- Botões de idioma (apenas visível em MOBILE) -->
+                <div class="language-selector mt-3 d-lg-none">
+                    <button class="btn btn-sm btn-outline-secondary me-1" onclick="changeLanguage('pt')">PT</button>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="changeLanguage('en')">EN</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -66,25 +71,26 @@
         </video>
         <div class="overlay"></div>
         <div class="content">
-            <h1>Áurea - Eventos Personalizados</h1>
-            <p>Decoração feita à medida, com um toque de luxo.</p>
-            <a href="#galeria" class="btn btn-light mt-3">Clique para ver mais</a>
+            <h1 data-i18n="hero.title">Áurea - Eventos Personalizados</h1>
+            <p data-i18n="hero.subtitle">Decoração feita à medida, com um toque de luxo.</p>
+            <a href="#galeria" class="btn btn-light mt-3" data-i18n="hero.button">Clique para ver mais</a>
         </div>
     </section>
 
     <!-- Secção Sobre Nós -->
     <section id="sobre" class="container py-5">
-        <h2 class="text-center mb-4">Sobre Nós</h2>
+        <h2 class="text-center mb-4" data-i18n="about.title">Sobre Nós</h2>
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 text-center">
-                <p>Áurea – Eventos Personalizados</p>
-                <p>Fazemos o Acompanhamento e Decoração de Eventos Inesquecíveis</p>
-                <p>A Áurea está presente nos momentos mais especiais da sua vida, para tornar cada detalhe memorável.
+                <p data-i18n="about.intro">Áurea – Eventos Personalizados</p>
+                <p data-i18n="about.mission">Fazemos o Acompanhamento e Decoração de Eventos Inesquecíveis</p>
+                <p data-i18n="about.description">A Áurea está presente nos momentos mais especiais da sua vida, para
+                    tornar cada detalhe memorável.
                     Organizamos e decoramos festas de aniversário, batizados, comunhões, baby showers, casamentos e
                     muitos outros momentos únicos.</p>
-                <p><strong>Telefone:</strong> +351 913 771 563</p>
+                <p><strong data-i18n="about.phone_label">Telefone:</strong> +351 913 771 563</p>
                 <p><strong>Entre em contacto para pedir o seu
-                        <a href="#contacto">
+                        <a href="#contacto" data-i18n="about.contact_cta">
                             orçamento personalizado
                         </a>!
                     </strong></p>
@@ -95,19 +101,19 @@
 
     <!-- Galeria de Eventos -->
     <section id="galeria" class="container py-5">
-        <h2 class="text-center mb-4">Galeria de Eventos</h2>
+        <h2 class="text-center mb-4" data-i18n="gallery.title">Galeria de Eventos</h2>
         <ul class="nav nav-tabs justify-content-center mb-4" id="eventTabs" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="batizados-tab" data-bs-toggle="tab" data-bs-target="#batizados"
-                    type="button" role="tab">Batizados</button>
+                    type="button" role="tab" data-i18n="gallery.baptisms">Batizados</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="comunhoes-tab" data-bs-toggle="tab" data-bs-target="#comunhoes"
-                    type="button" role="tab">Comunhões</button>
+                    type="button" role="tab" data-i18n="gallery.communions">Comunhões</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="aniversarios-tab" data-bs-toggle="tab" data-bs-target="#aniversarios"
-                    type="button" role="tab">Festas de Aniversário</button>
+                    type="button" role="tab" data-i18n="gallery.birthdays">Festas de Aniversário</button>
             </li>
         </ul>
         <div class="tab-content" id="eventTabsContent">
@@ -158,9 +164,10 @@
 
     <!-- Secção de Contacto -->
     <section id="contacto" class="container py-5">
-        <h2 class="text-center mb-4">Fale connosco</h2>
-        <p class="text-center mb-4">Envie-nos uma mensagem ou peça um orçamento personalizado.</p>
-        <p class="text-center mb-4">Em alternativa, pode ligar-nos para o
+        <h2 class="text-center mb-4" data-i18n="contact.title">Fale connosco</h2>
+        <p class="text-center mb-4" data-i18n="contact.subtitle">Envie-nos uma mensagem ou peça um orçamento
+            personalizado.</p>
+        <p class="text-center mb-4" data-i18n="contact.subtitle2">Em alternativa, pode ligar-nos para o
             <strong>+351 913 771 563</strong>.
         </p>
 
@@ -173,42 +180,44 @@
                     <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
 
                     <div class="mb-3">
-                        <label for="nome" class="form-label">Nome</label>
+                        <label for="nome" class="form-label" data-i18n="contact.name">Nome</label>
                         <input type="text" class="form-control" id="nome" name="nome" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
+                        <label for="email" class="form-label" data-i18n="contact.email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="telefone" class="form-label">Telefone (opcional)</label>
+                        <label for="telefone" class="form-label" data-i18n="contact.phone">Telefone (opcional)</label>
                         <input type="tel" class="form-control" id="telefone" name="telefone">
                     </div>
 
                     <div class="mb-3">
-                        <label for="tipo" class="form-label">Tipo de Contacto</label>
+                        <label for="tipo" class="form-label" data-i18n="contact.type">Tipo de Contacto</label>
                         <select class="form-select" id="tipo" name="tipo" required>
-                            <option value="" disabled selected>Selecione uma opção</option>
-                            <option value="geral">Pedido Geral</option>
-                            <option value="orcamento">Pedido de Orçamento</option>
+                            <option value="" disabled selected data-i18n="contact.select_option">Selecione uma opção
+                            </option>
+                            <option value="geral" data-i18n="contact.general">Pedido Geral</option>
+                            <option value="orcamento" data-i18n="contact.quote">Pedido de Orçamento</option>
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="mensagem" class="form-label">Mensagem</label>
+                        <label for="mensagem" class="form-label" data-i18n="contact.message">Mensagem</label>
                         <textarea class="form-control" id="mensagem" name="mensagem" rows="5" required></textarea>
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-dark">Enviar</button>
+                        <button type="submit" class="btn btn-dark" data-i18n="contact.send">Enviar</button>
                     </div>
                 </form>
             </div>
         </div>
         <p></p>
-        <p class="text-center small">
+        <!-- Recaptcha legal notice -->
+        <p class="text-center small" data-i18n="recaptcha.notice">
             Este site é protegido pelo reCAPTCHA e aplica-se a <a href="https://policies.google.com/privacy">Política de
                 Privacidade</a> e os <a href="https://policies.google.com/terms">Termos de Serviço</a> da Google.
         </p>
@@ -219,13 +228,14 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Mensagem enviada</h5>
+                    <h5 class="modal-title" id="successModalLabel" data-i18n="modal.title">Mensagem enviada</h5>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" data-i18n="modal.body">
                     Obrigado pela sua mensagem! Responderemos o mais brevemente possível.
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                        data-i18n="modal.ok">Ok</button>
                 </div>
             </div>
         </div>
@@ -240,8 +250,7 @@
             title="Facebook">
             <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="https://wa.me/913771563" target="_blank"
-            title="Whatsapp">
+        <a href="https://wa.me/913771563" target="_blank" title="Whatsapp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -252,16 +261,18 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 Áurea - Eventos Personalizados. Todos os direitos reservados.</p>
+            <p data-i18n="footer.copyright">&copy; 2025 Áurea - Eventos Personalizados. Todos os direitos reservados.
+            </p>
             <nav>
-                <a href="#sobre">Sobre</a> |
-                <a href="#formulario">Contacto</a>
+                <a href="#sobre" data-i18n="footer.about">Sobre</a> |
+                <a href="#formulario" data-i18n="footer.contact">Contacto</a>
             </nav>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="js/script.js"></script>
+    <script src="js/lang.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.js"></script>
 
 </body>

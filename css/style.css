@@ -292,3 +292,45 @@ html {
   cursor: pointer;
   z-index: 1001;
 }
+
+/* Seletor de idioma - estilo base */
+.language-selector {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Botões de idioma */
+.language-selector button {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+/* Hover e foco */
+.language-selector button:hover,
+.language-selector button:focus {
+  background-color: #e93f66;
+  color: white;
+  border-color: #e93f66;
+  outline: none;
+}
+
+/* Idioma ativo (opcional: define com classe .active-lang) */
+.language-selector button.active-lang {
+  background-color: #e93f66;
+  color: white;
+  border-color: #e93f66;
+}
+
+/* Mobile: margem extra no colapso do menu */
+@media (max-width: 991px) {
+  .language-selector {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}
