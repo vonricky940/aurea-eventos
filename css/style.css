@@ -1,19 +1,28 @@
-/* Reset base */
-body, html {
+/* Base Reset */
+html, body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  height: 100%;
+  scroll-behavior: smooth;
   overflow-x: hidden;
+  height: 100%;
+  background-color: #fdf9f8;
+}
+
+/* Scroll snapping */
+section {
+  scroll-snap-align: start;
+  scroll-margin-top: 80px;
+}
+html {
+  scroll-snap-type: y proximity;
 }
 
 /* Hero Banner */
 .hero-banner {
   position: relative;
   width: 100%;
-  height: 80vh;
-  min-height: 400px;
-  max-height: 900px;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -43,46 +52,131 @@ body, html {
   text-shadow: 1px 1px 4px #000;
 }
 .hero-banner .content h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: bold;
 }
 .hero-banner .content p {
   font-size: 1.2rem;
 }
 
-/* Logotipo */
-.logo {
-  height: 45px;
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fdf9f8 !important; /* Força a cor */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.navbar-brand img {
+  height: 60px;
+}
+.navbar-toggler {
+  border: none;
+}
+.nav-link {
+  font-weight: 500;
+  color: #333 !important; /* Garante visibilidade sobre fundo claro */
+}
+.nav-link:hover {
+  color: #e93f66 !important;
+}
+
+/* Secções alternadas */
+section:nth-of-type(even) {
+  background-color: #fdf4f8;
+}
+section:nth-of-type(odd) {
+  background-color: #ffffff;
 }
 
 /* Galeria */
 #galeria {
-  background: #fff;
   padding: 4rem 1rem;
 }
 #galeria h2 {
   text-align: center;
   margin-bottom: 2rem;
   font-weight: 600;
+  color: #c94c7b;
 }
 .nav-tabs .nav-link.active {
-  background-color: #f8f9fa;
+  background-color: #f8dbe7;
   font-weight: bold;
+  color: #c94c7b !important;
 }
 .tab-content .row > div {
   margin-bottom: 1rem;
 }
 .tab-content img {
   width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
 }
 .tab-content img:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
-/* Ícones flutuantes de redes sociais (direita, verticalmente centrado) */
+/* Secção Sobre */
+#sobre {
+  padding: 4rem 1rem;
+}
+#sobre h2 {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #c94c7b;
+  text-align: center;
+}
+#sobre p, #sobre p strong {
+  font-size: 1.1rem;
+  color: #555;
+  text-align: center;
+}
+#sobre a {
+  color: #e93f66;
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background-color: #111;
+  color: #f5f5f5;
+  text-align: center;
+  padding: 1rem;
+}
+.footer-content nav a {
+  color: #f5f5f5;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+.footer-content nav a:hover {
+  color: #e93f66;
+}
+
+/* Scroll to Top Button */
+#scrollUpBtn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #e93f66;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: none;
+  z-index: 1001;
+  transition: background-color 0.3s, transform 0.3s;
+}
+#scrollUpBtn:hover {
+  background-color: #c22c50;
+  transform: translateY(-2px);
+}
+
+/* Redes Sociais */
 .fixed-social-icons {
   position: fixed;
   top: 50%;
@@ -107,35 +201,37 @@ body, html {
   background-color: #f0f0f0;
 }
 
-/* Remover o ícone do reCAPTCHA */
-.grecaptcha-badge {
-  display: none !important;
-  visibility: hidden !important;
-}
+/* Recaptcha oculto */
+.grecaptcha-badge,
 .grecaptcha-logo {
   display: none !important;
 }
 
-/* Sticky Navbar */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: background-color 0.3s;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(6px);
+/* Idiomas */
+.language-selector {
+  display: flex;
+  gap: 0.5rem;
 }
-.navbar-brand, h1, h2, h3 {
-  font-family: 'Poppins', sans-serif;
-}
-.navbar-brand img {
-  height: 40px;
-}
-.nav-link {
+.language-selector button {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.875rem;
   font-weight: 500;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
+  transition: all 0.3s ease;
 }
-.navbar-toggler {
-  border: none;
+.language-selector button:hover,
+.language-selector button:focus {
+  background-color: #e93f66;
+  color: white;
+  border-color: #e93f66;
+}
+.language-selector button.active-lang {
+  background-color: #e93f66;
+  color: white;
+  border-color: #e93f66;
 }
 
 /* Responsivo */
@@ -152,183 +248,10 @@ body, html {
   #galeria {
     padding: 2rem 1rem;
   }
-
   .fixed-social-icons {
     right: 10px;
     gap: 10px;
   }
-}
-
-/* Secção Sobre Nós (mobile-first) */
-#sobre {
-  background-color: #fafafa;
-  padding: 2rem 1rem;
-}
-
-#sobre .content {
-  max-width: 100%; /* Ocupa toda a largura no mobile */
-  margin: 0 auto;
-}
-
-#sobre h2 {
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #333;
-  text-align: center;
-}
-
-#sobre p {
-  font-size: 1rem;
-  color: #555;
-  line-height: 1.6;
-  text-align: center;
-}
-
-#sobre p strong {
-  font-size: 1rem;
-  color: #000;
-}
-
-#sobre .highlight {
-  border-left: 3px solid #e93f66;
-  padding-left: 1rem;
-}
-
-/* Aumenta padding e largura para ecrãs maiores */
-@media (min-width: 768px) {
-  #sobre {
-    padding: 4rem 1rem;
-  }
-
-  #sobre .content {
-    max-width: 700px;
-  }
-
-  #sobre h2 {
-    font-size: 2rem;
-  }
-
-  #sobre p {
-    font-size: 1.1rem;
-  }
-}
-
-#scrollUpBtn {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: #e93f66;
-  color: #fff;
-  font-size: 1.25rem;
-  padding: 0.75rem 1rem;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: none;
-  z-index: 1000;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-#scrollUpBtn:hover {
-  background-color: #c22c50;
-  transform: translateY(-2px);
-}
-
-footer {
-  background-color: #111;
-  color: #f5f5f5;
-  text-align: center;
-  padding: 1rem;
-}
-
-.footer-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.footer-content p {
-  font-size: 0.9rem;
-  margin: 0.5rem 0;
-}
-
-.footer-content nav {
-  margin: 0.5rem 0;
-}
-
-.footer-content nav a {
-  color: #f5f5f5;
-  text-decoration: none;
-  margin: 0 0.5rem;
-}
-
-.footer-content nav a:hover {
-  color: #e93f66;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-.navbar-brand img {
-  height: 50px;
-}
-
-#sobre a {
-  color: #e93f66;
-  text-decoration: underline;
-}
-
-#scrollUpBtn {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  display: none;
-  font-size: 1.5rem;
-  padding: 0.5rem 0.8rem;
-  background-color: #000;
-  color: #fff;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-/* Seletor de idioma - estilo base */
-.language-selector {
-  display: flex;
-  gap: 0.5rem;
-}
-
-/* Botões de idioma */
-.language-selector button {
-  padding: 0.3rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  background-color: white;
-  color: #333;
-  transition: all 0.3s ease;
-}
-
-/* Hover e foco */
-.language-selector button:hover,
-.language-selector button:focus {
-  background-color: #e93f66;
-  color: white;
-  border-color: #e93f66;
-  outline: none;
-}
-
-/* Idioma ativo (opcional: define com classe .active-lang) */
-.language-selector button.active-lang {
-  background-color: #e93f66;
-  color: white;
-  border-color: #e93f66;
-}
-
-/* Mobile: margem extra no colapso do menu */
-@media (max-width: 991px) {
   .language-selector {
     justify-content: center;
     margin-top: 1rem;
