@@ -10,12 +10,34 @@ html, body {
 }
 
 /* Scroll snapping */
+html {
+  scroll-snap-type: y proximity;
+}
 section {
   scroll-snap-align: start;
   scroll-margin-top: 80px;
 }
-html {
-  scroll-snap-type: y proximity;
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fdf9f8 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.navbar-brand img {
+  height: 60px;
+}
+.navbar-toggler {
+  border: none;
+}
+.nav-link {
+  font-weight: 500;
+  color: #333 !important;
+}
+.nav-link:hover {
+  color: #e93f66 !important;
 }
 
 /* Hero Banner */
@@ -57,28 +79,6 @@ html {
 }
 .hero-banner .content p {
   font-size: 1.2rem;
-}
-
-/* Navbar */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: #fdf9f8 !important; /* Força a cor */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-.navbar-brand img {
-  height: 60px;
-}
-.navbar-toggler {
-  border: none;
-}
-.nav-link {
-  font-weight: 500;
-  color: #333 !important; /* Garante visibilidade sobre fundo claro */
-}
-.nav-link:hover {
-  color: #e93f66 !important;
 }
 
 /* Secções alternadas */
