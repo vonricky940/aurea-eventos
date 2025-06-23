@@ -79,10 +79,19 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const videoSrc = window.innerWidth < 768
-    ? 'assets/video/video-vertical.mp4'
-    : 'assets/video/video-horizontal.mp4';
+  const isLandscape = window.innerWidth > window.innerHeight;
+  const isMobile = window.innerWidth < 768;
 
-  document.getElementById('videoSource').src = videoSrc;
-  document.getElementById('bg-video').load();
+  const videoSrc = isMobile && !isLandscape
+    ? 'assets/video/mobile-video.mp4'
+    : 'assets/video/desktop-video.mp4';
+
+  const video = document.getElementById('bg-video');
+  const source = document.createElement('source');
+  source.setAttribute('src', videoSrc);
+  source.setAttribute('type', 'video/mp4');
+  video.innerHTML = '';
+  video.appendChild(source);
+  video.load();
 });
+

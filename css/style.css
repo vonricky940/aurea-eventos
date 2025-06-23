@@ -18,14 +18,13 @@ section {
   scroll-margin-top: 80px;
 }
 
-/* Navbar */
+/* Navbar (fundo opaco restaurado) */
 .navbar {
-  position: absolute;
+  position: sticky;
   top: 0;
-  width: 100%;
   z-index: 1000;
-  background-color: transparent !important;
-  box-shadow: none;
+  background-color: #fdf9f8 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 .navbar-brand img {
   height: 60px;
@@ -35,7 +34,7 @@ section {
 }
 .nav-link {
   font-weight: 500;
-  color: #fff !important;
+  color: #333 !important;
 }
 .nav-link:hover {
   color: #e93f66 !important;
@@ -46,12 +45,13 @@ section {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background-color: #000;
 }
+
 .hero-banner video {
   position: absolute;
   top: 0;
@@ -62,13 +62,17 @@ section {
   z-index: 1;
   pointer-events: none;
 }
+
 .hero-banner .overlay {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.45);
   z-index: 2;
 }
+
 .hero-banner .content {
   position: relative;
   z-index: 3;
@@ -77,15 +81,16 @@ section {
   padding: 2rem;
   text-shadow: 1px 1px 4px #000;
 }
+
 .hero-banner .content h1 {
   font-size: 2.8rem;
   font-weight: bold;
 }
+
 .hero-banner .content p {
   font-size: 1.2rem;
 }
 
-/* Hero Button */
 .hero-btn {
   display: inline-flex;
   align-items: center;
