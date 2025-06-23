@@ -77,3 +77,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // TODO - Corrigir alteracao de idioma automatica
     // changeLanguage(savedLang);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const videoSrc = window.innerWidth < 768
+    ? 'assets/video/video-vertical.mp4'
+    : 'assets/video/video-horizontal.mp4';
+
+  document.getElementById('videoSource').src = videoSrc;
+  document.getElementById('bg-video').load();
+});
