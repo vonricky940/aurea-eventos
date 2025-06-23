@@ -72,11 +72,11 @@ form.addEventListener("submit", function (e) {
 });
 
 // Ao carregar a página, definir o idioma salvo
-document.addEventListener("DOMContentLoaded", function () {
-    const savedLang = localStorage.getItem("selectedLang") || "pt";
-    // TODO - Corrigir alteracao de idioma automatica
-    // changeLanguage(savedLang);
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//     const savedLang = localStorage.getItem("selectedLang") || "pt";
+//     // TODO - Corrigir alteracao de idioma automatica
+//     changeLanguage(savedLang);
+// });
 
 document.addEventListener('DOMContentLoaded', () => {
   const isLandscape = window.innerWidth > window.innerHeight;
