@@ -64,23 +64,19 @@
     </nav>
 
     <!-- Hero Banner com Vídeo -->
-    <section class="hero-banner" id="hero">
-    <div class="video-wrapper">
-        <video autoplay muted loop playsinline id="bg-video">
-        <source src="assets/video/luxury-party.mp4" type="video/mp4">
-        O seu browser não suporta vídeo em HTML5.
-        </video>
-        <div class="overlay"></div>
-    </div>
-    <div class="content">
-        <h1 data-i18n="hero.title">Áurea - Eventos Personalizados</h1>
-        <p data-i18n="hero.subtitle">Decoração feita à medida, com um toque de luxo.</p>
-        <a href="#galeria" class="hero-btn" data-i18n="hero.button">
-  <span>Clique para ver mais</span> <i class="fas fa-angle-down ms-2"></i>
-</a>
-
-    </div>
-    </section>
+    <section class="hero-banner position-relative">
+  <video autoplay muted loop playsinline preload="auto" id="bg-video" class="w-100 h-100">
+    <source src="assets/video/desktop-video.mp4" type="video/mp4" media="(min-aspect-ratio: 1/1)">
+    <source src="assets/video/mobile-video.mp4" type="video/mp4" media="(max-aspect-ratio: 1/1)">
+    O seu browser não suporta vídeo em HTML5.
+  </video>
+  <div class="overlay"></div>
+  <div class="content">
+    <h1 data-i18n="hero.title">Áurea - Eventos Personalizados</h1>
+    <p data-i18n="hero.subtitle">Decoração feita à medida, com um toque de luxo.</p>
+    <a href="#galeria" class="btn btn-light mt-3" data-i18n="hero.button">Clique para ver mais</a>
+  </div>
+</section>
 
 
     <!-- Secção Sobre Nós -->
