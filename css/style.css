@@ -20,12 +20,11 @@ section {
 
 /* Navbar */
 .navbar {
-  position: absolute;
+  position: relative;
   top: 0;
-  width: 100%;
   z-index: 1000;
-  background-color: transparent !important;
-  box-shadow: none;
+  background-color: #fdf9f8 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 .navbar-brand img {
   height: 60px;
@@ -35,7 +34,7 @@ section {
 }
 .nav-link {
   font-weight: 500;
-  color: #fff !important;
+  color: #333 !important;
 }
 .nav-link:hover {
   color: #e93f66 !important;
