@@ -27,10 +27,10 @@
 
     <!-- CSS dinâmico -->
     <script>
-        const isDevCSS = true; // Debug ativo
+        const isDev = true; // Debug ativo
         const css = document.createElement('link');
         css.rel = 'stylesheet';
-        css.href = isDevCSS ? 'css/style.css' : 'css/style.min.css';
+        css.href = isDev ? 'css/style.css' : 'css/style.min.css';
         document.head.appendChild(css);
     </script>
 </head>
