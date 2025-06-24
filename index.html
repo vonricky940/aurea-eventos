@@ -3,36 +3,29 @@
 <html lang="pt">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Áurea - Eventos Personalizados</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Áurea - Eventos Personalizados</title>
 
-    <!-- Bootstrap 5 & Fontawesome -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Bootstrap 5 & Fontawesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Recaptcha v3 -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vlBrs" async
-        defer></script>
+  <!-- Recaptcha v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vlBrs" async defer></script>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Lightbox CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <!-- Lightbox CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/img/logo-rosa.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/logo-rosa.png">
 
-    <!-- CSS dinâmico -->
-    <script>
-        const isDev = true; // Debug ativo
-        const css = document.createElement('link');
-        css.rel = 'stylesheet';
-        css.href = isDev ? 'css/style.css' : 'css/style.min.css';
-        document.head.appendChild(css);
-    </script>
+  <!-- Estilo principal (modo debug) -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="css/style.min.css"> -->
 </head>
 
 <body>
@@ -232,20 +225,16 @@
     </footer>
 
     <!-- jQuery (necessário para Lightbox2) -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" defer></script>
-    <!-- Lightbox JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js" defer></script>
+  <!-- Lightbox JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" defer></script>
 
-    <!-- Traduções -->
-    <script src="js/lang.js" defer></script>
+  <!-- Traduções -->
+  <script src="js/lang.js" defer></script>
 
-    <!-- JS dinâmico -->
-    <script>
-        const js = document.createElement('script');
-        js.src = isDev ? 'js/script.js' : 'js/script.min.js';
-        js.defer = true;
-        document.body.appendChild(js);
-    </script>
+  <!-- Script principal (modo debug) -->
+  <script src="js/script.js" defer></script>
+  <!-- <script src="js/script.min.js" defer></script> -->
 
 </body>
 
