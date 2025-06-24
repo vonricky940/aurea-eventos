@@ -128,42 +128,32 @@ if (form) {
 }
 
 // Carregamento automático da galeria
-const folderId = "10ZgBHUh9g6PBAR0I73PHuXfaWrqQmfeW";
-const apiKey = "AIzaSyC9ifnZYl7dL8rXaaoMEfjSZ3qyXBHsh0c";
-
 async function loadGallery() {
-    console.log("[Galeria] Início do carregamento.");
+    console.log("[Galeria] Início do carregamento via Cloudflare Worker.");
     const galleryContainer = document.getElementById("gallery-container");
     const spinner = document.getElementById("gallery-spinner");
 
     galleryContainer.innerHTML = ''; // limpar antes de carregar
 
     try {
-        const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'+and+trashed=false&key=${apiKey}&fields=files(id,name)`;
-        console.log(`[Galeria] URL da API: ${url}`);
+        const response = await fetch("https://aurea-drive.vonricky940.workers.dev/");
+        const images = await response.json();
 
-        const res = await fetch(url);
-        const data = await res.json();
-        console.log("[Galeria] Resposta da API:", data);
-
-        if (!data.files || data.files.length === 0) {
-            throw new Error("Nenhuma imagem encontrada na API.");
+        if (!images || images.length === 0) {
+            throw new Error("Nenhuma imagem recebida do Worker.");
         }
 
-        data.files.forEach(file => {
-            const imgUrl = `https://drive.google.com/uc?id=${file.id}`;
-            console.log(`[Galeria] Imagem carregada: ${imgUrl}`);
-
+        images.forEach(file => {
             const col = document.createElement("div");
             col.className = "col-12 col-sm-6 col-md-4 col-lg-3 gallery-image";
 
             const a = document.createElement("a");
-            a.href = imgUrl;
+            a.href = file.url;
             a.setAttribute("data-lightbox", "aurea-gallery");
             a.setAttribute("data-title", file.name);
 
             const img = document.createElement("img");
-            img.src = imgUrl;
+            img.src = file.url;
             img.alt = file.name;
             img.loading = "lazy";
 
@@ -177,9 +167,9 @@ async function loadGallery() {
             console.log("[Galeria] Lightbox re-inicializado.");
         }
 
-        console.log("[Galeria] Todas as imagens renderizadas com sucesso.");
+        console.log("[Galeria] Imagens carregadas com sucesso do Worker.");
     } catch (error) {
-        console.warn("[Galeria] Erro ao carregar da API. A carregar fallback local...", error);
+        console.warn("[Galeria] Erro ao carregar via Worker. A carregar fallback local...", error);
 
         for (let i = 1; i <= 10; i++) {
             const imgUrl = `assets/img/galeria/img${i}.jpg`;
@@ -200,8 +190,10 @@ async function loadGallery() {
             col.appendChild(a);
             galleryContainer.appendChild(col);
         }
+
         console.log("[Galeria] Fallback local carregado com sucesso.");
     } finally {
         spinner.style.display = "none";
     }
 }
+
