@@ -23,8 +23,6 @@
     <!-- Lightbox CSS e JS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css" rel="stylesheet">
 
-    <!-- Minified CSS -->
-    <link rel="stylesheet" href="css/style.min.css" />
 </head>
 
 <body>
@@ -226,8 +224,21 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.js"></script>
     <script src="js/lang.js"></script>
-    <!-- Minified JS -->
-    <script src="js/script.min.js"></script>
+    <!-- CSS e JS dinâmicos: carrega versão minificada exceto em localhost -->
+    <script>
+        const isDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+        // Carrega CSS adequado
+        const css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = isDev ? 'css/style.css' : 'css/style.min.css';
+        document.head.appendChild(css);
+
+        // Carrega JS adequado
+        const js = document.createElement('script');
+        js.src = isDev ? 'js/script.js' : 'js/script.min.js';
+        document.body.appendChild(js);
+    </script>
 
 </body>
 
