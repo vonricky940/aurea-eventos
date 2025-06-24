@@ -28,9 +28,12 @@ jobs:
       run: terser js/script.js -o js/script.min.js --compress --mangle
 
     - name: Commit das versões minificadas
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-        git add css/style.min.css js/script.min.js
-        git commit -m "Minified CSS and JS" || echo "Nada para commitar"
-        git push
+      env:
+    GH_PAT: ${{ secrets.GH_PAT }}
+  run: |
+    git config user.name "github-actions"
+    git config user.email "github-actions@github.com"
+    git remote set-url origin https://x-access-token:${GH_PAT}@github.com/vonricky940/aurea-eventos.git
+    git add css/style.min.css js/script.min.js
+    git commit -m "Add minified assets"
+    git push
