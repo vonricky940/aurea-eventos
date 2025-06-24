@@ -144,18 +144,23 @@ async function loadGallery() {
         }
 
         images.forEach(file => {
+            const imgUrl = file.url;
+
             const col = document.createElement("div");
-            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 gallery-image";
+            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 gallery-image mb-4";
 
             const a = document.createElement("a");
-            a.href = file.url;
+            a.href = imgUrl;
             a.setAttribute("data-lightbox", "aurea-gallery");
             a.setAttribute("data-title", file.name);
 
             const img = document.createElement("img");
-            img.src = file.url;
+            img.src = imgUrl;
             img.alt = file.name;
             img.loading = "lazy";
+            img.style.width = "100%";
+            img.style.height = "auto";
+            img.style.objectFit = "cover";
 
             a.appendChild(img);
             col.appendChild(a);
