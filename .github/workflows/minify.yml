@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -19,7 +21,7 @@ jobs:
           node-version: 18
 
       - name: Instalar dependências
-        run: npm install clean-css-cli terser -g
+        run: npm install -g clean-css-cli terser
 
       - name: Minificar CSS
         run: cleancss -o css/style.min.css css/style.css
