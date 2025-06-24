@@ -104,9 +104,14 @@ async function loadGallery() {
   const spinner = document.getElementById("gallery-spinner");
 
   try {
+
+    console.log('Request initiated to Google Drive API');
+
     const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'+and+trashed=false&key=${apiKey}&fields=files(id,name)`;
     const res = await fetch(url);
     const data = await res.json();
+
+    console.log(data);
 
     if (data.files.length === 0) {
       spinner.innerHTML = `<p data-i18n="gallery.empty">Nenhuma imagem disponível.</p>`;
