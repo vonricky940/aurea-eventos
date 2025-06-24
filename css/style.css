@@ -313,3 +313,9 @@ footer {
     margin-top: 1rem;
   }
 }
+
+section.container-fluid > .row,
+section.container-fluid > div {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
