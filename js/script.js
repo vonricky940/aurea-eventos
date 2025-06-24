@@ -95,3 +95,49 @@ document.addEventListener('DOMContentLoaded', () => {
   video.load();
 });
 
+// Carregamento automático da galeria
+const folderId = "10ZgBHUh9g6PBAR0I73PHuXfaWrqQmfeW";
+const apiKey = "AIzaSyC9ifnZYl7dL8rXaaoMEfjSZ3qyXBHsh0c";
+
+async function loadGallery() {
+  const galleryContainer = document.getElementById("gallery-container");
+  const spinner = document.getElementById("gallery-spinner");
+
+  try {
+    const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'+and+trashed=false&key=${apiKey}&fields=files(id,name)`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (data.files.length === 0) {
+      spinner.innerHTML = `<p data-i18n="gallery.empty">Nenhuma imagem disponível.</p>`;
+      return;
+    }
+
+    data.files.forEach(file => {
+      const imgUrl = `https://drive.google.com/uc?id=${file.id}`;
+      const col = document.createElement("div");
+      col.className = "col-12 col-sm-6 col-md-4 col-lg-3 gallery-image";
+
+      const a = document.createElement("a");
+      a.href = imgUrl;
+      a.setAttribute("data-lightbox", "aurea-gallery");
+      a.setAttribute("data-title", file.name);
+
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      img.alt = file.name;
+      img.loading = "lazy";
+
+      a.appendChild(img);
+      col.appendChild(a);
+      galleryContainer.appendChild(col);
+    });
+  } catch (error) {
+    spinner.innerHTML = `<p data-i18n="gallery.error">Erro ao carregar a galeria. Tente novamente mais tarde.</p>`;
+  } finally {
+    spinner.style.display = "none";
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", loadGallery);

@@ -21,9 +21,9 @@ const translations = {
 
     // Gallery
     "gallery.title": "Galeria de Eventos",
-    "gallery.baptisms": "Batizados",
-    "gallery.communions": "Comunhões",
-    "gallery.birthdays": "Festas de Aniversário",
+    "gallery.loading": "A carregar imagens...",
+    "gallery.empty": "Nenhuma imagem disponível.",
+    "gallery.error": "Erro ao carregar a galeria. Tente novamente mais tarde.",
 
     // Contact
     "contact.title": "Fale connosco",
@@ -73,9 +73,9 @@ const translations = {
 
     // Gallery
     "gallery.title": "Event Gallery",
-    "gallery.baptisms": "Baptisms",
-    "gallery.communions": "Communions",
-    "gallery.birthdays": "Birthday Parties",
+    "gallery.loading": "Loading images...",
+    "gallery.empty": "No images available.",
+    "gallery.error": "Error loading gallery. Please try again later.",
 
     // Contact
     "contact.title": "Contact Us",

@@ -142,24 +142,24 @@ section:nth-of-type(odd) {
   font-weight: 600;
   color: #c94c7b;
 }
-.nav-tabs .nav-link.active {
-  background-color: #f8dbe7;
-  font-weight: bold;
-  color: #c94c7b !important;
+#gallery-container {
+  padding: 0 2rem;
 }
-.tab-content .row > div {
-  margin-bottom: 1rem;
+.gallery-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
-.tab-content img {
+.gallery-image img {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
-.tab-content img:hover {
-  transform: scale(1.03);
+.gallery-image:hover img {
+  transform: scale(1.05);
 }
 
 /* Secção Sobre */
