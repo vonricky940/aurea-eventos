@@ -19,8 +19,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Lightbox2 CSS -->
-    <link href="css/lightbox.min.css" rel="stylesheet">
+    <!-- Glightbox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/img/logo-rosa.png">
@@ -226,11 +226,23 @@
         </div>
     </footer>
 
-    <!-- jQuery (necessário para Lightbox2) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- gLightBox -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        const lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            zoomable: true, 
+            openEffect: 'fade',
+            closeEffect: 'fade',
+            slideEffect: 'slide',
+            autoplayVideos: false,
+            moreText: '', 
+            skin: 'clean'
+        });
+    </script>
 
-    <!-- Lightbox JS -->
-    <script src="js/lightbox.min.js"></script>
 
     <!-- Traduções -->
     <script src="js/lang.js" defer></script>
