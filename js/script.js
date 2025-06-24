@@ -80,29 +80,6 @@ form.addEventListener("submit", function (e) {
     });
 });
 
-// Definir vídeo de fundo com base no dispositivo
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("[Video] DOM carregado. Selecionando vídeo adequado.");
-    const isLandscape = window.innerWidth > window.innerHeight;
-    const isMobile = window.innerWidth < 768;
-
-    const videoSrc = isMobile && !isLandscape
-        ? 'assets/video/mobile-video.mp4'
-        : 'assets/video/desktop-video.mp4';
-
-    console.log(`[Video] Dispositivo: ${isMobile ? "Mobile" : "Desktop"}, Orientação: ${isLandscape ? "Landscape" : "Portrait"}`);
-    console.log(`[Video] Vídeo selecionado: ${videoSrc}`);
-
-    const video = document.getElementById('bg-video');
-    const source = document.createElement('source');
-    source.setAttribute('src', videoSrc);
-    source.setAttribute('type', 'video/mp4');
-    video.innerHTML = '';
-    video.appendChild(source);
-    video.load();
-    console.log("[Video] Vídeo carregado com sucesso.");
-});
-
 // Carregamento automático da galeria
 const folderId = "10ZgBHUh9g6PBAR0I73PHuXfaWrqQmfeW";
 const apiKey = "AIzaSyC9ifnZYl7dL8rXaaoMEfjSZ3qyXBHsh0c";
@@ -158,4 +135,34 @@ async function loadGallery() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", loadGallery);
+// DOMContentLoaded — inicializações
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("[Init] DOM totalmente carregado.");
+
+    // Vídeo de fundo
+    const isLandscape = window.innerWidth > window.innerHeight;
+    const isMobile = window.innerWidth < 768;
+
+    const videoSrc = isMobile && !isLandscape
+        ? 'assets/video/mobile-video.mp4'
+        : 'assets/video/desktop-video.mp4';
+
+    console.log(`[Video] Dispositivo: ${isMobile ? "Mobile" : "Desktop"}, Orientação: ${isLandscape ? "Landscape" : "Portrait"}`);
+    console.log(`[Video] Vídeo selecionado: ${videoSrc}`);
+
+    const video = document.getElementById('bg-video');
+    const source = document.createElement('source');
+    source.setAttribute('src', videoSrc);
+    source.setAttribute('type', 'video/mp4');
+    video.innerHTML = '';
+    video.appendChild(source);
+    video.load();
+    console.log("[Video] Vídeo carregado com sucesso.");
+
+    // Idioma
+    const savedLang = localStorage.getItem("selectedLang") || "pt";
+    changeLanguage(savedLang);
+
+    // Galeria
+    loadGallery();
+});
