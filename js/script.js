@@ -99,9 +99,7 @@ async function loadGallery() {
         console.log("[Galeria] Resposta da API:", data);
 
         if (!data.files || data.files.length === 0) {
-            console.warn("[Galeria] Nenhuma imagem encontrada.");
-            spinner.innerHTML = `<p data-i18n="gallery.empty">Nenhuma imagem disponível.</p>`;
-            return;
+            throw new Error("Nenhuma imagem encontrada na API.");
         }
 
         data.files.forEach(file => {
@@ -126,10 +124,31 @@ async function loadGallery() {
             galleryContainer.appendChild(col);
         });
 
-        console.log("[Galeria] Todas as imagens renderizadas com sucesso.");
+        console.log("[Galeria] Todas as imagens da API renderizadas com sucesso.");
     } catch (error) {
-        console.error("[Galeria] Erro ao carregar a galeria:", error);
-        spinner.innerHTML = `<p data-i18n="gallery.error">Erro ao carregar a galeria. Tente novamente mais tarde.</p>`;
+        console.warn("[Galeria] Erro ao carregar da API. A carregar fallback local...", error);
+
+        for (let i = 1; i <= 10; i++) {
+            const imgUrl = `assets/img/galeria/img${i}.jpg`;
+            const col = document.createElement("div");
+            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 gallery-image";
+
+            const a = document.createElement("a");
+            a.href = imgUrl;
+            a.setAttribute("data-lightbox", "aurea-gallery");
+            a.setAttribute("data-title", `Imagem ${i}`);
+
+            const img = document.createElement("img");
+            img.src = imgUrl;
+            img.alt = `Imagem ${i}`;
+            img.loading = "lazy";
+
+            a.appendChild(img);
+            col.appendChild(a);
+            galleryContainer.appendChild(col);
+        }
+
+        console.log("[Galeria] Fallback local carregado com sucesso.");
     } finally {
         spinner.style.display = "none";
     }
