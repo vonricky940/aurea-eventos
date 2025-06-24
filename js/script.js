@@ -147,7 +147,7 @@ async function loadGallery() {
             const imgUrl = file.url;
 
             const col = document.createElement("div");
-            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 gallery-image mb-4";
+            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
 
             const a = document.createElement("a");
             a.href = imgUrl;
@@ -158,19 +158,16 @@ async function loadGallery() {
             img.src = imgUrl;
             img.alt = file.name;
             img.loading = "lazy";
-            img.style.width = "100%";
-            img.style.height = "auto";
-            img.style.objectFit = "cover";
+            img.className = "img-fluid rounded gallery-img";
 
             a.appendChild(img);
             col.appendChild(a);
             galleryContainer.appendChild(col);
         });
 
-        // Reinicializar GLightbox (caso existam várias chamadas à função)
         if (window.GLightbox) {
             GLightbox({ selector: '.glightbox' });
-            console.log("[Galeria] GLightbox inicializado.");
+            console.log("[Galeria] GLightbox inicializado (Worker).");
         }
 
         console.log("[Galeria] Imagens carregadas com sucesso do Worker.");
@@ -179,8 +176,9 @@ async function loadGallery() {
 
         for (let i = 1; i <= 10; i++) {
             const imgUrl = `assets/img/galeria/img${i}.jpg`;
+
             const col = document.createElement("div");
-            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 gallery-image mb-4";
+            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
 
             const a = document.createElement("a");
             a.href = imgUrl;
@@ -191,16 +189,13 @@ async function loadGallery() {
             img.src = imgUrl;
             img.alt = `Imagem ${i}`;
             img.loading = "lazy";
-            img.style.width = "100%";
-            img.style.height = "auto";
-            img.style.objectFit = "cover";
+            img.className = "img-fluid rounded gallery-img";
 
             a.appendChild(img);
             col.appendChild(a);
             galleryContainer.appendChild(col);
         }
 
-        // Reinicializar GLightbox para fallback
         if (window.GLightbox) {
             GLightbox({ selector: '.glightbox' });
             console.log("[Galeria] Fallback com GLightbox inicializado.");
@@ -211,5 +206,3 @@ async function loadGallery() {
         spinner.style.display = "none";
     }
 }
-
-

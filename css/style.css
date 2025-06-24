@@ -1,5 +1,6 @@
 /* Base Reset */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', sans-serif;
@@ -13,6 +14,7 @@ html, body {
 html {
   scroll-snap-type: y proximity;
 }
+
 section {
   scroll-snap-align: start;
   scroll-margin-top: 80px;
@@ -26,16 +28,20 @@ section {
   background-color: #fdf9f8 !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
+
 .navbar-brand img {
   height: 60px;
 }
+
 .navbar-toggler {
   border: none;
 }
+
 .nav-link {
   font-weight: 500;
   color: #333 !important;
 }
+
 .nav-link:hover {
   color: #e93f66 !important;
 }
@@ -100,9 +106,9 @@ section {
   font-weight: 500;
   color: #333;
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 30px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -112,7 +118,7 @@ section {
   background-color: #fdf4f8;
   color: #c94c7b;
   border-color: #e93f66;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .hero-btn i {
@@ -128,6 +134,7 @@ section {
 section:nth-of-type(even) {
   background-color: #fdf4f8;
 }
+
 section:nth-of-type(odd) {
   background-color: #ffffff;
 }
@@ -136,47 +143,71 @@ section:nth-of-type(odd) {
 #galeria {
   padding: 4rem 1rem;
 }
+
 #galeria h2 {
   text-align: center;
   margin-bottom: 2rem;
   font-weight: 600;
   color: #c94c7b;
 }
+
 #gallery-container {
   padding: 0 2rem;
 }
+
 .gallery-image {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+
 .gallery-image img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: contain;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border-radius: 12px;
   transition: transform 0.3s ease;
 }
+
 .gallery-image:hover img {
   transform: scale(1.05);
 }
+
+.gallery-img {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.gallery-img:hover {
+  transform: scale(1.03);
+}
+
+#gallery-container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 
 /* Secção Sobre */
 #sobre {
   padding: 4rem 1rem;
 }
+
 #sobre h2 {
   font-weight: 600;
   font-size: 2rem;
   color: #c94c7b;
   text-align: center;
 }
-#sobre p, #sobre p strong {
+
+#sobre p,
+#sobre p strong {
   font-size: 1.1rem;
   color: #555;
   text-align: center;
 }
+
 #sobre a {
   color: #e93f66;
   text-decoration: underline;
@@ -189,11 +220,13 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+
 .footer-content nav a {
   color: #f5f5f5;
   text-decoration: none;
   margin: 0 0.5rem;
 }
+
 .footer-content nav a:hover {
   color: #e93f66;
 }
@@ -214,6 +247,7 @@ footer {
   z-index: 1001;
   transition: background-color 0.3s, transform 0.3s;
 }
+
 #scrollUpBtn:hover {
   background-color: #c22c50;
   transform: translateY(-2px);
@@ -235,7 +269,7 @@ footer {
   color: #fff;
   padding: 12px;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -249,7 +283,7 @@ footer {
 .fixed-social-icons a:hover {
   background-color: #c22c50;
   transform: translateY(-2px);
-  box-shadow: 0 0 12px rgba(0,0,0,0.25);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
 }
 
 .fixed-social-icons a:focus {
@@ -268,6 +302,7 @@ footer {
   display: flex;
   gap: 0.5rem;
 }
+
 .language-selector button {
   padding: 0.3rem 0.75rem;
   font-size: 0.875rem;
@@ -278,12 +313,14 @@ footer {
   color: #333;
   transition: all 0.3s ease;
 }
+
 .language-selector button:hover,
 .language-selector button:focus {
   background-color: #e93f66;
   color: white;
   border-color: #e93f66;
 }
+
 .language-selector button.active-lang {
   background-color: #e93f66;
   color: white;
@@ -295,27 +332,32 @@ footer {
   .hero-banner .content h1 {
     font-size: 2rem;
   }
+
   .hero-banner .content p {
     font-size: 1rem;
   }
+
   .logo {
     height: 35px;
   }
+
   #galeria {
     padding: 2rem 1rem;
   }
+
   .fixed-social-icons {
     right: 10px;
     gap: 10px;
   }
+
   .language-selector {
     justify-content: center;
     margin-top: 1rem;
   }
 }
 
-section.container-fluid > .row,
-section.container-fluid > div {
+section.container-fluid>.row,
+section.container-fluid>div {
   padding-left: 1rem;
   padding-right: 1rem;
 }
