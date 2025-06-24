@@ -10,30 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v3
+      - name: Checkout do código
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Instalar dependências
-      run: npm install clean-css-cli terser -g
+      - name: Instalar dependências
+        run: npm install clean-css-cli terser -g
 
-    - name: Minificar CSS
-      run: cleancss -o css/style.min.css css/style.css
+      - name: Minificar CSS
+        run: cleancss -o css/style.min.css css/style.css
 
-    - name: Minificar JS
-      run: terser js/script.js -o js/script.min.js --compress --mangle
+      - name: Minificar JS
+        run: terser js/script.js -o js/script.min.js --compress --mangle
 
-    - name: Commit das versões minificadas
-      env:
-    GH_PAT: ${{ secrets.GH_PAT }}
-  run: |
-    git config user.name "github-actions"
-    git config user.email "github-actions@github.com"
-    git remote set-url origin https://x-access-token:${GH_PAT}@github.com/vonricky940/aurea-eventos.git
-    git add css/style.min.css js/script.min.js
-    git commit -m "Add minified assets"
-    git push
+      - name: Commit das versões minificadas
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/vonricky940/aurea-eventos.git
+          git add css/style.min.css js/script.min.js
+          git commit -m "Add minified assets"
+          git push
