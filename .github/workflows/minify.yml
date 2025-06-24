@@ -1,0 +1,36 @@
+name: Minify CSS and JS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Instalar dependências
+      run: npm install clean-css-cli terser -g
+
+    - name: Minificar CSS
+      run: cleancss -o css/style.min.css css/style.css
+
+    - name: Minificar JS
+      run: terser js/script.js -o js/script.min.js --compress --mangle
+
+    - name: Commit das versões minificadas
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add css/style.min.css js/script.min.js
+        git commit -m "Minified CSS and JS" || echo "Nada para commitar"
+        git push
