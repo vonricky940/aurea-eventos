@@ -221,28 +221,6 @@ footer {
   color: #e93f66;
 }
 
-/* Scroll to Top Button */
-#scrollUpBtn {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: #e93f66;
-  color: #fff;
-  font-size: 1.5rem;
-  padding: 0.75rem 1rem;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: none;
-  z-index: 1001;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-#scrollUpBtn:hover {
-  background-color: #c22c50;
-  transform: translateY(-2px);
-}
-
 /* Redes Sociais */
 .fixed-social-icons {
   position: fixed;

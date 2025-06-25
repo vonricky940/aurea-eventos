@@ -35,6 +35,8 @@
 
 <body>
 
+    <div id="topo"></div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg shadow-sm">
         <div class="container">
@@ -56,7 +58,7 @@
 
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#" data-i18n="menu.home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#topo" data-i18n="menu.home">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="#galeria" data-i18n="menu.gallery">Galeria</a></li>
                     <li class="nav-item"><a class="nav-link" href="#sobre" data-i18n="menu.about">Sobre</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto" data-i18n="menu.contact">Contacto</a></li>
@@ -265,6 +267,8 @@
         });
     </script>
 
+    <!-- Bootstrap JS (necessário para navbar e modais) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Traduções -->
     <script src="js/lang.js" defer></script>
