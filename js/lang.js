@@ -14,7 +14,7 @@ const translations = {
     // Testimonials
     "testimonials.title": "Testemunhos de Clientes",
     "testimonials.intro": "Ao longo do tempo, temos recebido palavras calorosas dos nossos clientes, que nos inspiram a continuar a criar experiências únicas e inesquecíveis. Veja alguns testemunhos de quem confiou na Áurea para tornar os seus momentos ainda mais especiais.",
-    "menu.testimonials": "Testemunhos"
+    "menu.testimonials": "Testemunhos",
 
     // About
     "about.title": "Sobre Nós",
