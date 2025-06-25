@@ -85,6 +85,30 @@
         </div>
     </section>
 
+    <!-- Secção de Testemunhos Melhorada -->
+    <section id="testemunhos" class="container py-5">
+        <h2 class="text-center mb-4" data-i18n="testimonials.title">Testemunhos de Clientes</h2>
+        <p class="text-center mb-4" data-i18n="testimonials.intro">
+            Ao longo do tempo, temos recebido palavras calorosas dos nossos clientes, que nos inspiram a continuar a
+            criar experiências únicas e inesquecíveis. Veja alguns testemunhos de quem confiou na Áurea para tornar os
+            seus momentos ainda mais especiais.
+        </p>
+
+        <div id="testemunhosCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+            <div class="carousel-inner" id="testemunhos-container">
+                <!-- Testemunhos via JS -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testemunhosCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testemunhosCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
 
     <!-- Secção Sobre Nós -->
     <section id="sobre" class="container-fluid py-5">
@@ -233,12 +257,12 @@
             selector: '.glightbox',
             touchNavigation: true,
             loop: true,
-            zoomable: true, 
+            zoomable: true,
             openEffect: 'fade',
             closeEffect: 'fade',
             slideEffect: 'slide',
             autoplayVideos: false,
-            moreText: '', 
+            moreText: '',
             skin: 'clean'
         });
     </script>

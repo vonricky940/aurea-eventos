@@ -1,0 +1,27 @@
+[
+  {
+    "nome": "Anónimo",
+    "estrelas": 5,
+    "comentario": "A atenção ao detalhe foi impressionante. A decoração estava absolutamente deslumbrante e superou todas as expectativas. Recebemos muitos elogios dos convidados!"
+  },
+  {
+    "nome": "Pedro Silva",
+    "estrelas": 5,
+    "comentario": "A decoração das mesas e o espaço do bolo estavam lindíssimos! Adorámos o toque de elegância e o bom gosto. Voltaremos a contratar!"
+  },
+  {
+    "nome": "Catarina M.",
+    "estrelas": 5,
+    "comentario": "Serviço impecável do início ao fim. A decoração deixou todos encantados. Recomendo vivamente!"
+  },
+  {
+    "nome": "Joana e Luís",
+    "estrelas": 5,
+    "comentario": "Tornaram o nosso dia ainda mais especial. Obrigado pela dedicação e bom gosto!"
+  },
+  {
+    "nome": "Anónimo",
+    "estrelas": 4,
+    "comentario": "Muito bom serviço. Houve apenas pequenos detalhes a rever, mas no geral ficámos satisfeitos."
+  }
+]

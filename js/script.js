@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Galeria
     loadGallery();
 
+    // Testemunhos
+    loadTestemunhos();
+
     // Vídeo de fundo responsivo
     const isLandscape = window.innerWidth > window.innerHeight;
     const isMobile = window.innerWidth < 768;
@@ -217,3 +220,43 @@ async function loadGallery() {
     }
 }
 
+// Carregamento dos testemunhos no carrossel
+async function loadTestemunhos() {
+    console.log("[Testemunhos] A carregar...");
+
+    const container = document.getElementById("testemunhos-container");
+    if (!container) {
+        console.warn("[Testemunhos] Container não encontrado.");
+        return;
+    }
+
+    try {
+        const response = await fetch("assets/testemunhos.json");
+        const testemunhos = await response.json();
+
+        if (!Array.isArray(testemunhos) || testemunhos.length === 0) {
+            throw new Error("Nenhum testemunho disponível.");
+        }
+
+        testemunhos.forEach((t, i) => {
+            const item = document.createElement("div");
+            item.className = `carousel-item${i === 0 ? " active" : ""}`;
+
+            const estrelas = '★'.repeat(t.estrelas) + '☆'.repeat(5 - t.estrelas);
+
+            item.innerHTML = `
+                <div class="testemunho-card">
+                    <div class="testemunho-estrelas">${estrelas}</div>
+                    <p class="testemunho-comentario">"${t.comentario}"</p>
+                    <p class="testemunho-nome">- ${t.nome}</p>
+                </div>
+            `;
+
+            container.appendChild(item);
+        });
+
+        console.log("[Testemunhos] Carregados com sucesso.");
+    } catch (err) {
+        console.error("[Testemunhos] Erro ao carregar:", err.message);
+    }
+}

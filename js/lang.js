@@ -11,6 +11,11 @@ const translations = {
     "hero.subtitle": "Decoração feita à medida, com um toque de luxo.",
     "hero.button": "Clique para ver mais",
 
+    // Testimonials
+    "testimonials.title": "Testemunhos de Clientes",
+    "testimonials.intro": "Ao longo do tempo, temos recebido palavras calorosas dos nossos clientes, que nos inspiram a continuar a criar experiências únicas e inesquecíveis. Veja alguns testemunhos de quem confiou na Áurea para tornar os seus momentos ainda mais especiais.",
+    "menu.testimonials": "Testemunhos"
+
     // About
     "about.title": "Sobre Nós",
     "about.intro": "Áurea – Eventos Personalizados",
@@ -62,6 +67,11 @@ const translations = {
     "hero.title": "Áurea - Personalized Events",
     "hero.subtitle": "Custom decorations with a touch of luxury.",
     "hero.button": "Click to see more",
+
+    // Testimonials
+    "testimonials.title": "Client Testimonials",
+    "testimonials.intro": "Over time, we’ve received heartwarming feedback from our clients that inspires us to keep creating unique and unforgettable experiences. Read what some of our customers have said about trusting Áurea with their special moments.",
+    "menu.testimonials": "Testimonials"
 
     // About
     "about.title": "About Us",
