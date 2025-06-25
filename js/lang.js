@@ -71,7 +71,7 @@ const translations = {
     // Testimonials
     "testimonials.title": "Client Testimonials",
     "testimonials.intro": "Over time, we’ve received heartwarming feedback from our clients that inspires us to keep creating unique and unforgettable experiences. Read what some of our customers have said about trusting Áurea with their special moments.",
-    "menu.testimonials": "Testimonials"
+    "menu.testimonials": "Testimonials",
 
     // About
     "about.title": "About Us",
