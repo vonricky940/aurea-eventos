@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function changeLanguage(lang) {
     console.log(`[Language] A mudar para: ${lang}`);
     localStorage.setItem("selectedLang", lang);
-    //setLanguage(lang);
+    setLanguage(lang);
 
     document.querySelectorAll(".language-selector button").forEach((btn) => {
         btn.classList.remove("active-lang");
