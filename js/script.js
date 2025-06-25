@@ -26,17 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Testemunhos
     loadTestemunhos();
-    // Inicializar manualmente o carrossel Bootstrap (caso não funcione automaticamente)
-    const testemunhosCarousel = document.querySelector('#testemunhosCarousel');
-    if (testemunhosCarousel) {
-        new bootstrap.Carousel(testemunhosCarousel, {
-            interval: 3000,      // muda de slide a cada 8s
-            pause: 'hover',
-            ride: 'carousel',
-            wrap: true
-        });
-        console.log("[Testemunhos] Carrossel inicializado.");
-    }
 
     // Vídeo de fundo responsivo
     const isLandscape = window.innerWidth > window.innerHeight;
@@ -236,10 +225,7 @@ async function loadTestemunhos() {
     console.log("[Testemunhos] A carregar...");
 
     const container = document.getElementById("testemunhos-container");
-    if (!container) {
-        console.warn("[Testemunhos] Container não encontrado.");
-        return;
-    }
+    if (!container) return console.warn("[Testemunhos] Container não encontrado.");
 
     try {
         const response = await fetch("assets/testemunhos.json");
@@ -249,25 +235,54 @@ async function loadTestemunhos() {
             throw new Error("Nenhum testemunho disponível.");
         }
 
-        testemunhos.forEach((t, i) => {
-            const item = document.createElement("div");
-            item.className = `carousel-item${i === 0 ? " active" : ""}`;
+        container.innerHTML = ""; // limpar
+
+        testemunhos.forEach((t) => {
+            const slide = document.createElement("div");
+            slide.className = "swiper-slide";
 
             const estrelas = '★'.repeat(t.estrelas) + '☆'.repeat(5 - t.estrelas);
 
-            item.innerHTML = `
-                <div class="testemunho-card">
-                    <div class="testemunho-estrelas">${estrelas}</div>
-                    <p class="testemunho-comentario">"${t.comentario}"</p>
-                    <p class="testemunho-nome">- ${t.nome}</p>
-                </div>
-            `;
+            slide.innerHTML = `
+        <div class="testemunho-card">
+          <div class="testemunho-estrelas">${estrelas}</div>
+          <p class="testemunho-comentario">"${t.comentario}"</p>
+          <div class="testemunho-nome">– ${t.nome}</div>
+        </div>
+      `;
 
-            container.appendChild(item);
+            container.appendChild(slide);
         });
 
-        console.log("[Testemunhos] Carregados com sucesso.");
+        new Swiper(".testimonials-swiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2
+                },
+                992: {
+                    slidesPerView: 3
+                }
+            }
+        });
+
+        console.log("[Testemunhos] Carregados com Swiper.");
     } catch (err) {
         console.error("[Testemunhos] Erro ao carregar:", err.message);
     }
 }
+

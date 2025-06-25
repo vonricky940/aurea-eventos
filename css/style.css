@@ -368,24 +368,67 @@ section.container-fluid>div {
   margin: 0 auto;
   transition: all 0.3s ease;
 }
+
 .testemunho-comentario {
   font-size: 1.1rem;
   font-style: italic;
   color: #555;
   margin-bottom: 1rem;
 }
+
 .testemunho-nome {
   font-weight: 600;
   color: #c94c7b;
 }
+
 .testemunho-estrelas {
   color: #ffc107;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
-.carousel-item {
+
+.swiper {
+  padding: 2rem 1rem;
+}
+
+.swiper-slide {
   display: flex;
   justify-content: center;
 }
 
+.testemunho-card {
+  width: 100%;
+  max-width: 400px;
+}
 
+/* Swiper personalizado - Estilo minimalista */
+/* Estilo personalizado para Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #c94c7b;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 1.5rem;
+}
+
+.swiper-pagination-bullet {
+  background: #e93f66;
+  opacity: 0.5;
+  transition: transform 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
