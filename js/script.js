@@ -26,6 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Testemunhos
     loadTestemunhos();
+    // Inicializar manualmente o carrossel Bootstrap (caso não funcione automaticamente)
+    const testemunhosCarousel = document.querySelector('#testemunhosCarousel');
+    if (testemunhosCarousel) {
+        new bootstrap.Carousel(testemunhosCarousel, {
+            interval: 3000,      // muda de slide a cada 8s
+            pause: 'hover',
+            ride: 'carousel',
+            wrap: true
+        });
+        console.log("[Testemunhos] Carrossel inicializado.");
+    }
 
     // Vídeo de fundo responsivo
     const isLandscape = window.innerWidth > window.innerHeight;

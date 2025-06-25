@@ -1,27 +1,27 @@
 [
   {
-    "nome": "Anónimo",
+    "nome": "Giovanna",
     "estrelas": 5,
-    "comentario": "A atenção ao detalhe foi impressionante. A decoração estava absolutamente deslumbrante e superou todas as expectativas. Recebemos muitos elogios dos convidados!"
-  },
-  {
-    "nome": "Pedro Silva",
-    "estrelas": 5,
-    "comentario": "A decoração das mesas e o espaço do bolo estavam lindíssimos! Adorámos o toque de elegância e o bom gosto. Voltaremos a contratar!"
-  },
-  {
-    "nome": "Catarina M.",
-    "estrelas": 5,
-    "comentario": "Serviço impecável do início ao fim. A decoração deixou todos encantados. Recomendo vivamente!"
-  },
-  {
-    "nome": "Joana e Luís",
-    "estrelas": 5,
-    "comentario": "Tornaram o nosso dia ainda mais especial. Obrigado pela dedicação e bom gosto!"
+    "comentario": "Adorei, tudo foi organizado com muito cuidado e profissionalismo. Obrigada por tornar o meu dia ainda mais especial!"
   },
   {
     "nome": "Anónimo",
-    "estrelas": 4,
-    "comentario": "Muito bom serviço. Houve apenas pequenos detalhes a rever, mas no geral ficámos satisfeitos."
+    "estrelas": 5,
+    "comentario": "A atenção ao detalhe foi evidente em todos os momentos. Um serviço de excelência!"
+  },
+  {
+    "nome": "Lucimara",
+    "estrelas": 5,
+    "comentario": "Desde o início do projeto até ao final da festa, tudo correu na perfeição. Superaram todas as expectativas!"
+  },
+  {
+    "nome": "Nelson",
+    "estrelas": 5,
+    "comentario": "Foi tudo excelente, obrigado. Uma equipa fantástica com grande dedicação!"
+  },
+  {
+    "nome": "Rafael",
+    "estrelas": 5,
+    "comentario": "A Áurea esteve sempre disponível, com um serviço de excelência e atenção a todos os detalhes – tornou o nosso dia ainda mais especial!"
   }
 ]
