@@ -280,6 +280,7 @@ async function loadTestemunhos() {
             }
         });
 
+
         console.log("[Testemunhos] Carregados com Swiper.");
     } catch (err) {
         console.error("[Testemunhos] Erro ao carregar:", err.message);

@@ -357,16 +357,27 @@ section.container-fluid>div {
   display: none !important;
 }
 
-/* Testemunhos (Carrossel) */
+/* Testemunhos - Swiper */
+.swiper {
+  padding: 2rem 1rem;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+/* Cartão de testemunho */
 .testemunho-card {
   background-color: #fff;
   border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   text-align: center;
-  max-width: 700px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 380px;
   transition: all 0.3s ease;
+  margin: 0 auto;
 }
 
 .testemunho-comentario {
@@ -383,31 +394,19 @@ section.container-fluid>div {
 
 .testemunho-estrelas {
   color: #ffc107;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
 
-.swiper {
-  padding: 2rem 1rem;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-}
-
-.testemunho-card {
-  width: 100%;
-  max-width: 400px;
-}
-
-/* Swiper personalizado - Estilo minimalista */
-/* Estilo personalizado para Swiper */
+/* Setas de navegação Swiper (minimalistas e integradas com a marca) */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #c94c7b;
+  color: #e93f66;
   width: 2.5rem;
   height: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
 }
 
 .swiper-button-next::after,
@@ -415,17 +414,27 @@ section.container-fluid>div {
   font-size: 1.5rem;
 }
 
+.swiper-button-prev {
+  left: -10px;
+}
+
+.swiper-button-next {
+  right: -10px;
+}
+
+/* Paginador (bullets) */
 .swiper-pagination-bullet {
-  background: #e93f66;
-  opacity: 0.5;
-  transition: transform 0.3s;
+  background: #c94c7b;
+  opacity: 0.4;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 .swiper-pagination-bullet-active {
   opacity: 1;
-  transform: scale(1.2);
+  transform: scale(1.25);
 }
 
+/* Ocultar setas em mobile */
 @media (max-width: 768px) {
   .swiper-button-prev,
   .swiper-button-next {
