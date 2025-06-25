@@ -1,27 +1,56 @@
 [
   {
     "nome": "Giovanna",
+    "comentario": "Adorei! Tudo foi organizado com muito cuidado e profissionalismo. Obrigada por tornar o meu dia ainda mais especial!",
     "estrelas": 5,
-    "comentario": "Adorei, tudo foi organizado com muito cuidado e profissionalismo. Obrigada por tornar o meu dia ainda mais especial!"
+    "data": "Jun 2025"
   },
   {
-    "nome": "Anónimo",
+    "nome": "Rogério",
+    "comentario": "Atenção aos detalhes.",
     "estrelas": 5,
-    "comentario": "A atenção ao detalhe foi evidente em todos os momentos. Um serviço de excelência!"
+    "data": "Jun 2025"
   },
   {
     "nome": "Luciana",
+    "comentario": "Tudo, desde o início do projeto da festa até ao final! 👏🏽",
     "estrelas": 5,
-    "comentario": "Desde o início do projeto até ao final da festa, tudo correu na perfeição. Superaram todas as expectativas!"
+    "data": "Jun 2025"
   },
   {
     "nome": "Nelson",
+    "comentario": "Foi tudo excelente. Obrigado!",
     "estrelas": 5,
-    "comentario": "Foi tudo excelente, obrigado. Uma equipa fantástica com grande dedicação!"
+    "data": "Jun 2025"
   },
   {
     "nome": "Rafael",
+    "comentario": "A Áurea esteve sempre disponível, com um serviço de excelência e atenção a todos os detalhes – tornou o nosso dia ainda mais especial!",
     "estrelas": 5,
-    "comentario": "A Áurea esteve sempre disponível, com um serviço de excelência e atenção a todos os detalhes – tornou o nosso dia ainda mais especial!"
+    "data": "Jun 2025"
+  },
+  {
+    "nome": "Bianca",
+    "comentario": "O empenho e a dedicação fizeram toda a diferença!",
+    "estrelas": 5,
+    "data": "Jun 2025"
+  },
+  {
+    "nome": "Nylda Lucena",
+    "comentario": "Atendimento excelente!",
+    "estrelas": 5,
+    "data": "Jun 2025"
+  },
+  {
+    "nome": "Adriana Perussolo",
+    "comentario": "A dedicação refletiu-se nos resultados: um trabalho entregue com muito profissionalismo, garantindo o sucesso do evento.",
+    "estrelas": 5,
+    "data": "Jun 2025"
+  },
+  {
+    "nome": "Thaina",
+    "comentario": "Quero agradecer de todo o coração por teres transformado o meu sonho em realidade na minha festa de 15 anos. Cada detalhe da decoração estava simplesmente perfeito – muito mais do que eu poderia imaginar! Conseguiste captar exatamente o que eu queria e deixaste tudo com a minha cara: delicado, elegante e cheio de encanto. A decoração foi um dos pontos mais elogiados da festa, e tudo isso graças ao teu talento, bom gosto e dedicação. Obrigada por todo o cuidado, atenção e carinho em cada escolha. Nunca vou esquecer o quanto tornaste este momento ainda mais mágico!",
+    "estrelas": 5,
+    "data": "Jun 2025"
   }
 ]

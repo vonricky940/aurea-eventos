@@ -244,12 +244,14 @@ async function loadTestemunhos() {
             const estrelas = '★'.repeat(t.estrelas) + '☆'.repeat(5 - t.estrelas);
 
             slide.innerHTML = `
-        <div class="testemunho-card">
-          <div class="testemunho-estrelas">${estrelas}</div>
-          <p class="testemunho-comentario">"${t.comentario}"</p>
-          <div class="testemunho-nome">– ${t.nome}</div>
-        </div>
-      `;
+  <div class="testemunho-card">
+    <div class="testemunho-estrelas">${estrelas}</div>
+    <p class="testemunho-comentario">"${t.comentario}"</p>
+    <div class="testemunho-nome">– ${t.nome}</div>
+    <div class="data-review">${t.data}</div>
+  </div>
+`;
+
 
             container.appendChild(slide);
         });
