@@ -20,7 +20,7 @@ section {
   scroll-margin-top: 80px;
 }
 
-/* Navbar (fundo opaco restaurado) */
+/* Navbar */
 .navbar {
   position: sticky;
   top: 0;
@@ -179,7 +179,6 @@ section:nth-of-type(odd) {
   transform: scale(1.05);
 }
 
-
 /* Secção Sobre */
 #sobre {
   padding: 4rem 1rem;
@@ -244,7 +243,7 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Redes Sociais - Atualizado */
+/* Redes Sociais */
 .fixed-social-icons {
   position: fixed;
   bottom: 2rem;
@@ -267,25 +266,11 @@ footer {
   justify-content: center;
   text-decoration: none;
   font-size: 1.3rem;
-  border: none;
-  outline: none;
 }
 
 .fixed-social-icons a:hover {
   background-color: #c22c50;
   transform: translateY(-2px);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
-}
-
-.fixed-social-icons a:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(233, 63, 102, 0.3);
-}
-
-/* Recaptcha oculto */
-.grecaptcha-badge,
-.grecaptcha-logo {
-  display: none !important;
 }
 
 /* Idiomas */
@@ -306,58 +291,24 @@ footer {
 }
 
 .language-selector button:hover,
-.language-selector button:focus {
-  background-color: #e93f66;
-  color: white;
-  border-color: #e93f66;
-}
-
+.language-selector button:focus,
 .language-selector button.active-lang {
   background-color: #e93f66;
   color: white;
   border-color: #e93f66;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .hero-banner .content h1 {
-    font-size: 2rem;
-  }
-
-  .hero-banner .content p {
-    font-size: 1rem;
-  }
-
-  .logo {
-    height: 35px;
-  }
-
-  #galeria {
-    padding: 2rem 1rem;
-  }
-
-  .fixed-social-icons {
-    right: 10px;
-    gap: 10px;
-  }
-
-  .language-selector {
-    justify-content: center;
-    margin-top: 1rem;
-  }
-}
-
-section.container-fluid>.row,
-section.container-fluid>div {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.sidebar {
+/* Recaptcha oculto */
+.grecaptcha-badge,
+.grecaptcha-logo {
   display: none !important;
 }
 
-/* Testemunhos - Swiper */
+/* Testemunhos Swiper */
+#testemunhos {
+  background-color: #fdf4f8;
+}
+
 .swiper {
   padding: 2rem 1rem;
 }
@@ -372,12 +323,10 @@ section.container-fluid>div {
   background-color: #fff;
   border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   text-align: center;
-  width: 100%;
-  max-width: 380px;
+  max-width: 400px;
   transition: all 0.3s ease;
-  margin: 0 auto;
 }
 
 .testemunho-comentario {
@@ -398,12 +347,12 @@ section.container-fluid>div {
   margin-bottom: 0.5rem;
 }
 
-/* Setas de navegação Swiper (minimalistas e integradas com a marca) */
+/* Swiper botões */
 .swiper-button-next,
 .swiper-button-prev {
   color: #e93f66;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
@@ -411,18 +360,18 @@ section.container-fluid>div {
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .swiper-button-prev {
-  left: -10px;
+  left: -1rem;
 }
 
 .swiper-button-next {
-  right: -10px;
+  right: -1rem;
 }
 
-/* Paginador (bullets) */
+/* Swiper bullets */
 .swiper-pagination-bullet {
   background: #c94c7b;
   opacity: 0.4;
@@ -434,8 +383,21 @@ section.container-fluid>div {
   transform: scale(1.25);
 }
 
-/* Ocultar setas em mobile */
+/* Responsivo */
 @media (max-width: 768px) {
+  .hero-banner .content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-banner .content p {
+    font-size: 1rem;
+  }
+
+  .fixed-social-icons {
+    right: 10px;
+    gap: 10px;
+  }
+
   .swiper-button-prev,
   .swiper-button-next {
     display: none;
