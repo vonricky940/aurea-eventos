@@ -152,40 +152,31 @@ section:nth-of-type(odd) {
 }
 
 #gallery-container {
-  padding: 0 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .gallery-image {
   position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.gallery-image img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-}
-
-.gallery-image:hover img {
-  transform: scale(1.05);
-}
-
 .gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
-  cursor: pointer;
+  border-radius: 12px;
+  display: block;
 }
 
-.gallery-img:hover {
-  transform: scale(1.03);
-}
-
-#gallery-container {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.gallery-image:hover .gallery-img {
+  transform: scale(1.05);
 }
 
 

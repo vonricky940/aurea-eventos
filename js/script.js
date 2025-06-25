@@ -127,7 +127,7 @@ if (form) {
     });
 }
 
-// Carregamento automático da galeria
+// Carregamento automático da galeria com layout quadrado e zoom
 async function loadGallery() {
     console.log("[Galeria] Início do carregamento via Cloudflare Worker.");
     const galleryContainer = document.getElementById("gallery-container");
@@ -149,6 +149,9 @@ async function loadGallery() {
             const col = document.createElement("div");
             col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
 
+            const wrapper = document.createElement("div");
+            wrapper.className = "gallery-image";
+
             const a = document.createElement("a");
             a.href = imgUrl;
             a.className = "glightbox";
@@ -158,10 +161,11 @@ async function loadGallery() {
             img.src = imgUrl;
             img.alt = file.name;
             img.loading = "lazy";
-            img.className = "img-fluid rounded gallery-img";
+            img.className = "gallery-img";
 
             a.appendChild(img);
-            col.appendChild(a);
+            wrapper.appendChild(a);
+            col.appendChild(wrapper);
             galleryContainer.appendChild(col);
         });
 
@@ -174,11 +178,14 @@ async function loadGallery() {
     } catch (error) {
         console.warn("[Galeria] Erro ao carregar via Worker. A carregar fallback local...", error);
 
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 6; i++) {
             const imgUrl = `assets/img/galeria/img${i}.jpg`;
 
             const col = document.createElement("div");
             col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "gallery-image";
 
             const a = document.createElement("a");
             a.href = imgUrl;
@@ -189,10 +196,11 @@ async function loadGallery() {
             img.src = imgUrl;
             img.alt = `Imagem ${i}`;
             img.loading = "lazy";
-            img.className = "img-fluid rounded gallery-img";
+            img.className = "gallery-img";
 
             a.appendChild(img);
-            col.appendChild(a);
+            wrapper.appendChild(a);
+            col.appendChild(wrapper);
             galleryContainer.appendChild(col);
         }
 
@@ -206,3 +214,4 @@ async function loadGallery() {
         spinner.style.display = "none";
     }
 }
+
