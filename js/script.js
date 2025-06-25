@@ -248,7 +248,7 @@ async function loadTestemunhos() {
     <div class="testemunho-estrelas">${estrelas}</div>
     <p class="testemunho-comentario">"${t.comentario}"</p>
     <div class="testemunho-nome">– ${t.nome}</div>
-    <div class="data-review">${t.data}</div>
+    <div class="testemunho-data">${t.data}</div>
   </div>
 `;
 
