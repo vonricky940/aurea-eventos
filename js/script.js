@@ -1,3 +1,4 @@
+
 // DOMContentLoaded — Inicializações e segurança de carregamento
 document.addEventListener('DOMContentLoaded', () => {
     console.log("[Init] DOM totalmente carregado.");
@@ -44,7 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
         video.appendChild(source);
         video.load();
         console.log(`[Video] Video carregado: ${videoSrc}`);
-    }
+    };
+
+    // Quando se clica em qualquer botão .ver-mais
+    document.body.addEventListener('click', function (e) {
+        if (e.target.classList.contains('ver-mais-btn')) {
+            const comentarioCompleto = e.target.getAttribute('data-completo');
+            const modalBody = document.getElementById('comentarioCompleto');
+            modalBody.textContent = comentarioCompleto;
+            const modal = new bootstrap.Modal(document.getElementById('comentarioModal'));
+            modal.show();
+        }
+    });
 });
 
 // Função para mudar idioma
@@ -242,16 +254,21 @@ async function loadTestemunhos() {
             slide.className = "swiper-slide";
 
             const estrelas = '★'.repeat(t.estrelas) + '☆'.repeat(5 - t.estrelas);
+            const isLong = t.comentario.length > 200;
+            const preview = isLong ? t.comentario.substring(0, 200).trim() + "..." : t.comentario;
+            const verMais = isLong
+                ? `<button class="ver-mais-btn" data-completo="${t.comentario.replace(/"/g, '&quot;')}">Ver mais</button>`
+                : "";
 
             slide.innerHTML = `
-  <div class="testemunho-card">
-    <div class="testemunho-estrelas">${estrelas}</div>
-    <p class="testemunho-comentario">"${t.comentario}"</p>
-    <div class="testemunho-nome">– ${t.nome}</div>
-    <div class="testemunho-data">${t.data}</div>
-  </div>
-`;
-
+                <div class="testemunho-card">
+                    <div class="testemunho-estrelas">${estrelas}</div>
+                    <p class="testemunho-comentario">"${preview}"</p>
+                    ${verMais}
+                    <div class="testemunho-nome">– ${t.nome}</div>
+                    <div class="testemunho-data">${t.data}</div>
+                </div>
+            `;
 
             container.appendChild(slide);
         });
@@ -282,10 +299,8 @@ async function loadTestemunhos() {
             }
         });
 
-
         console.log("[Testemunhos] Carregados com Swiper.");
     } catch (err) {
         console.error("[Testemunhos] Erro ao carregar:", err.message);
     }
 }
-

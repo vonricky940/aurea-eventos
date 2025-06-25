@@ -301,7 +301,7 @@ footer {
   background-color: #fff;
   border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   text-align: center;
   max-width: 400px;
   transition: all 0.3s ease;
@@ -312,7 +312,8 @@ footer {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 8; /* número de linhas visíveis */
+  -webkit-line-clamp: 8;
+  /* número de linhas visíveis */
   -webkit-box-orient: vertical;
 }
 
@@ -408,4 +409,31 @@ footer {
   .swiper-button-next {
     display: none;
   }
+}
+
+@media (max-width: 768px) {
+  .swiper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.testemunho-comentario {
+  color: #444;
+  line-height: 1.5;
+}
+
+.ver-mais-btn {
+  background: none;
+  border: none;
+  color: #e93f66;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding-top: 0.5rem;
+  text-decoration: underline;
+}
+
+.ver-mais-btn:hover {
+  color: #c22c50;
 }
