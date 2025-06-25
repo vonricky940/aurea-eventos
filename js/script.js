@@ -156,6 +156,7 @@ async function loadGallery() {
             a.href = imgUrl;
             a.className = "glightbox";
             a.setAttribute("data-gallery", "aurea-gallery");
+            a.addEventListener("click", e => e.preventDefault());
 
             const img = document.createElement("img");
             img.src = imgUrl;
@@ -191,6 +192,7 @@ async function loadGallery() {
             a.href = imgUrl;
             a.className = "glightbox";
             a.setAttribute("data-gallery", "aurea-gallery");
+            a.addEventListener("click", e => e.preventDefault());
 
             const img = document.createElement("img");
             img.src = imgUrl;
