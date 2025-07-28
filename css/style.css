@@ -437,3 +437,30 @@ footer {
 .ver-mais-btn:hover {
   color: #c22c50;
 }
+
+#scrollUpBtn {
+  position: fixed;
+  bottom: 80px;
+  left: 20px;
+  z-index: 999;
+  background-color: #e93f66;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
+  display: none; /* Só aparece com scroll */
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+#scrollUpBtn:hover {
+  background-color: #c22c50;
+}
+
+#scrollUpBtn i {
+  pointer-events: none;
+}
