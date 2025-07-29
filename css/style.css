@@ -442,7 +442,7 @@ footer {
   position: fixed;
   bottom: 80px;
   left: 20px;
-  z-index: 999;
+  z-index: 9999;
   background-color: #e93f66;
   color: white;
   border: none;
@@ -450,11 +450,11 @@ footer {
   width: 45px;
   height: 45px;
   font-size: 1.2rem;
-  display: none; /* Só aparece com scroll */
+  display: none;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 #scrollUpBtn:hover {

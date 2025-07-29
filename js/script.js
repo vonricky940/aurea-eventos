@@ -6,9 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Botão "voltar ao topo"
     const scrollUpBtn = document.getElementById('scrollUpBtn');
     if (scrollUpBtn) {
-        window.onscroll = function () {
-            scrollUpBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-        };
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                scrollUpBtn.style.display = "flex";
+            } else {
+                scrollUpBtn.style.display = "none";
+            }
+        });
         scrollUpBtn.onclick = function () {
             console.log("[Scroll] Botão clicado. Subir para o topo.");
             window.scrollTo({ top: 0, behavior: 'smooth' });
