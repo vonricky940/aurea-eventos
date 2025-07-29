@@ -51,6 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(`[Video] Video carregado: ${videoSrc}`);
     };
 
+    // Banner de cookies
+    const cookieBanner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+
+    if (localStorage.getItem("cookiesAccepted") !== "true") {
+    cookieBanner.style.display = "flex";
+    }
+
+    acceptBtn.addEventListener("click", () => {
+    localStorage.setItem("cookiesAccepted", "true");
+    cookieBanner.style.display = "none";
+    });
+
     // Quando se clica em qualquer botão .ver-mais
     document.body.addEventListener('click', function (e) {
         if (e.target.classList.contains('ver-mais-btn')) {
