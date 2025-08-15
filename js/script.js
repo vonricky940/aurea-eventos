@@ -215,24 +215,32 @@ if (form) {
         }
 
         grecaptcha.ready(function () {
-            console.log("[Form] reCAPTCHA pronto. Executando...");
-            grecaptcha.execute('6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vlBrs', { action: 'submit' }).then(function (token) {
-                console.log("[Form] Token reCAPTCHA recebido.");
-                document.getElementById('g-recaptcha-response').value = token;
+            console.log("[reCAPTCHA] Executando...");
 
-                fetch(form.action, {
-                    method: "POST",
-                    body: new FormData(form),
-                }).then(() => {
-                    console.log("[Form] Formulário enviado com sucesso.");
-                    const modal = new bootstrap.Modal(document.getElementById("successModal"));
-                    modal.show();
-                    form.reset();
-                }).catch((err) => {
-                    console.error("[Form] Erro ao enviar:", err);
-                    alert("Erro ao enviar. Por favor tente novamente mais tarde.");
+            grecaptcha.execute('6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vIBrs', { action: 'submit' })
+                .then(function (token) {
+                    console.log("[reCAPTCHA] Token recebido.");
+
+                    document.getElementById('g-recaptcha-response').value = token;
+
+                    // Submeter formulário via fetch
+                    fetch(form.action, {
+                        method: "POST",
+                        body: new FormData(form),
+                    }).then(() => {
+                        console.log("[Form] Enviado com sucesso.");
+                        const modal = new bootstrap.Modal(document.getElementById("successModal"));
+                        modal.show();
+                        form.reset();
+                    }).catch((err) => {
+                        console.error("[Form] Erro ao enviar:", err);
+                        alert("Erro ao enviar. Por favor tente novamente mais tarde.");
+                    });
+                })
+                .catch((err) => {
+                    console.error("[reCAPTCHA] Erro ao executar:", err);
+                    alert("Erro com o reCAPTCHA. Verifique a ligação ou tente mais tarde.");
                 });
-            });
         });
     });
 }
