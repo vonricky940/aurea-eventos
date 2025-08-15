@@ -211,7 +211,7 @@ async function loadGallery() {
     } catch (error) {
         console.warn("[Galeria] Erro ao carregar via Worker. A carregar fallback local...", error);
 
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 18; i++) {
             const imgUrl = `assets/img/galeria/img${i}.jpg`;
 
             const col = document.createElement("div");
