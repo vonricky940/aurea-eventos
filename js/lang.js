@@ -5,6 +5,7 @@ const translations = {
     "menu.gallery": "Galeria",
     "menu.about": "Sobre",
     "menu.contact": "Contacto",
+    "menu.testimonials": "Testemunhos",
 
     // Hero
     "hero.title": "Áurea - Eventos Personalizados",
@@ -14,7 +15,6 @@ const translations = {
     // Testimonials
     "testimonials.title": "Testemunhos de Clientes",
     "testimonials.intro": "Ao longo do tempo, temos recebido palavras calorosas dos nossos clientes, que nos inspiram a continuar a criar experiências únicas e inesquecíveis. Veja alguns testemunhos de quem confiou na Áurea para tornar os seus momentos ainda mais especiais.",
-    "menu.testimonials": "Testemunhos",
 
     // About
     "about.title": "Sobre Nós",
@@ -43,7 +43,14 @@ const translations = {
     "contact.quote": "Pedido de Orçamento",
     "contact.message": "Mensagem",
     "contact.send": "Enviar",
-    "recaptcha.notice": "Este site é protegido pelo reCAPTCHA e aplica-se a <a href='https://policies.google.com/privacy'>Política de Privacidade</a> e os <a href='https://policies.google.com/terms'>Termos de Serviço</a> da Google.",
+    "contact.location": "Localização do evento",
+    "contact.map_info": "Clique no mapa para escolher a localidade do evento.",
+    "contact.has_venue": "Já alugou ou tem alguma quinta/restaurante para o evento?",
+    "contact.venue_details": "Indique qual o nome da quinta/restaurante para o evento",
+    "recaptcha.notice1": "Este site é protegido pelo reCAPTCHA e aplica-se a",
+    "recaptcha.notice2": "Política de Privacidade",
+    "recaptcha.notice3": "e os",
+    "recaptcha.notice4": "Termos de Serviço",
 
     // Modal
     "modal.title": "Mensagem enviada",
@@ -62,6 +69,7 @@ const translations = {
     "menu.gallery": "Gallery",
     "menu.about": "About",
     "menu.contact": "Contact",
+    "menu.testimonials": "Testimonials",
 
     // Hero
     "hero.title": "Áurea - Personalized Events",
@@ -71,7 +79,6 @@ const translations = {
     // Testimonials
     "testimonials.title": "Client Testimonials",
     "testimonials.intro": "Over time, we’ve received heartwarming feedback from our clients that inspires us to keep creating unique and unforgettable experiences. Read what some of our customers have said about trusting Áurea with their special moments.",
-    "menu.testimonials": "Testimonials",
 
     // About
     "about.title": "About Us",
@@ -100,7 +107,14 @@ const translations = {
     "contact.quote": "Request a Quote",
     "contact.message": "Message",
     "contact.send": "Send",
-    "recaptcha.notice": "This site is protected by reCAPTCHA and the <a href='https://policies.google.com/privacy'>Google Privacy Policy</a> and <a href='https://policies.google.com/terms'>Terms of Service</a> apply.",
+    "contact.location": "Event Location",
+    "contact.map_info": "Click the map to choose the event location.",
+    "contact.has_venue": "Have you already booked a venue or restaurant for the event?",
+    "contact.venue_details": "Please specify the name of the venue or restaurant",
+    "recaptcha.notice1": "This site is protected by reCAPTCHA and the",
+    "recaptcha.notice2": "Privacy Policy",
+    "recaptcha.notice3": "and",
+    "recaptcha.notice4": "Terms of Service",
 
     // Modal
     "modal.title": "Message Sent",

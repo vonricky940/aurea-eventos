@@ -22,6 +22,80 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("[Init] Botão scrollUpBtn não encontrado no DOM.");
     }
 
+    // Mostrar campos extra se tipo == "orcamento"
+    const tipoSelect = document.getElementById("tipo");
+    const camposExtra = document.getElementById("camposOrcamento");
+
+    if (tipoSelect && camposExtra) {
+        tipoSelect.addEventListener("change", () => {
+            if (tipoSelect.value === "orcamento") {
+                camposExtra.style.display = "block";
+            } else {
+                camposExtra.style.display = "none";
+            }
+        });
+    }
+
+    // Mostrar/ocultar campo 'local do evento'
+    const possuiLocal = document.getElementById('possuiLocal');
+    const campoLocalEvento = document.getElementById('campoLocalEvento');
+
+    possuiLocal?.addEventListener('change', () => {
+        campoLocalEvento.classList.toggle('d-none', possuiLocal.value !== 'Sim');
+    });
+
+    // Mapa com Leaflet
+    // Mapa com Leaflet com barra de pesquisa
+    const map = L.map('map').setView([41.5, -8.4], 8.5); // Região Norte de Portugal
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Marcador para localização
+    let marker;
+
+    // Clique direto no mapa
+    map.on('click', function (e) {
+        const lat = e.latlng.lat.toFixed(5);
+        const lng = e.latlng.lng.toFixed(5);
+
+        if (marker) {
+            marker.setLatLng(e.latlng);
+        } else {
+            marker = L.marker(e.latlng).addTo(map);
+        }
+
+        // Atualiza link e campo de localização
+        const link = `https://www.google.com/maps?q=${lat},${lng}`;
+        document.getElementById('mapaLink').value = link;
+
+        const txt = document.getElementById('localidadeTexto');
+        if (txt && txt.value.trim() === '') {
+            txt.value = `Localização em ${lat}, ${lng}`;
+        }
+    });
+
+    // Caixa de pesquisa com Leaflet Control Geocoder
+    L.Control.geocoder({
+        defaultMarkGeocode: false
+    })
+        .on('markgeocode', function (e) {
+            const { center, name } = e.geocode;
+
+            map.setView(center, 14);
+
+            if (marker) {
+                marker.setLatLng(center);
+            } else {
+                marker = L.marker(center).addTo(map);
+            }
+
+            document.getElementById('localidadeTexto').value = name;
+            document.getElementById('mapaLink').value = `https://www.google.com/maps?q=${center.lat},${center.lng}`;
+        })
+        .addTo(map);
+
     // Idioma
     const savedLang = localStorage.getItem("selectedLang") || "pt";
     changeLanguage(savedLang);
@@ -56,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const acceptBtn = document.getElementById("accept-cookies");
 
     if (localStorage.getItem("cookiesAccepted") !== "true") {
-    cookieBanner.style.display = "flex";
+        cookieBanner.style.display = "flex";
     }
 
     acceptBtn.addEventListener("click", () => {
-    localStorage.setItem("cookiesAccepted", "true");
-    cookieBanner.style.display = "none";
+        localStorage.setItem("cookiesAccepted", "true");
+        cookieBanner.style.display = "none";
     });
 
     // Quando se clica em qualquer botão .ver-mais
@@ -98,7 +172,11 @@ function setLanguage(lang) {
     }
 
     console.log(`[i18n] A aplicar traduções para: ${lang}`);
+
     document.querySelectorAll("[data-i18n]").forEach((el) => {
+        // Ignorar elementos que contêm outros elementos com data-i18n
+        if (el.querySelector("[data-i18n]")) return;
+
         const key = el.getAttribute("data-i18n");
         const text = translations[lang]?.[key];
 
@@ -113,10 +191,10 @@ function setLanguage(lang) {
         }
     });
 
+    // Traduzir <option> separadamente
     document.querySelectorAll("option[data-i18n]").forEach((opt) => {
         const key = opt.getAttribute("data-i18n");
         const text = translations[lang]?.[key];
-
         if (text !== undefined) {
             opt.textContent = text;
         }

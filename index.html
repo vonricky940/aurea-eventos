@@ -11,11 +11,12 @@
         content="Decoração de eventos personalizados com requinte. Veja a galeria da Áurea e peça o seu orçamento.">
     <meta name="keywords" content="eventos, decoração, batizados, comunhões, aniversários, luxo, personalizados, Áurea">
     <meta name="author" content="Áurea - Eventos Personalizados">
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Áurea - Eventos Personalizados">
-    <meta property="og:description" content="Decoração feita à medida, com um toque de luxo. Veja a nossa galeria e contacte-nos.">
+    <meta property="og:description"
+        content="Decoração feita à medida, com um toque de luxo. Veja a nossa galeria e contacte-nos.">
     <meta property="og:image" content="https://aureaeventos.com/assets/img/logo-rosa.png">
     <meta property="og:url" content="https://aureaeventos.com">
     <meta name="twitter:card" content="summary_large_image">
@@ -44,6 +45,14 @@
     <!-- Estilo principal (modo debug) -->
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="stylesheet" href="css/style.min.css"> -->
+
+    <!-- Leaflet CSS + JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Leaflet Geocoder -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
 </head>
 
 <body>
@@ -64,8 +73,10 @@
             <!-- Botões de idioma (apenas visível em DESKTOP) -->
             <div class="d-none d-lg-flex align-items-center ms-auto me-2">
                 <div class="language-selector">
-                    <button class="btn btn-sm btn-outline-secondary me-1" onclick="changeLanguage('pt')" aria-label="Mudar para português">PT</button>
-                    <button class="btn btn-sm btn-outline-secondary" onclick="changeLanguage('en')" aria-label="Mudar para inglês">EN</button>
+                    <button class="btn btn-sm btn-outline-secondary me-1" onclick="changeLanguage('pt')"
+                        aria-label="Mudar para português">PT</button>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="changeLanguage('en')"
+                        aria-label="Mudar para inglês">EN</button>
                 </div>
             </div>
 
@@ -194,6 +205,75 @@
                         </select>
                     </div>
 
+                    <!-- Campos extra só para "Pedido de Orçamento" -->
+                    <div id="camposOrcamento" style="display: none;">
+                        <div class="mb-3">
+                            <label for="tipoEvento" class="form-label">Tipo de Festa</label>
+                            <select class="form-select" id="tipoEvento" name="tipoEvento">
+                                <option value="" disabled selected>Escolha o tipo</option>
+                                <option value="aniversario">Aniversário</option>
+                                <option value="batizado">Batizado</option>
+                                <option value="comunhao">Comunhão</option>
+                                <option value="babyshower">Baby Shower</option>
+                                <option value="casamento">Casamento</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-md-6">
+                                <label for="dataInicio" class="form-label">Data de Início</label>
+                                <input type="date" class="form-control" id="dataInicio" name="dataInicio">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="horaInicio" class="form-label">Hora de Início</label>
+                                <input type="time" class="form-control" id="horaInicio" name="horaInicio">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="horaFim" class="form-label">Hora de Fim</label>
+                                <input type="time" class="form-control" id="horaFim" name="horaFim">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="numeroPessoas" class="form-label">Número aproximado de pessoas</label>
+                            <input type="number" class="form-control" id="numeroPessoas" name="numeroPessoas" min="1">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" data-i18n="contact.location">Localização do evento</label>
+                            <p class="small" data-i18n="contact.map_info">Clique no mapa para escolher a localidade do
+                                evento.</p>
+                            <div id="map" style="height: 300px; border-radius: 8px;"></div>
+                            <input type="text" class="form-control mt-2" id="localidadeTexto" name="localidadeTexto"
+                                placeholder="Ex: Lisboa, Quinta das Rosas">
+                            <input type="hidden" id="mapaLink" name="mapaLink">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="possuiLocal" class="form-label" data-i18n="contact.has_venue">Já alugou ou tem
+                                alguma quinta/restaurante para o evento?</label>
+                            <select class="form-select" id="possuiLocal" name="possuiLocal" required>
+                                <option value="" disabled selected data-i18n="contact.select_option">Selecione uma opção
+                                </option>
+                                <option value="Sim" data-i18n="contact.yes">Sim</option>
+                                <option value="Não" data-i18n="contact.no">Não</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 d-none" id="campoLocalEvento">
+                            <label for="localEvento" class="form-label" data-i18n="contact.venue_details">Indique qual o
+                                nome da quinta/restaurante para o evento</label>
+                            <input type="text" class="form-control" id="localEvento" name="localEvento"
+                                placeholder="Ex: Quinta do Vale">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="observacoes" class="form-label">Observações adicionais</label>
+                            <textarea class="form-control" id="observacoes" name="observacoes" rows="3"></textarea>
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                         <label for="mensagem" class="form-label" data-i18n="contact.message">Mensagem</label>
                         <textarea class="form-control" id="mensagem" name="mensagem" rows="5" required></textarea>
@@ -203,13 +283,17 @@
                         <button type="submit" class="btn btn-dark" data-i18n="contact.send">Enviar</button>
                     </div>
                 </form>
+
             </div>
         </div>
         <p></p>
         <!-- Recaptcha legal notice -->
-        <p class="text-center small" data-i18n="recaptcha.notice">
-            Este site é protegido pelo reCAPTCHA e aplica-se a <a href="https://policies.google.com/privacy">Política de
-                Privacidade</a> e os <a href="https://policies.google.com/terms">Termos de Serviço</a> da Google.
+        <p class="text-center small">
+            <span data-i18n="recaptcha.notice1">Este site é protegido pelo reCAPTCHA e aplica-se a</span> <a
+                href="https://policies.google.com/privacy"><span data-i18n="recaptcha.notice2">Política de
+                    Privacidade</span></a> <span data-i18n="recaptcha.notice3"> e os </span><a
+                href="https://policies.google.com/terms"><span data-i18n="recaptcha.notice4">Termos de
+                    Serviço</span></a> <span data-i18n="recaptcha.notice1">da Google.</span>
         </p>
     </section>
 
