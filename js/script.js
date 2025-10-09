@@ -201,47 +201,121 @@ function setLanguage(lang) {
     });
 }
 
-// Submissão de formulário com reCAPTCHA v3 + Modal
+// Submissão de formulário com verificação reCAPTCHA via proxy seguro
 const form = document.getElementById("contactForm");
 if (form) {
-    form.addEventListener("submit", function (e) {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const endpoint = form.dataset.endpoint?.trim() || form.action;
+    const siteKey = form.dataset.recaptchaSitekey?.trim();
+
+    const setSubmittingState = (isSubmitting) => {
+        if (!submitBtn) return;
+        if (isSubmitting) {
+            submitBtn.disabled = true;
+            submitBtn.dataset.originalText = submitBtn.dataset.originalText || submitBtn.innerHTML;
+            submitBtn.innerHTML = submitBtn.dataset.loadingText || "...";
+        } else {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = submitBtn.dataset.originalText || "Enviar";
+        }
+    };
+
+    const sendForm = async (payload) => {
+        const headers = { "Content-Type": "application/json", "Accept": "application/json" };
+
+        const response = await fetch(endpoint, {
+            method: "POST",
+            headers,
+            body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`Estado ${response.status}: ${errorBody}`);
+        }
+
+        const json = await response.json().catch(() => ({}));
+        if (json.success === false || json.error) {
+            throw new Error(json.message || "Resposta inesperada do servidor.");
+        }
+
+        return json;
+    };
+
+    form.addEventListener("submit", (e) => {
         console.log("[Form] Submissão iniciada.");
         e.preventDefault();
 
-        if (typeof grecaptcha === 'undefined') {
-            console.error("[Form] grecaptcha não carregado.");
-            alert("Erro de verificação. Por favor tente mais tarde.");
+        if (!endpoint || endpoint.includes("example")) {
+            console.error("[Form] Endpoint de submissão não configurado. Atualize o atributo data-endpoint com o URL do proxy.");
+            alert("Configuração do formulário incompleta. Contacte o administrador.");
             return;
         }
 
-        grecaptcha.ready(function () {
-            console.log("[reCAPTCHA] Executando...");
+        const formData = new FormData(form);
+        const recaptchaField = document.getElementById('g-recaptcha-response');
 
-            grecaptcha.execute('6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vIBrs', { action: 'submit' })
-                .then(function (token) {
-                    console.log("[reCAPTCHA] Token recebido.");
+        const entries = {};
+        for (const [key, value] of formData.entries()) {
+            if (key in entries) {
+                entries[key] = Array.isArray(entries[key])
+                    ? [...entries[key], value]
+                    : [entries[key], value];
+            } else {
+                entries[key] = value;
+            }
+        }
 
-                    document.getElementById('g-recaptcha-response').value = token;
+        const executeSubmission = async (token) => {
+            try {
+                setSubmittingState(true);
 
-                    // Submeter formulário via fetch
-                    fetch(form.action, {
-                        method: "POST",
-                        body: new FormData(form),
-                    }).then(() => {
-                        console.log("[Form] Enviado com sucesso.");
-                        const modal = new bootstrap.Modal(document.getElementById("successModal"));
-                        modal.show();
-                        form.reset();
-                    }).catch((err) => {
-                        console.error("[Form] Erro ao enviar:", err);
-                        alert("Erro ao enviar. Por favor tente novamente mais tarde.");
+                if (token) {
+                    entries["g-recaptcha-response"] = token;
+                    if (recaptchaField) recaptchaField.value = token;
+                }
+
+                const payload = {
+                    token,
+                    data: entries,
+                };
+
+                await sendForm(payload);
+
+                console.log("[Form] Enviado com sucesso via proxy.");
+                const modal = new bootstrap.Modal(document.getElementById("successModal"));
+                modal.show();
+                form.reset();
+                if (recaptchaField) recaptchaField.value = "";
+            } catch (err) {
+                console.error("[Form] Erro ao enviar:", err);
+                alert("Erro ao enviar. Por favor tente novamente mais tarde.");
+            } finally {
+                setSubmittingState(false);
+            }
+        };
+
+        if (siteKey) {
+            if (typeof grecaptcha === "undefined") {
+                console.error("[Form] grecaptcha não carregado.");
+                alert("Erro de verificação. Por favor tente mais tarde.");
+                return;
+            }
+
+            grecaptcha.ready(() => {
+                grecaptcha.execute(siteKey, { action: "contact_form" })
+                    .then((token) => {
+                        console.log("[reCAPTCHA] Token recebido.");
+                        executeSubmission(token);
+                    })
+                    .catch((err) => {
+                        console.error("[reCAPTCHA] Erro ao executar:", err);
+                        alert("Erro com o reCAPTCHA. Verifique a ligação ou tente mais tarde.");
                     });
-                })
-                .catch((err) => {
-                    console.error("[reCAPTCHA] Erro ao executar:", err);
-                    alert("Erro com o reCAPTCHA. Verifique a ligação ou tente mais tarde.");
-                });
-        });
+            });
+        } else {
+            executeSubmission(null);
+        }
     });
 }
 

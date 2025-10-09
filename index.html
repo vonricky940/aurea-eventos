@@ -28,7 +28,7 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <!-- Recaptcha v3 -->
+    <!-- reCAPTCHA v3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vIBrs" async defer></script>
 
     <!-- Google Fonts -->
@@ -173,8 +173,10 @@
 
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form id="contactForm" action="https://formsubmit.co/96ddc30e1f60e68074ba97de6930ba38" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
+                <form id="contactForm"
+                    action="https://formsubmit.co/96ddc30e1f60e68074ba97de6930ba38" method="POST"
+                    data-endpoint="https://aurea-drive.vonricky940.workers.dev/"
+                    data-recaptcha-sitekey="6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vIBrs">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="#">
                     <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
@@ -279,21 +281,13 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-dark" data-i18n="contact.send">Enviar</button>
+                        <button type="submit" class="btn btn-dark" data-i18n="contact.send"
+                            data-loading-text="A enviar...">Enviar</button>
                     </div>
                 </form>
 
             </div>
         </div>
-        <p></p>
-        <!-- Recaptcha legal notice -->
-        <p class="text-center small">
-            <span data-i18n="recaptcha.notice1">Este site é protegido pelo reCAPTCHA e aplica-se a</span> <a
-                href="https://policies.google.com/privacy"><span data-i18n="recaptcha.notice2">Política de
-                    Privacidade</span></a> <span data-i18n="recaptcha.notice3"> e os </span><a
-                href="https://policies.google.com/terms"><span data-i18n="recaptcha.notice4">Termos de
-                    Serviço</span></a> <span data-i18n="recaptcha.notice1">da Google.</span>
-        </p>
     </section>
 
     <!-- Modal de Sucesso -->
