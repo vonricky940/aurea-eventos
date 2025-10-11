@@ -171,10 +171,187 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="google-form-wrapper">
-                    <iframe class="google-form-iframe"
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSdfRjq2UcHtCGnHlZjzLY3TAxaPL54HBLlcVGivBDES9T00mg/viewform?embedded=true"
-                        title="Formulário de contacto" frameborder="0" marginheight="0" marginwidth="0"
-                        allowtransparency="true">Loading…</iframe>
+                    <form id="contact-form" class="custom-google-form" novalidate>
+                        <input type="hidden" name="fvv" value="1">
+                        <input type="hidden" name="pageHistory" value="0">
+                        <input type="hidden" name="fbzx" value="6328429687151502591">
+
+                        <div class="gform-body">
+                            <div class="gform-field required">
+                                <label for="contact-name">
+                                    <span data-i18n="form.field.name"></span>
+                                    <span class="required-marker" aria-hidden="true">*</span>
+                                </label>
+                                <input type="text" id="contact-name" name="entry.760885938" required autocomplete="name"
+                                    data-i18n-placeholder="form.placeholder.generic">
+                            </div>
+
+                            <div class="gform-field required">
+                                <label for="contact-email">
+                                    <span data-i18n="form.field.email"></span>
+                                    <span class="required-marker" aria-hidden="true">*</span>
+                                </label>
+                                <input type="email" id="contact-email" name="entry.1175085742" required
+                                    autocomplete="email" data-i18n-placeholder="form.placeholder.email">
+                            </div>
+
+                            <div class="gform-field">
+                                <label for="contact-phone" data-i18n="form.field.phone"></label>
+                                <input type="tel" id="contact-phone" name="entry.1797639207" autocomplete="tel"
+                                    data-i18n-placeholder="form.placeholder.phone">
+                            </div>
+
+                            <div class="gform-field required">
+                                <span class="gform-field-label">
+                                    <span data-i18n="form.field.requestType"></span>
+                                    <span class="required-marker" aria-hidden="true">*</span>
+                                </span>
+                                <div class="gform-options gform-options--column" data-inquiry-group>
+                                    <label class="gform-option">
+                                        <input type="radio" name="entry.609118544"
+                                            value="Pedido Geral / General Inquiry" checked>
+                                        <span data-i18n="contact.general"></span>
+                                    </label>
+                                    <label class="gform-option">
+                                        <input type="radio" name="entry.609118544"
+                                            value="Pedido de Orçamento / Quote Request">
+                                        <span data-i18n="contact.quote"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="gform-section" data-quote-section hidden>
+                                <h4 data-i18n="form.quote.title"></h4>
+
+                                <div class="gform-field required">
+                                    <span class="gform-field-label">
+                                        <span data-i18n="form.field.contactType"></span>
+                                        <span class="required-marker" aria-hidden="true">*</span>
+                                    </span>
+                                    <div class="gform-options gform-options--wrap" data-quote-required-group>
+                                        <label class="gform-option">
+                                            <input type="checkbox" name="entry.301372017"
+                                                value="Aniversário / Birthday">
+                                            <span data-i18n="form.option.birthday"></span>
+                                        </label>
+                                        <label class="gform-option">
+                                            <input type="checkbox" name="entry.301372017"
+                                                value="Batizado / Christening">
+                                            <span data-i18n="form.option.christening"></span>
+                                        </label>
+                                        <label class="gform-option">
+                                            <input type="checkbox" name="entry.301372017"
+                                                value="Comunhão / Communion">
+                                            <span data-i18n="form.option.communion"></span>
+                                        </label>
+                                        <label class="gform-option">
+                                            <input type="checkbox" name="entry.301372017" value="Baby Shower">
+                                            <span data-i18n="form.option.babyshower"></span>
+                                        </label>
+                                        <label class="gform-option">
+                                            <input type="checkbox" name="entry.301372017"
+                                                value="Casamento / Wedding">
+                                            <span data-i18n="form.option.wedding"></span>
+                                        </label>
+                                        <label class="gform-option">
+                                            <input type="checkbox" name="entry.301372017" value="Outro / Other"
+                                                data-other-trigger="#contact-type-other">
+                                            <span data-i18n="form.option.other"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="gform-field" data-other-field hidden>
+                                    <label for="contact-type-other" data-i18n="form.field.contactType.other"></label>
+                                    <input type="text" id="contact-type-other" name="entry.1828968264"
+                                        data-i18n-placeholder="form.placeholder.other">
+                                </div>
+
+                                <div class="gform-grid">
+                                    <div class="gform-field required">
+                                        <label for="contact-start-date">
+                                            <span data-i18n="form.field.startDate"></span>
+                                            <span class="required-marker" aria-hidden="true">*</span>
+                                        </label>
+                                        <input type="date" id="contact-start-date" name="entry.638464532"
+                                            data-quote-required="true">
+                                    </div>
+                                    <div class="gform-field">
+                                        <label for="contact-start-time" data-i18n="form.field.startTime"></label>
+                                        <input type="time" id="contact-start-time" name="entry.599456951">
+                                    </div>
+                                    <div class="gform-field">
+                                        <label for="contact-end-time" data-i18n="form.field.endTime"></label>
+                                        <input type="time" id="contact-end-time" name="entry.683697867">
+                                    </div>
+                                </div>
+
+                                <div class="gform-field required">
+                                    <label for="contact-guests">
+                                        <span data-i18n="form.field.guests"></span>
+                                        <span class="required-marker" aria-hidden="true">*</span>
+                                    </label>
+                                    <input type="number" id="contact-guests" name="entry.1408023540" min="1"
+                                        data-quote-required="true" data-i18n-placeholder="form.placeholder.guests">
+                                </div>
+
+                                <div class="gform-field required">
+                                    <label for="contact-location">
+                                        <span data-i18n="form.field.location"></span>
+                                        <span class="required-marker" aria-hidden="true">*</span>
+                                    </label>
+                                    <textarea id="contact-location" name="entry.1077115701" rows="2"
+                                        data-quote-required="true" data-i18n-placeholder="form.placeholder.location"></textarea>
+                                </div>
+
+                                <div class="gform-field required">
+                                    <span class="gform-field-label">
+                                        <span data-i18n="form.field.venueQuestion"></span>
+                                        <span class="required-marker" aria-hidden="true">*</span>
+                                    </span>
+                                    <div class="gform-options gform-options--inline">
+                                        <label class="gform-option">
+                                            <input type="radio" name="entry.1400779123" value="Sim / Yes"
+                                                data-quote-required="true">
+                                            <span data-i18n="contact.yes"></span>
+                                        </label>
+                                        <label class="gform-option">
+                                            <input type="radio" name="entry.1400779123" value="Não / No"
+                                                data-quote-required="true">
+                                            <span data-i18n="contact.no"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="gform-field" data-venue-field hidden>
+                                    <label for="contact-venue" data-i18n="form.field.venue"></label>
+                                    <input type="text" id="contact-venue" name="entry.1405170123"
+                                        data-i18n-placeholder="form.placeholder.venue">
+                                </div>
+
+                                <div class="gform-field">
+                                    <label for="contact-notes" data-i18n="form.field.notes"></label>
+                                    <textarea id="contact-notes" name="entry.434184000" rows="3"
+                                        data-i18n-placeholder="form.placeholder.notes"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="gform-field required">
+                                <label for="contact-message">
+                                    <span data-i18n="form.field.message"></span>
+                                    <span class="required-marker" aria-hidden="true">*</span>
+                                </label>
+                                <textarea id="contact-message" name="entry.1874411749" rows="4" required
+                                    data-i18n-placeholder="form.placeholder.message"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="gform-footer">
+                            <button type="submit" class="btn btn-primary" id="contact-submit" data-i18n="contact.send"></button>
+                            <p class="gform-required-note" data-i18n="form.required.note"></p>
+                            <p class="gform-status" role="status" aria-live="polite"></p>
+                        </div>
+                    </form>
                 </div>
 
             </div>

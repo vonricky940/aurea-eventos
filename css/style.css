@@ -508,14 +508,204 @@ footer {
   border-radius: 18px;
   box-shadow: 0 20px 45px -20px rgba(14, 20, 40, 0.25);
   overflow: hidden;
-  padding: clamp(0.75rem, 2vw, 2rem);
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .google-form-iframe {
   width: 100%;
-  min-height: 1700px;
+  min-height: 1350px;
   border: none;
   background: transparent;
+}
+
+.custom-google-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #1f1f1f;
+  font-family: inherit;
+}
+
+.custom-google-form .gform-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.custom-google-form .gform-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.custom-google-form .gform-field.required label,
+.custom-google-form .gform-field.required .gform-field-label {
+  font-weight: 600;
+}
+
+.custom-google-form label,
+.custom-google-form .gform-field-label {
+  display: block;
+  font-size: 0.95rem;
+  margin: 0;
+  color: #1f1f1f;
+}
+
+.custom-google-form .required-marker {
+  color: #d93025;
+  margin-left: 0.25rem;
+}
+
+.custom-google-form input[type="text"],
+.custom-google-form input[type="email"],
+.custom-google-form input[type="tel"],
+.custom-google-form input[type="date"],
+.custom-google-form input[type="time"],
+.custom-google-form input[type="number"],
+.custom-google-form textarea {
+  width: 100%;
+  border: 1px solid #dfe3eb;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.custom-google-form input:focus,
+.custom-google-form textarea:focus {
+  border-color: #e93f66;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(233, 63, 102, 0.15);
+  background: #fff5f8;
+}
+
+.custom-google-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.custom-google-form .gform-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 0;
+}
+
+.custom-google-form .gform-options--column {
+  flex-direction: column;
+  padding: 0.75rem 0;
+}
+
+.custom-google-form .gform-options--inline {
+  flex-wrap: nowrap;
+}
+
+.custom-google-form .gform-options--wrap {
+  flex-wrap: wrap;
+}
+
+.custom-google-form .gform-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  padding: 0.35rem 0;
+}
+
+.custom-google-form .gform-option input {
+  accent-color: #e93f66;
+}
+
+.custom-google-form .gform-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.custom-google-form .gform-section {
+  border-top: 1px solid #eceff5;
+  padding-top: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.custom-google-form .gform-section h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.custom-google-form .gform-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.custom-google-form .gform-required-note {
+  font-size: 0.82rem;
+  color: #6b6b6b;
+  margin: 0;
+}
+
+.custom-google-form .gform-status {
+  min-height: 1.2rem;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.custom-google-form .gform-status.error {
+  color: #b3261e;
+}
+
+.custom-google-form .gform-status.success {
+  color: #0f9d58;
+}
+
+.custom-google-form .btn-primary {
+  background-color: #e93f66;
+  border-color: #e93f66;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-google-form .btn-primary:hover,
+.custom-google-form .btn-primary:focus {
+  background-color: #c22c50;
+  border-color: #c22c50;
+  box-shadow: 0 8px 16px -12px rgba(14, 20, 40, 0.5);
+  transform: translateY(-1px);
+}
+
+.custom-google-form .btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.custom-google-form [hidden] {
+  display: none !important;
+}
+
+.custom-google-form .gform-field:focus-within label,
+.custom-google-form .gform-field:focus-within .gform-field-label {
+  color: #c22c50;
+}
+
+@media (max-width: 992px) {
+  .google-form-wrapper {
+    max-width: 100%;
+  }
+
+  .google-form-iframe {
+    min-height: 1500px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -525,6 +715,6 @@ footer {
   }
 
   .google-form-iframe {
-    min-height: 1900px;
+    min-height: 1600px;
   }
 }

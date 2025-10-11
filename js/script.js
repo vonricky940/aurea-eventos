@@ -22,27 +22,192 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("[Init] Botão scrollUpBtn não encontrado no DOM.");
     }
 
-    // Mostrar campos extra se tipo == "orcamento"
-    const tipoSelect = document.getElementById("tipo");
-    const camposExtra = document.getElementById("camposOrcamento");
+    // Formulário personalizado ligado ao Google Forms
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const inquiryRadios = contactForm.querySelectorAll('input[name="entry.609118544"]');
+        const quoteSection = contactForm.querySelector('[data-quote-section]');
+        const quoteFields = quoteSection ? Array.from(quoteSection.querySelectorAll('input, textarea, select')) : [];
+        const quoteRequired = contactForm.querySelectorAll('[data-quote-required="true"]');
+        const checkboxGroup = contactForm.querySelector('[data-quote-required-group]');
+        const checkboxInputs = checkboxGroup ? Array.from(checkboxGroup.querySelectorAll('input[type="checkbox"]')) : [];
+        const otherFieldWrapper = contactForm.querySelector('[data-other-field]');
+        const otherFieldInput = otherFieldWrapper ? otherFieldWrapper.querySelector('input, textarea') : null;
+        const venueFieldWrapper = contactForm.querySelector('[data-venue-field]');
+        const venueFieldInput = venueFieldWrapper ? venueFieldWrapper.querySelector('input, textarea') : null;
+        const venueRadios = contactForm.querySelectorAll('input[name="entry.1400779123"]');
+        const statusElement = contactForm.querySelector('.gform-status');
+        const submitButton = document.getElementById('contact-submit');
+        const pageHistoryInput = contactForm.querySelector('input[name="pageHistory"]');
+        const googleFormsEndpoint = 'https://docs.google.com/forms/d/e/1FAIpQLSdfRjq2UcHtCGnHlZjzLY3TAxaPL54HBLlcVGivBDES9T00mg/formResponse';
+        const getActiveLang = () => localStorage.getItem('selectedLang') || 'pt';
+        const translate = (key, fallback = '') => {
+            const lang = getActiveLang();
+            return translations?.[lang]?.[key] ?? translations?.pt?.[key] ?? fallback ?? key;
+        };
+        const validateContactTypeGroup = () => {
+            if (!checkboxInputs.length) {
+                return true;
+            }
+            const isValid = !isQuoteSelected() || checkboxInputs.some(cb => cb.checked);
+            if (checkboxInputs[0]) {
+                checkboxInputs[0].setCustomValidity(isValid ? '' : translate('form.status.contactType', 'Selecione pelo menos um tipo de contacto.'));
+            }
+            return isValid;
+        };
 
-    if (tipoSelect && camposExtra) {
-        tipoSelect.addEventListener("change", () => {
-            if (tipoSelect.value === "orcamento") {
-                camposExtra.style.display = "block";
-            } else {
-                camposExtra.style.display = "none";
+        const isQuoteSelected = () => {
+            const selected = contactForm.querySelector('input[name="entry.609118544"]:checked');
+            return !!selected && selected.value === 'Pedido de Orçamento / Quote Request';
+        };
+
+        const updatePageHistory = (quoteActive) => {
+            if (pageHistoryInput) {
+                pageHistoryInput.value = quoteActive ? '0,1' : '0';
+            }
+        };
+
+        const updateOtherField = () => {
+            if (!otherFieldWrapper || !otherFieldInput) return;
+            const otherChecked = checkboxInputs.some(cb => cb.value === 'Outro / Other' && cb.checked);
+            const shouldShow = isQuoteSelected() && otherChecked;
+            otherFieldWrapper.hidden = !shouldShow;
+            otherFieldInput.disabled = !shouldShow;
+            otherFieldInput.required = shouldShow;
+            if (!shouldShow) {
+                otherFieldInput.value = '';
+            }
+        };
+
+        const updateVenueField = () => {
+            if (!venueFieldWrapper || !venueFieldInput) return;
+            const hasVenue = Array.from(venueRadios).some(radio => radio.checked && radio.value === 'Sim / Yes');
+            const shouldShow = isQuoteSelected() && hasVenue;
+            venueFieldWrapper.hidden = !shouldShow;
+            venueFieldInput.disabled = !shouldShow;
+            if (!shouldShow) {
+                venueFieldInput.value = '';
+            }
+        };
+
+        const toggleQuoteFields = (active) => {
+            if (!quoteSection) return;
+            quoteSection.hidden = !active;
+            quoteFields.forEach((field) => {
+                field.disabled = !active;
+            });
+            quoteRequired.forEach((field) => {
+                field.required = active;
+            });
+            if (checkboxInputs.length) {
+                checkboxInputs.forEach(cb => cb.required = false);
+            }
+            updatePageHistory(active);
+            updateOtherField();
+            updateVenueField();
+            validateContactTypeGroup();
+        };
+
+        toggleQuoteFields(false);
+        if (otherFieldWrapper) {
+            otherFieldWrapper.hidden = true;
+            if (otherFieldInput) {
+                otherFieldInput.disabled = true;
+            }
+        }
+        if (venueFieldWrapper) {
+            venueFieldWrapper.hidden = true;
+            if (venueFieldInput) {
+                venueFieldInput.disabled = true;
+            }
+        }
+        updatePageHistory(false);
+
+        inquiryRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                toggleQuoteFields(isQuoteSelected());
+            });
+        });
+
+        checkboxInputs.forEach(cb => {
+            cb.addEventListener('change', () => {
+                updateOtherField();
+                validateContactTypeGroup();
+            });
+        });
+
+        venueRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                updateVenueField();
+            });
+        });
+
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            statusElement.textContent = '';
+            statusElement.classList.remove('error', 'success');
+
+            const contactTypeValid = validateContactTypeGroup();
+            if (!contactTypeValid) {
+                statusElement.textContent = translate('form.status.contactType', 'Selecione pelo menos um tipo de contacto.');
+                statusElement.classList.add('error');
+                contactForm.classList.add('was-validated');
+                if (checkboxInputs[0]) {
+                    checkboxInputs[0].focus();
+                }
+                contactForm.reportValidity();
+                return;
+            }
+
+            if (!contactForm.checkValidity()) {
+                statusElement.textContent = translate('form.status.validation', 'Por favor, preencha os campos obrigatórios.');
+                statusElement.classList.add('error');
+                contactForm.classList.add('was-validated');
+                contactForm.reportValidity();
+                return;
+            }
+
+            contactForm.classList.remove('was-validated');
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = translate('form.status.loading', 'A enviar...');
+
+            const formData = new FormData(contactForm);
+
+            try {
+                await fetch(googleFormsEndpoint, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                });
+
+                statusElement.textContent = translate('form.status.success', 'Obrigado! Recebemos a sua mensagem.');
+                statusElement.classList.add('success');
+                contactForm.reset();
+                toggleQuoteFields(false);
+
+                const successModalEl = document.getElementById('successModal');
+                if (successModalEl) {
+                    const modal = bootstrap.Modal.getOrCreateInstance(successModalEl);
+                    modal.show();
+                }
+            } catch (error) {
+                console.error('[Contact Form] Falha no envio', error);
+                statusElement.textContent = translate('form.status.error', 'Ocorreu um erro ao enviar. Tente novamente mais tarde.');
+                statusElement.classList.add('error');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
             }
         });
+
+        document.addEventListener('languageChanged', () => {
+            validateContactTypeGroup();
+        });
+    } else {
+        console.warn('[Contact Form] Formulário personalizado não encontrado no DOM.');
     }
 
-    // Mostrar/ocultar campo 'local do evento'
-    const possuiLocal = document.getElementById('possuiLocal');
-    const campoLocalEvento = document.getElementById('campoLocalEvento');
-
-    possuiLocal?.addEventListener('change', () => {
-        campoLocalEvento.classList.toggle('d-none', possuiLocal.value !== 'Sim');
-    });
 
     // Mapa com Leaflet (apenas se o elemento existir)
     const mapElement = document.getElementById('map');
@@ -165,6 +330,7 @@ function changeLanguage(lang) {
     console.log(`[Language] A mudar para: ${lang}`);
     localStorage.setItem("selectedLang", lang);
     setLanguage(lang);
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
 
     document.querySelectorAll(".language-selector button").forEach((btn) => {
         btn.classList.remove("active-lang");
@@ -207,6 +373,15 @@ function setLanguage(lang) {
         const text = translations[lang]?.[key];
         if (text !== undefined) {
             opt.textContent = text;
+        }
+    });
+
+    // Atualizar placeholders
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        const text = translations[lang]?.[key];
+        if (text !== undefined) {
+            el.setAttribute("placeholder", text);
         }
     });
 }
