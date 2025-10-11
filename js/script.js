@@ -39,12 +39,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitButton = document.getElementById('contact-submit');
         const pageHistoryInput = contactForm.querySelector('input[name="pageHistory"]');
         const googleFormsEndpoint = 'https://docs.google.com/forms/d/e/1FAIpQLSdfRjq2UcHtCGnHlZjzLY3TAxaPL54HBLlcVGivBDES9T00mg/formResponse';
+        const successModalElement = document.getElementById('successModal');
         const getActiveLang = () => localStorage.getItem('selectedLang') || 'pt';
         const translate = (key, fallback = '') => {
             const lang = getActiveLang();
             return translations?.[lang]?.[key] ?? translations?.pt?.[key] ?? fallback ?? key;
         };
         let endTimeManuallyEdited = false;
+
+        if (successModalElement) {
+            successModalElement.addEventListener('shown.bs.modal', () => {
+                document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+                    backdrop.classList.add('success-modal-backdrop');
+                });
+            });
+
+            successModalElement.addEventListener('hidden.bs.modal', () => {
+                document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+                    backdrop.classList.remove('success-modal-backdrop');
+                });
+            });
+        }
 
         const isQuoteSelected = () => {
             const selected = contactForm.querySelector('input[name="entry.609118544"]:checked');
@@ -85,6 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
             quoteSection.hidden = !active;
             quoteFields.forEach((field) => {
                 field.disabled = !active;
+                if (!active) {
+                    if (field.type === 'checkbox' || field.type === 'radio') {
+                        field.checked = false;
+                    } else if (field.tagName === 'SELECT') {
+                        field.selectedIndex = 0;
+                    } else if (field.type !== 'hidden') {
+                        field.value = '';
+                    }
+                }
             });
             quoteRequired.forEach((field) => {
                 field.required = active;
@@ -180,9 +204,12 @@ document.addEventListener('DOMContentLoaded', () => {
             applyDefaultTimes();
         });
 
-        endTimeInput?.addEventListener('input', () => {
+        const markEndTimeEdited = () => {
             endTimeManuallyEdited = Boolean(endTimeInput?.value);
-        });
+        };
+
+        endTimeInput?.addEventListener('input', markEndTimeEdited);
+        endTimeInput?.addEventListener('change', markEndTimeEdited);
 
         contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
@@ -221,9 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateVenueField();
                 updatePageHistory(quoteActiveAfterReset);
 
-                const successModalEl = document.getElementById('successModal');
-                if (successModalEl) {
-                    const modal = bootstrap.Modal.getOrCreateInstance(successModalEl);
+                if (successModalElement) {
+                    const modal = bootstrap.Modal.getOrCreateInstance(successModalElement);
                     modal.show();
                 }
             } catch (error) {
