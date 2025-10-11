@@ -209,13 +209,13 @@
                                 <div class="gform-options gform-options--column" data-inquiry-group>
                                     <label class="gform-option">
                                         <input type="radio" name="entry.609118544"
-                                            value="Pedido Geral / General Inquiry" checked>
-                                        <span data-i18n="contact.general"></span>
+                                            value="Pedido de Orçamento / Quote Request" checked>
+                                        <span data-i18n="contact.quote"></span>
                                     </label>
                                     <label class="gform-option">
                                         <input type="radio" name="entry.609118544"
-                                            value="Pedido de Orçamento / Quote Request">
-                                        <span data-i18n="contact.quote"></span>
+                                            value="Pedido Geral / General Inquiry">
+                                        <span data-i18n="contact.general"></span>
                                     </label>
                                 </div>
                             </div>
@@ -228,37 +228,16 @@
                                         <span data-i18n="form.field.contactType"></span>
                                         <span class="required-marker" aria-hidden="true">*</span>
                                     </span>
-                                    <div class="gform-options gform-options--wrap" data-quote-required-group>
-                                        <label class="gform-option">
-                                            <input type="checkbox" name="entry.301372017"
-                                                value="Aniversário / Birthday">
-                                            <span data-i18n="form.option.birthday"></span>
-                                        </label>
-                                        <label class="gform-option">
-                                            <input type="checkbox" name="entry.301372017"
-                                                value="Batizado / Christening">
-                                            <span data-i18n="form.option.christening"></span>
-                                        </label>
-                                        <label class="gform-option">
-                                            <input type="checkbox" name="entry.301372017"
-                                                value="Comunhão / Communion">
-                                            <span data-i18n="form.option.communion"></span>
-                                        </label>
-                                        <label class="gform-option">
-                                            <input type="checkbox" name="entry.301372017" value="Baby Shower">
-                                            <span data-i18n="form.option.babyshower"></span>
-                                        </label>
-                                        <label class="gform-option">
-                                            <input type="checkbox" name="entry.301372017"
-                                                value="Casamento / Wedding">
-                                            <span data-i18n="form.option.wedding"></span>
-                                        </label>
-                                        <label class="gform-option">
-                                            <input type="checkbox" name="entry.301372017" value="Outro / Other"
-                                                data-other-trigger="#contact-type-other">
-                                            <span data-i18n="form.option.other"></span>
-                                        </label>
-                                    </div>
+                                    <select id="contact-event-type" name="entry.301372017" data-quote-required="true"
+                                        required class="form-select">
+                                        <option value="" disabled selected data-i18n="form.option.selectEvent"></option>
+                                        <option value="Aniversário / Birthday" data-i18n="form.option.birthday"></option>
+                                        <option value="Batizado / Christening" data-i18n="form.option.christening"></option>
+                                        <option value="Comunhão / Communion" data-i18n="form.option.communion"></option>
+                                        <option value="Baby Shower" data-i18n="form.option.babyshower"></option>
+                                        <option value="Casamento / Wedding" data-i18n="form.option.wedding"></option>
+                                        <option value="Outro / Other" data-i18n="form.option.other"></option>
+                                    </select>
                                 </div>
 
                                 <div class="gform-field" data-other-field hidden>
@@ -300,8 +279,8 @@
                                         <span data-i18n="form.field.location"></span>
                                         <span class="required-marker" aria-hidden="true">*</span>
                                     </label>
-                                    <textarea id="contact-location" name="entry.1077115701" rows="2"
-                                        data-quote-required="true" data-i18n-placeholder="form.placeholder.location"></textarea>
+                                    <input type="text" id="contact-location" name="entry.1077115701"
+                                        data-quote-required="true" data-i18n-placeholder="form.placeholder.location">
                                 </div>
 
                                 <div class="gform-field required">
@@ -369,7 +348,7 @@
                     Obrigado pela sua mensagem! Responderemos o mais brevemente possível.
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
                         data-i18n="modal.ok">Ok</button>
                 </div>
             </div>

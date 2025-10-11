@@ -61,7 +61,7 @@ const translations = {
     "form.field.email": "Email",
     "form.field.phone": "Telefone (opcional)",
     "form.field.requestType": "Tipo de pedido",
-    "form.field.contactType": "Tipo de contacto",
+    "form.field.contactType": "Tipo de festa",
     "form.field.contactType.other": "Se escolheu \"Outro\", especifique",
     "form.field.startDate": "Data de início",
     "form.field.startTime": "Hora de início",
@@ -78,7 +78,6 @@ const translations = {
     "form.status.success": "Obrigado! Recebemos a sua mensagem.",
     "form.status.error": "Ocorreu um erro ao enviar. Tente novamente mais tarde.",
     "form.status.loading": "A enviar...",
-    "form.status.contactType": "Selecione pelo menos um tipo de contacto.",
     "form.placeholder.generic": "A sua resposta",
     "form.placeholder.email": "nome@email.com",
     "form.placeholder.phone": "+351 000 000 000",
@@ -93,6 +92,7 @@ const translations = {
     "form.option.communion": "Comunhão",
     "form.option.babyshower": "Baby Shower",
     "form.option.wedding": "Casamento",
+    "form.option.selectEvent": "Selecione o tipo de festa",
     "form.option.other": "Outro",
 
     // Modal
@@ -168,7 +168,7 @@ const translations = {
     "form.field.email": "Email",
     "form.field.phone": "Phone (optional)",
     "form.field.requestType": "Request type",
-    "form.field.contactType": "Contact type",
+    "form.field.contactType": "Party type",
     "form.field.contactType.other": "If you selected \"Other\", please specify",
     "form.field.startDate": "Start date",
     "form.field.startTime": "Start time",
@@ -185,7 +185,6 @@ const translations = {
     "form.status.success": "Thank you! We received your message.",
     "form.status.error": "Something went wrong. Please try again later.",
     "form.status.loading": "Sending...",
-    "form.status.contactType": "Please select at least one contact type.",
     "form.placeholder.generic": "Your answer",
     "form.placeholder.email": "name@email.com",
     "form.placeholder.phone": "+351 000 000 000",
@@ -200,6 +199,7 @@ const translations = {
     "form.option.communion": "Communion",
     "form.option.babyshower": "Baby Shower",
     "form.option.wedding": "Wedding",
+    "form.option.selectEvent": "Select the party type",
     "form.option.other": "Other",
 
     // Modal

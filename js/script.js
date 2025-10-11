@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const quoteSection = contactForm.querySelector('[data-quote-section]');
         const quoteFields = quoteSection ? Array.from(quoteSection.querySelectorAll('input, textarea, select')) : [];
         const quoteRequired = contactForm.querySelectorAll('[data-quote-required="true"]');
-        const checkboxGroup = contactForm.querySelector('[data-quote-required-group]');
-        const checkboxInputs = checkboxGroup ? Array.from(checkboxGroup.querySelectorAll('input[type="checkbox"]')) : [];
+        const contactTypeSelect = contactForm.querySelector('#contact-event-type');
         const otherFieldWrapper = contactForm.querySelector('[data-other-field]');
         const otherFieldInput = otherFieldWrapper ? otherFieldWrapper.querySelector('input, textarea') : null;
         const venueFieldWrapper = contactForm.querySelector('[data-venue-field]');
@@ -45,16 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const lang = getActiveLang();
             return translations?.[lang]?.[key] ?? translations?.pt?.[key] ?? fallback ?? key;
         };
-        const validateContactTypeGroup = () => {
-            if (!checkboxInputs.length) {
-                return true;
-            }
-            const isValid = !isQuoteSelected() || checkboxInputs.some(cb => cb.checked);
-            if (checkboxInputs[0]) {
-                checkboxInputs[0].setCustomValidity(isValid ? '' : translate('form.status.contactType', 'Selecione pelo menos um tipo de contacto.'));
-            }
-            return isValid;
-        };
+        let endTimeManuallyEdited = false;
 
         const isQuoteSelected = () => {
             const selected = contactForm.querySelector('input[name="entry.609118544"]:checked');
@@ -69,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const updateOtherField = () => {
             if (!otherFieldWrapper || !otherFieldInput) return;
-            const otherChecked = checkboxInputs.some(cb => cb.value === 'Outro / Other' && cb.checked);
-            const shouldShow = isQuoteSelected() && otherChecked;
+            const selectedValue = contactTypeSelect?.value;
+            const shouldShow = isQuoteSelected() && selectedValue === 'Outro / Other';
             otherFieldWrapper.hidden = !shouldShow;
             otherFieldInput.disabled = !shouldShow;
             otherFieldInput.required = shouldShow;
@@ -99,29 +89,59 @@ document.addEventListener('DOMContentLoaded', () => {
             quoteRequired.forEach((field) => {
                 field.required = active;
             });
-            if (checkboxInputs.length) {
-                checkboxInputs.forEach(cb => cb.required = false);
+            if (contactTypeSelect) {
+                contactTypeSelect.disabled = !active;
+                contactTypeSelect.required = active;
+                if (!active) {
+                    contactTypeSelect.value = '';
+                    contactTypeSelect.selectedIndex = 0;
+                    venueRadios.forEach(radio => { radio.checked = false; });
+                } else if (!contactTypeSelect.value) {
+                    contactTypeSelect.selectedIndex = 0;
+                }
             }
             updatePageHistory(active);
             updateOtherField();
             updateVenueField();
-            validateContactTypeGroup();
         };
 
-        toggleQuoteFields(false);
-        if (otherFieldWrapper) {
+        const startDateInput = contactForm.querySelector('#contact-start-date');
+        const startTimeInput = contactForm.querySelector('#contact-start-time');
+        const endTimeInput = contactForm.querySelector('#contact-end-time');
+
+        const applyDefaultTimes = () => {
+            if (!startTimeInput) return;
+            if (!startTimeInput.value) {
+                startTimeInput.value = '10:00';
+            }
+            if (endTimeInput && (!endTimeManuallyEdited || !endTimeInput.value)) {
+                const [hours, minutes] = (startTimeInput.value || '10:00').split(':').map(Number);
+                if (!Number.isNaN(hours)) {
+                    const endDate = new Date();
+                    endDate.setHours(hours);
+                    endDate.setMinutes(minutes || 0);
+                    endDate.setHours(endDate.getHours() + 4);
+                    const endHours = String(endDate.getHours()).padStart(2, '0');
+                    const endMinutes = String(endDate.getMinutes()).padStart(2, '0');
+                    endTimeInput.value = `${endHours}:${endMinutes}`;
+                }
+            }
+        };
+
+        const initialQuoteActive = isQuoteSelected();
+        toggleQuoteFields(initialQuoteActive);
+        updateOtherField();
+        updateVenueField();
+        updatePageHistory(initialQuoteActive);
+
+        if (otherFieldWrapper && otherFieldInput && !initialQuoteActive) {
             otherFieldWrapper.hidden = true;
-            if (otherFieldInput) {
-                otherFieldInput.disabled = true;
-            }
+            otherFieldInput.disabled = true;
         }
-        if (venueFieldWrapper) {
+        if (venueFieldWrapper && venueFieldInput && !initialQuoteActive) {
             venueFieldWrapper.hidden = true;
-            if (venueFieldInput) {
-                venueFieldInput.disabled = true;
-            }
+            venueFieldInput.disabled = true;
         }
-        updatePageHistory(false);
 
         inquiryRadios.forEach(radio => {
             radio.addEventListener('change', () => {
@@ -129,11 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        checkboxInputs.forEach(cb => {
-            cb.addEventListener('change', () => {
-                updateOtherField();
-                validateContactTypeGroup();
-            });
+        contactTypeSelect?.addEventListener('change', () => {
+            if (contactTypeSelect.value) {
+                contactTypeSelect.setCustomValidity('');
+            }
+            updateOtherField();
         });
 
         venueRadios.forEach(radio => {
@@ -142,22 +162,32 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        startDateInput?.addEventListener('focus', () => {
+            if (startDateInput.showPicker) {
+                startDateInput.showPicker();
+            }
+        });
+
+        startDateInput?.addEventListener('change', () => {
+            endTimeManuallyEdited = false;
+            if (startTimeInput?.showPicker) {
+                startTimeInput.showPicker();
+            }
+            applyDefaultTimes();
+        });
+
+        startTimeInput?.addEventListener('change', () => {
+            applyDefaultTimes();
+        });
+
+        endTimeInput?.addEventListener('input', () => {
+            endTimeManuallyEdited = Boolean(endTimeInput?.value);
+        });
+
         contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             statusElement.textContent = '';
             statusElement.classList.remove('error', 'success');
-
-            const contactTypeValid = validateContactTypeGroup();
-            if (!contactTypeValid) {
-                statusElement.textContent = translate('form.status.contactType', 'Selecione pelo menos um tipo de contacto.');
-                statusElement.classList.add('error');
-                contactForm.classList.add('was-validated');
-                if (checkboxInputs[0]) {
-                    checkboxInputs[0].focus();
-                }
-                contactForm.reportValidity();
-                return;
-            }
 
             if (!contactForm.checkValidity()) {
                 statusElement.textContent = translate('form.status.validation', 'Por favor, preencha os campos obrigatórios.');
@@ -184,7 +214,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusElement.textContent = translate('form.status.success', 'Obrigado! Recebemos a sua mensagem.');
                 statusElement.classList.add('success');
                 contactForm.reset();
-                toggleQuoteFields(false);
+                endTimeManuallyEdited = false;
+                const quoteActiveAfterReset = isQuoteSelected();
+                toggleQuoteFields(quoteActiveAfterReset);
+                updateOtherField();
+                updateVenueField();
+                updatePageHistory(quoteActiveAfterReset);
 
                 const successModalEl = document.getElementById('successModal');
                 if (successModalEl) {
@@ -202,7 +237,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.addEventListener('languageChanged', () => {
-            validateContactTypeGroup();
+            updateOtherField();
+            if (contactTypeSelect && !contactTypeSelect.value) {
+                contactTypeSelect.selectedIndex = 0;
+            }
         });
     } else {
         console.warn('[Contact Form] Formulário personalizado não encontrado no DOM.');
