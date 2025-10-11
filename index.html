@@ -28,9 +28,6 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <!-- reCAPTCHA v3 -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vIBrs" async defer></script>
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -173,118 +170,12 @@
 
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form id="contactForm"
-                    action="https://formsubmit.co/96ddc30e1f60e68074ba97de6930ba38" method="POST"
-                    data-endpoint="https://aurea-drive.vonricky940.workers.dev/"
-                    data-recaptcha-sitekey="6Ldu5WcrAAAAAGD6FpjV029uN38EviyFVu9vIBrs">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="#">
-                    <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
-
-                    <div class="mb-3">
-                        <label for="nome" class="form-label" data-i18n="contact.name">Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="email" class="form-label" data-i18n="contact.email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="telefone" class="form-label" data-i18n="contact.phone">Telefone (opcional)</label>
-                        <input type="tel" class="form-control" id="telefone" name="telefone">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="tipo" class="form-label" data-i18n="contact.type">Tipo de Contacto</label>
-                        <select class="form-select" id="tipo" name="tipo" required>
-                            <option value="" disabled selected data-i18n="contact.select_option">Selecione uma opção
-                            </option>
-                            <option value="geral" data-i18n="contact.general">Pedido Geral</option>
-                            <option value="orcamento" data-i18n="contact.quote">Pedido de Orçamento</option>
-                        </select>
-                    </div>
-
-                    <!-- Campos extra só para "Pedido de Orçamento" -->
-                    <div id="camposOrcamento" style="display: none;">
-                        <div class="mb-3">
-                            <label for="tipoEvento" class="form-label">Tipo de Festa</label>
-                            <select class="form-select" id="tipoEvento" name="tipoEvento">
-                                <option value="" disabled selected>Escolha o tipo</option>
-                                <option value="aniversario">Aniversário</option>
-                                <option value="batizado">Batizado</option>
-                                <option value="comunhao">Comunhão</option>
-                                <option value="babyshower">Baby Shower</option>
-                                <option value="casamento">Casamento</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <div class="col-md-6">
-                                <label for="dataInicio" class="form-label">Data de Início</label>
-                                <input type="date" class="form-control" id="dataInicio" name="dataInicio">
-                            </div>
-                            <div class="col-md-3">
-                                <label for="horaInicio" class="form-label">Hora de Início</label>
-                                <input type="time" class="form-control" id="horaInicio" name="horaInicio">
-                            </div>
-                            <div class="col-md-3">
-                                <label for="horaFim" class="form-label">Hora de Fim</label>
-                                <input type="time" class="form-control" id="horaFim" name="horaFim">
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="numeroPessoas" class="form-label">Número aproximado de pessoas</label>
-                            <input type="number" class="form-control" id="numeroPessoas" name="numeroPessoas" min="1">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label" data-i18n="contact.location">Localização do evento</label>
-                            <p class="small" data-i18n="contact.map_info">Clique no mapa para escolher a localidade do
-                                evento.</p>
-                            <div id="map" style="height: 300px; border-radius: 8px;"></div>
-                            <input type="text" class="form-control mt-2" id="localidadeTexto" name="localidadeTexto"
-                                placeholder="Ex: Lisboa, Quinta das Rosas">
-                            <input type="hidden" id="mapaLink" name="mapaLink">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="possuiLocal" class="form-label" data-i18n="contact.has_venue">Já alugou ou tem
-                                alguma quinta/restaurante para o evento?</label>
-                            <select class="form-select" id="possuiLocal" name="possuiLocal">
-                                <option value="" disabled selected data-i18n="contact.select_option">Selecione uma opção
-                                </option>
-                                <option value="Sim" data-i18n="contact.yes">Sim</option>
-                                <option value="Não" data-i18n="contact.no">Não</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3 d-none" id="campoLocalEvento">
-                            <label for="localEvento" class="form-label" data-i18n="contact.venue_details">Indique qual o
-                                nome da quinta/restaurante para o evento</label>
-                            <input type="text" class="form-control" id="localEvento" name="localEvento"
-                                placeholder="Ex: Quinta do Vale">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="observacoes" class="form-label">Observações adicionais</label>
-                            <textarea class="form-control" id="observacoes" name="observacoes" rows="3"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="mensagem" class="form-label" data-i18n="contact.message">Mensagem</label>
-                        <textarea class="form-control" id="mensagem" name="mensagem" rows="5" required></textarea>
-                    </div>
-
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-dark" data-i18n="contact.send"
-                            data-loading-text="A enviar...">Enviar</button>
-                    </div>
-                </form>
+                <div class="google-form-wrapper">
+                    <iframe class="google-form-iframe"
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSdfRjq2UcHtCGnHlZjzLY3TAxaPL54HBLlcVGivBDES9T00mg/viewform?embedded=true"
+                        title="Formulário de contacto" frameborder="0" marginheight="0" marginwidth="0"
+                        allowtransparency="true">Loading…</iframe>
+                </div>
 
             </div>
         </div>

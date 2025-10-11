@@ -44,57 +44,67 @@ document.addEventListener('DOMContentLoaded', () => {
         campoLocalEvento.classList.toggle('d-none', possuiLocal.value !== 'Sim');
     });
 
-    // Mapa com Leaflet
-    // Mapa com Leaflet com barra de pesquisa
-    const map = L.map('map').setView([41.5, -8.4], 8.5); // Região Norte de Portugal
+    // Mapa com Leaflet (apenas se o elemento existir)
+    const mapElement = document.getElementById('map');
+    if (mapElement) {
+        const map = L.map(mapElement).setView([41.5, -8.4], 8.5); // Região Norte de Portugal
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-    // Marcador para localização
-    let marker;
+        let marker;
 
-    // Clique direto no mapa
-    map.on('click', function (e) {
-        const lat = e.latlng.lat.toFixed(5);
-        const lng = e.latlng.lng.toFixed(5);
-
-        if (marker) {
-            marker.setLatLng(e.latlng);
-        } else {
-            marker = L.marker(e.latlng).addTo(map);
-        }
-
-        // Atualiza link e campo de localização
-        const link = `https://www.google.com/maps?q=${lat},${lng}`;
-        document.getElementById('mapaLink').value = link;
-
-        const txt = document.getElementById('localidadeTexto');
-        if (txt && txt.value.trim() === '') {
-            txt.value = `Localização em ${lat}, ${lng}`;
-        }
-    });
-
-    // Caixa de pesquisa com Leaflet Control Geocoder
-    L.Control.geocoder({
-        defaultMarkGeocode: false
-    })
-        .on('markgeocode', function (e) {
-            const { center, name } = e.geocode;
-
-            map.setView(center, 14);
+        map.on('click', function (e) {
+            const lat = e.latlng.lat.toFixed(5);
+            const lng = e.latlng.lng.toFixed(5);
 
             if (marker) {
-                marker.setLatLng(center);
+                marker.setLatLng(e.latlng);
             } else {
-                marker = L.marker(center).addTo(map);
+                marker = L.marker(e.latlng).addTo(map);
             }
 
-            document.getElementById('localidadeTexto').value = name;
-            document.getElementById('mapaLink').value = `https://www.google.com/maps?q=${center.lat},${center.lng}`;
+            const link = `https://www.google.com/maps?q=${lat},${lng}`;
+            const linkField = document.getElementById('mapaLink');
+            if (linkField) {
+                linkField.value = link;
+            }
+
+            const txt = document.getElementById('localidadeTexto');
+            if (txt && txt.value.trim() === '') {
+                txt.value = `Localização em ${lat}, ${lng}`;
+            }
+        });
+
+        L.Control.geocoder({
+            defaultMarkGeocode: false
         })
-        .addTo(map);
+            .on('markgeocode', function (e) {
+                const { center, name } = e.geocode;
+
+                map.setView(center, 14);
+
+                if (marker) {
+                    marker.setLatLng(center);
+                } else {
+                    marker = L.marker(center).addTo(map);
+                }
+
+                const localidade = document.getElementById('localidadeTexto');
+                if (localidade) {
+                    localidade.value = name;
+                }
+
+                const linkField = document.getElementById('mapaLink');
+                if (linkField) {
+                    linkField.value = `https://www.google.com/maps?q=${center.lat},${center.lng}`;
+                }
+            })
+            .addTo(map);
+    } else {
+        console.log("[Mapa] Elemento #map não encontrado. A funcionalidade de mapa está desativada nesta página.");
+    }
 
     // Idioma
     const savedLang = localStorage.getItem("selectedLang") || "pt";
@@ -197,124 +207,6 @@ function setLanguage(lang) {
         const text = translations[lang]?.[key];
         if (text !== undefined) {
             opt.textContent = text;
-        }
-    });
-}
-
-// Submissão de formulário com verificação reCAPTCHA via proxy seguro
-const form = document.getElementById("contactForm");
-if (form) {
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const endpoint = form.dataset.endpoint?.trim() || form.action;
-    const siteKey = form.dataset.recaptchaSitekey?.trim();
-
-    const setSubmittingState = (isSubmitting) => {
-        if (!submitBtn) return;
-        if (isSubmitting) {
-            submitBtn.disabled = true;
-            submitBtn.dataset.originalText = submitBtn.dataset.originalText || submitBtn.innerHTML;
-            submitBtn.innerHTML = submitBtn.dataset.loadingText || "...";
-        } else {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = submitBtn.dataset.originalText || "Enviar";
-        }
-    };
-
-    const sendForm = async (payload) => {
-        const headers = { "Content-Type": "application/json", "Accept": "application/json" };
-
-        const response = await fetch(endpoint, {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payload),
-        });
-
-        if (!response.ok) {
-            const errorBody = await response.text();
-            throw new Error(`Estado ${response.status}: ${errorBody}`);
-        }
-
-        const json = await response.json().catch(() => ({}));
-        if (json.success === false || json.error) {
-            throw new Error(json.message || "Resposta inesperada do servidor.");
-        }
-
-        return json;
-    };
-
-    form.addEventListener("submit", (e) => {
-        console.log("[Form] Submissão iniciada.");
-        e.preventDefault();
-
-        if (!endpoint || endpoint.includes("example")) {
-            console.error("[Form] Endpoint de submissão não configurado. Atualize o atributo data-endpoint com o URL do proxy.");
-            alert("Configuração do formulário incompleta. Contacte o administrador.");
-            return;
-        }
-
-        const formData = new FormData(form);
-        const recaptchaField = document.getElementById('g-recaptcha-response');
-
-        const entries = {};
-        for (const [key, value] of formData.entries()) {
-            if (key in entries) {
-                entries[key] = Array.isArray(entries[key])
-                    ? [...entries[key], value]
-                    : [entries[key], value];
-            } else {
-                entries[key] = value;
-            }
-        }
-
-        const executeSubmission = async (token) => {
-            try {
-                setSubmittingState(true);
-
-                if (token) {
-                    entries["g-recaptcha-response"] = token;
-                    if (recaptchaField) recaptchaField.value = token;
-                }
-
-                const payload = {
-                    token,
-                    data: entries,
-                };
-
-                await sendForm(payload);
-
-                console.log("[Form] Enviado com sucesso via proxy.");
-                const modal = new bootstrap.Modal(document.getElementById("successModal"));
-                modal.show();
-                form.reset();
-                if (recaptchaField) recaptchaField.value = "";
-            } catch (err) {
-                console.error("[Form] Erro ao enviar:", err);
-                alert("Erro ao enviar. Por favor tente novamente mais tarde.");
-            } finally {
-                setSubmittingState(false);
-            }
-        };
-
-        if (siteKey) {
-            if (typeof grecaptcha === "undefined") {
-                console.error("[Form] grecaptcha não carregado.");
-                alert("Erro de verificação. Por favor tente mais tarde.");
-                return;
-            }
-
-            grecaptcha.ready(() => {
-                grecaptcha.execute(siteKey, { action: "contact_form" })
-                    .then((token) => {
-                        console.log("[reCAPTCHA] Token recebido.");
-                        executeSubmission(token);
-                    })
-                    .catch((err) => {
-                        console.error("[reCAPTCHA] Erro ao executar:", err);
-                        alert("Erro com o reCAPTCHA. Verifique a ligação ou tente mais tarde.");
-                    });
-            });
-        } else {
-            executeSubmission(null);
         }
     });
 }

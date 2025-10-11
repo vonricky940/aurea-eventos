@@ -502,3 +502,29 @@ footer {
 .cookie-banner button:hover {
   background-color: #c22c50;
 }
+
+.google-form-wrapper {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px -20px rgba(14, 20, 40, 0.25);
+  overflow: hidden;
+  padding: clamp(0.75rem, 2vw, 2rem);
+}
+
+.google-form-iframe {
+  width: 100%;
+  min-height: 1700px;
+  border: none;
+  background: transparent;
+}
+
+@media (max-width: 768px) {
+  .google-form-wrapper {
+    padding: 0.5rem;
+    border-radius: 14px;
+  }
+
+  .google-form-iframe {
+    min-height: 1900px;
+  }
+}
