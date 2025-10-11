@@ -49,10 +49,6 @@ const translations = {
     "contact.map_info": "Clique no mapa para escolher a localidade do evento.",
     "contact.has_venue": "Já alugou ou tem alguma quinta/restaurante para o evento?",
     "contact.venue_details": "Indique qual o nome da quinta/restaurante para o evento",
-    "recaptcha.notice1": "Este site é protegido pelo reCAPTCHA e aplica-se a",
-    "recaptcha.notice2": "Política de Privacidade",
-    "recaptcha.notice3": "e os",
-    "recaptcha.notice4": "Termos de Serviço",
 
     // Formulário personalizado
     "form.contact.title": "Formulário de Contacto",
@@ -78,6 +74,8 @@ const translations = {
     "form.status.success": "Obrigado! Recebemos a sua mensagem.",
     "form.status.error": "Ocorreu um erro ao enviar. Tente novamente mais tarde.",
     "form.status.loading": "A enviar...",
+    "form.status.tooFast": "Demorou muito pouco tempo. Confirme os dados e tente novamente.",
+    "form.status.spam": "Não foi possível enviar. Por favor, tente novamente ou contacte-nos diretamente.",
     "form.placeholder.generic": "A sua resposta",
     "form.placeholder.email": "nome@email.com",
     "form.placeholder.phone": "+351 000 000 000",
@@ -155,11 +153,7 @@ const translations = {
     "contact.location": "Event Location",
     "contact.map_info": "Click the map to choose the event location.",
     "contact.has_venue": "Have you already booked a venue or restaurant for the event?",
-   "contact.venue_details": "Please specify the name of the venue or restaurant",
-    "recaptcha.notice1": "This site is protected by reCAPTCHA and the",
-    "recaptcha.notice2": "Privacy Policy",
-    "recaptcha.notice3": "and",
-    "recaptcha.notice4": "Terms of Service",
+    "contact.venue_details": "Please specify the name of the venue or restaurant",
 
     // Custom form
     "form.contact.title": "Contact Form",
@@ -185,6 +179,8 @@ const translations = {
     "form.status.success": "Thank you! We received your message.",
     "form.status.error": "Something went wrong. Please try again later.",
     "form.status.loading": "Sending...",
+    "form.status.tooFast": "It looks like the form was submitted too quickly. Please review and try again.",
+    "form.status.spam": "We couldn’t submit your message. Please try again or contact us directly.",
     "form.placeholder.generic": "Your answer",
     "form.placeholder.email": "name@email.com",
     "form.placeholder.phone": "+351 000 000 000",

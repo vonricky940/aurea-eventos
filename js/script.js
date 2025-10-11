@@ -38,7 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const statusElement = contactForm.querySelector('.gform-status');
         const submitButton = document.getElementById('contact-submit');
         const pageHistoryInput = contactForm.querySelector('input[name="pageHistory"]');
-        const googleFormsEndpoint = 'https://docs.google.com/forms/d/e/1FAIpQLSdfRjq2UcHtCGnHlZjzLY3TAxaPL54HBLlcVGivBDES9T00mg/formResponse';
+        const honeypotField = contactForm.querySelector('input[name="aurea_contact_hp"]');
+        const formStartField = contactForm.querySelector('input[name="form_start_ms"]');
+        const submissionEndpoint = (contactForm.dataset.endpoint || '').trim() ||
+            'https://docs.google.com/forms/d/e/1FAIpQLSdfRjq2UcHtCGnHlZjzLY3TAxaPL54HBLlcVGivBDES9T00mg/formResponse';
+        const MIN_SUBMIT_DELAY_MS = Number(contactForm.dataset.minDelay || 3000);
         const successModalElement = document.getElementById('successModal');
         const getActiveLang = () => localStorage.getItem('selectedLang') || 'pt';
         const translate = (key, fallback = '') => {
@@ -46,6 +50,20 @@ document.addEventListener('DOMContentLoaded', () => {
             return translations?.[lang]?.[key] ?? translations?.pt?.[key] ?? fallback ?? key;
         };
         let endTimeManuallyEdited = false;
+        let formInitializedAt = Date.now();
+
+        const resetFormTimer = () => {
+            formInitializedAt = Date.now();
+            if (formStartField) {
+                formStartField.value = String(formInitializedAt);
+            }
+            if (honeypotField) {
+                honeypotField.value = '';
+            }
+            endTimeManuallyEdited = false;
+        };
+
+        resetFormTimer();
 
         if (successModalElement) {
             successModalElement.addEventListener('shown.bs.modal', () => {
@@ -216,6 +234,19 @@ document.addEventListener('DOMContentLoaded', () => {
             statusElement.textContent = '';
             statusElement.classList.remove('error', 'success');
 
+            if (honeypotField && honeypotField.value.trim() !== '') {
+                statusElement.textContent = translate('form.status.spam', 'Não foi possível enviar. Por favor, tente novamente.');
+                statusElement.classList.add('error');
+                return;
+            }
+
+            const elapsedTime = Date.now() - formInitializedAt;
+            if (elapsedTime < MIN_SUBMIT_DELAY_MS) {
+                statusElement.textContent = translate('form.status.tooFast', 'Demorou muito pouco tempo. Confirme os dados e tente novamente.');
+                statusElement.classList.add('error');
+                return;
+            }
+
             if (!contactForm.checkValidity()) {
                 statusElement.textContent = translate('form.status.validation', 'Por favor, preencha os campos obrigatórios.');
                 statusElement.classList.add('error');
@@ -229,19 +260,43 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.disabled = true;
             submitButton.textContent = translate('form.status.loading', 'A enviar...');
 
+            if (formStartField) {
+                formStartField.value = String(formInitializedAt);
+            }
+
             const formData = new FormData(contactForm);
 
             try {
-                await fetch(googleFormsEndpoint, {
+                const isGoogleEndpoint = submissionEndpoint.includes('docs.google.com/forms');
+                const fetchOptions = {
                     method: 'POST',
-                    mode: 'no-cors',
                     body: formData
-                });
+                };
+
+                if (isGoogleEndpoint) {
+                    fetchOptions.mode = 'no-cors';
+                } else {
+                    fetchOptions.headers = {
+                        'X-Form-Started': String(formInitializedAt),
+                        'Accept': 'application/json'
+                    };
+                }
+
+                const response = await fetch(submissionEndpoint, fetchOptions);
+
+                if (!isGoogleEndpoint) {
+                    const payload = await response.json().catch(() => ({}));
+                    if (!response.ok || payload.success !== true) {
+                        throw new Error(payload.error || 'FORM_SUBMIT_FAILED');
+                    }
+                } else if (!response.ok && response.type !== 'opaque') {
+                    throw new Error('FORM_SUBMIT_FAILED');
+                }
 
                 statusElement.textContent = translate('form.status.success', 'Obrigado! Recebemos a sua mensagem.');
                 statusElement.classList.add('success');
                 contactForm.reset();
-                endTimeManuallyEdited = false;
+                resetFormTimer();
                 const quoteActiveAfterReset = isQuoteSelected();
                 toggleQuoteFields(quoteActiveAfterReset);
                 updateOtherField();
@@ -254,8 +309,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error('[Contact Form] Falha no envio', error);
-                statusElement.textContent = translate('form.status.error', 'Ocorreu um erro ao enviar. Tente novamente mais tarde.');
+                const errorCode = (error && error.message) ? String(error.message) : '';
+                if (errorCode === 'TOO_FAST') {
+                    statusElement.textContent = translate('form.status.tooFast', 'Demorou muito pouco tempo. Confirme os dados e tente novamente.');
+                } else if (errorCode === 'HONEYPOT_TRIGGERED' || errorCode === 'RATE_LIMITED') {
+                    statusElement.textContent = translate('form.status.spam', 'Não foi possível enviar. Por favor, tente novamente ou contacte-nos diretamente.');
+                } else {
+                    statusElement.textContent = translate('form.status.error', 'Ocorreu um erro ao enviar. Tente novamente mais tarde.');
+                }
                 statusElement.classList.add('error');
+                formInitializedAt = Date.now();
+                if (formStartField) {
+                    formStartField.value = String(formInitializedAt);
+                }
             } finally {
                 submitButton.disabled = false;
                 submitButton.textContent = originalText;
@@ -267,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (contactTypeSelect && !contactTypeSelect.value) {
                 contactTypeSelect.selectedIndex = 0;
             }
+            resetFormTimer();
         });
     } else {
         console.warn('[Contact Form] Formulário personalizado não encontrado no DOM.');

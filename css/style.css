@@ -276,12 +276,6 @@ footer {
   border-color: #e93f66;
 }
 
-/* Recaptcha oculto */
-.grecaptcha-badge,
-.grecaptcha-logo {
-  display: none !important;
-}
-
 /* Testemunhos Swiper */
 #testemunhos {
   background-color: #fdf4f8;
@@ -721,6 +715,16 @@ footer {
 .custom-google-form .gform-field:focus-within label,
 .custom-google-form .gform-field:focus-within .gform-field-label {
   color: #c22c50;
+}
+
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 #successModal .modal-dialog {
