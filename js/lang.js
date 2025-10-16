@@ -3,14 +3,16 @@ const translations = {
     // Navbar
     "menu.home": "Início",
     "menu.gallery": "Galeria",
-    "menu.about": "Sobre",
-    "menu.contact": "Contacto",
+    "menu.about": "Sobre Nós",
+    "menu.services": "Serviços",
+    "menu.contact": "Orçamento",
+    "menu.faq": "FAQ",
     "menu.testimonials": "Testemunhos",
 
     // Hero
     "hero.title": "Áurea - Eventos Personalizados",
     "hero.subtitle": "Decoração feita à medida, com um toque de luxo.",
-    "hero.button": "Clique para ver mais",
+    "hero.button": "Peça já o seu orçamento",
 
     // Testimonials
     "testimonials.title": "Testemunhos de Clientes",
@@ -20,9 +22,9 @@ const translations = {
     "about.title": "Sobre Nós",
     "about.intro": "Áurea – Eventos Personalizados",
     "about.mission": "Fazemos o Acompanhamento e Decoração de Eventos Inesquecíveis",
-    "about.description": "A Áurea está presente nos momentos mais especiais da sua vida, para tornar cada detalhe memorável. Organizamos e decoramos festas de aniversário, batizados, comunhões, baby showers, casamentos e muitos outros momentos únicos.",
+    "about.description": "A Áurea está presente nos momentos mais especiais da sua vida, para tornar cada detalhe memorável. Organizamos e decoramos festas de aniversário, batizados, comunhões, baby showers, casamentos e muitos outros momentos únicos. Entre em contacto para pedir o seu orçamento personalizado!",
     "about.phone_label": "Telefone:",
-    "about.contact_cta": "Entre em contacto para pedir o seu orçamento personalizado!",
+    "about.contact_cta": "Clique aqui!",
 
     // Gallery
     "gallery.title": "Galeria de Eventos",
@@ -30,10 +32,39 @@ const translations = {
     "gallery.empty": "Nenhuma imagem disponível.",
     "gallery.error": "Erro ao carregar a galeria. Tente novamente mais tarde.",
 
+    // Services
+    "services.title": "Serviços e Especialidades",
+    "services.subtitle": "Criamos experiências personalizadas para cada celebração, desde micro eventos intimistas a grandes produções. Descubra como podemos tornar o seu momento inesquecível.",
+    "services.decor.title": "Design & Decoração",
+    "services.decor.description": "Cenários personalizados, conceito cromático e styling completo para cada evento.",
+    "services.decor.items.0": "Planeamento do conceito visual",
+    "services.decor.items.1": "Flores frescas e artificiais premium",
+    "services.decor.items.2": "Styling de mesas, doces e photobooth",
+    "services.planning.title": "Coordenação de Evento",
+    "services.planning.description": "Acompanhamento integral desde o briefing inicial até à desmontagem do evento.",
+    "services.planning.items.0": "Reuniões de alinhamento presenciais ou online",
+    "services.planning.items.1": "Gestão de fornecedores parceiros",
+    "services.planning.items.2": "Cronograma e acompanhamento no dia",
+    "services.extras.title": "Detalhes Complementares",
+    "services.extras.description": "Soluções adicionais para completar a experiência com conforto e personalização.",
+    "services.extras.items.0": "Lembranças personalizadas",
+    "services.extras.items.1": "Aluguer de mobiliário e peças decorativas",
+    "services.extras.items.2": "Gestão de iluminação ambiente",
+
+    // FAQ
+    "faq.title": "Perguntas Frequentes",
+    "faq.subtitle": "Se procura detalhes sobre o processo, logística ou personalização, reunimos as respostas mais pedidas.",
+    "faq.items.0.question": "Quanto tempo antes devo reservar a decoração?",
+    "faq.items.0.answer": "Recomendamos um mínimo de 3 meses para eventos de maior dimensão ou alta temporada. Para eventos intimistas conseguimos propostas rápidas em duas semanas.",
+    "faq.items.1.question": "Trabalham fora da vossa área habitual?",
+    "faq.items.1.answer": "Sim! A Áurea desloca-se por todo o país. Os orçamentos incluem uma estimativa de logística e deslocação para garantir transparência de custos.",
+    "faq.items.2.question": "Posso personalizar o pacote de serviços?",
+    "faq.items.2.answer": "Todos os pacotes são modulares. Escolhe apenas o que faz sentido para o teu evento e podemos adicionar extras como lembranças, iluminação ou suporte no dia.",
+
     // Contact
-    "contact.title": "Fale connosco",
-    "contact.subtitle": "Envie-nos uma mensagem ou peça um orçamento personalizado.",
-    "contact.subtitle2": "Em alternativa, pode ligar-nos para o",
+    "contact.title": "Peça o seu orçamento",
+    "contact.subtitle": "Preencha o formulário e receba uma proposta personalizada para o seu evento.",
+    "contact.subtitle2": "Prefere falar connosco? Ligue para",
     "contact.name": "Nome",
     "contact.email": "Email",
     "contact.phone": "Telefone (opcional)",
@@ -44,7 +75,7 @@ const translations = {
     "contact.yes": "Sim",
     "contact.no": "Não",
     "contact.message": "Mensagem",
-    "contact.send": "Enviar",
+    "contact.send": "Enviar pedido",
     "contact.location": "Localização do evento",
     "contact.map_info": "Clique no mapa para escolher a localidade do evento.",
     "contact.has_venue": "Já alugou ou tem alguma quinta/restaurante para o evento?",
@@ -68,7 +99,7 @@ const translations = {
     "form.field.venue": "Nome da quinta ou restaurante (se aplicável)",
     "form.field.notes": "Observações adicionais",
     "form.field.message": "Mensagem",
-    "form.quote.title": "Pedido de Orçamento - Detalhes",
+    "form.quote.title": "Informações do Evento",
     "form.required.note": "* Indica uma pergunta obrigatória.",
     "form.status.validation": "Por favor, preencha os campos obrigatórios.",
     "form.status.success": "Obrigado! Recebemos a sua mensagem.",
@@ -99,8 +130,10 @@ const translations = {
     "modal.ok": "Ok",
 
     // Footer
-    "footer.about": "Sobre",
-    "footer.contact": "Contacto",
+    "footer.about": "Sobre Nós",
+    "footer.services": "Serviços",
+    "footer.faq": "FAQ",
+    "footer.contact": "Orçamento",
     "footer.copyright": "© 2025 Áurea - Eventos Personalizados. Todos os direitos reservados."
   },
 
@@ -108,14 +141,16 @@ const translations = {
     // Navbar
     "menu.home": "Home",
     "menu.gallery": "Gallery",
-    "menu.about": "About",
-    "menu.contact": "Contact",
+    "menu.about": "About Us",
+    "menu.services": "Services",
+    "menu.contact": "Quote",
+    "menu.faq": "FAQ",
     "menu.testimonials": "Testimonials",
 
     // Hero
     "hero.title": "Áurea - Personalized Events",
     "hero.subtitle": "Custom decorations with a touch of luxury.",
-    "hero.button": "Click to see more",
+    "hero.button": "Request your quote",
 
     // Testimonials
     "testimonials.title": "Client Testimonials",
@@ -125,9 +160,9 @@ const translations = {
     "about.title": "About Us",
     "about.intro": "Áurea – Personalized Events",
     "about.mission": "We accompany and decorate unforgettable events",
-    "about.description": "Áurea is present in the most special moments of your life, to make every detail memorable. We organize and decorate birthday parties, baptisms, communions, baby showers, weddings, and many other unique moments.",
+    "about.description": "Áurea is present in the most special moments of your life, to make every detail memorable. We organize and decorate birthday parties, baptisms, communions, baby showers, weddings, and many other unique moments. Get in touch for your personalized quote!",
     "about.phone_label": "Phone:",
-    "about.contact_cta": "Get in touch for your personalized quote!",
+    "about.contact_cta": "Click here!",
 
     // Gallery
     "gallery.title": "Event Gallery",
@@ -135,10 +170,39 @@ const translations = {
     "gallery.empty": "No images available.",
     "gallery.error": "Error loading gallery. Please try again later.",
 
+    // Services
+    "services.title": "Services & Expertise",
+    "services.subtitle": "We design bespoke experiences for every celebration, from intimate gatherings to large productions. Discover how we can elevate your moment.",
+    "services.decor.title": "Design & Décor",
+    "services.decor.description": "Custom backdrops, colour palettes, and full styling tailored to each event.",
+    "services.decor.items.0": "Visual concept planning",
+    "services.decor.items.1": "Premium fresh and faux florals",
+    "services.decor.items.2": "Dessert table, tablescape, and photobooth styling",
+    "services.planning.title": "Event Coordination",
+    "services.planning.description": "End-to-end support from the first briefing to the final teardown.",
+    "services.planning.items.0": "In-person or virtual alignment meetings",
+    "services.planning.items.1": "Trusted vendor management",
+    "services.planning.items.2": "Day-of timeline and on-site supervision",
+    "services.extras.title": "Finishing Touches",
+    "services.extras.description": "Additional solutions that bring comfort and personality to every celebration.",
+    "services.extras.items.0": "Personalised favours and gifting",
+    "services.extras.items.1": "Furniture & decor rentals",
+    "services.extras.items.2": "Ambient lighting management",
+
+    // FAQ
+    "faq.title": "Frequently Asked Questions",
+    "faq.subtitle": "Find quick answers about planning, logistics, and personalisation for your celebration.",
+    "faq.items.0.question": "How far in advance should I book the décor?",
+    "faq.items.0.answer": "We recommend at least 3 months for peak season or large events. Intimate celebrations can be planned in as little as two weeks.",
+    "faq.items.1.question": "Do you travel outside your usual area?",
+    "faq.items.1.answer": "Yes, we style events across Portugal. Quotes include a transparent estimate for travel and logistics.",
+    "faq.items.2.question": "Can I customise the service package?",
+    "faq.items.2.answer": "Every package is modular. Select the essentials you need and add extras like favours, lighting, or on-the-day support.",
+
     // Contact
-    "contact.title": "Contact Us",
-    "contact.subtitle": "Send us a message or request a personalized quote.",
-    "contact.subtitle2": "Alternatively, you can call us at",
+    "contact.title": "Request Your Quote",
+    "contact.subtitle": "Fill out the form to receive a tailored proposal for your celebration.",
+    "contact.subtitle2": "Prefer to talk to us? Call",
     "contact.name": "Name",
     "contact.email": "Email",
     "contact.phone": "Phone (optional)",
@@ -149,7 +213,7 @@ const translations = {
     "contact.yes": "Yes",
     "contact.no": "No",
     "contact.message": "Message",
-    "contact.send": "Send",
+    "contact.send": "Send Request",
     "contact.location": "Event Location",
     "contact.map_info": "Click the map to choose the event location.",
     "contact.has_venue": "Have you already booked a venue or restaurant for the event?",
@@ -173,7 +237,7 @@ const translations = {
     "form.field.venue": "Venue name (if applicable)",
     "form.field.notes": "Additional notes",
     "form.field.message": "Message",
-    "form.quote.title": "Quote Request Details",
+    "form.quote.title": "Event Details",
     "form.required.note": "* Indicates a required question.",
     "form.status.validation": "Please fill in the required fields.",
     "form.status.success": "Thank you! We received your message.",
@@ -204,8 +268,10 @@ const translations = {
     "modal.ok": "Ok",
 
     // Footer
-    "footer.about": "About",
-    "footer.contact": "Contact",
+    "footer.about": "About Us",
+    "footer.services": "Services",
+    "footer.faq": "FAQ",
+    "footer.contact": "Quote",
     "footer.copyright": "© 2025 Áurea - Personalized Events. All rights reserved."
   }
 };

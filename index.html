@@ -12,6 +12,10 @@
     <meta name="keywords" content="eventos, decoração, batizados, comunhões, aniversários, luxo, personalizados, Áurea">
     <meta name="author" content="Áurea - Eventos Personalizados">
 
+    <link rel="canonical" href="https://aureaeventos.com/">
+    <link rel="alternate" hreflang="pt" href="https://aureaeventos.com/">
+    <link rel="alternate" hreflang="en" href="https://aureaeventos.com/?lang=en">
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Áurea - Eventos Personalizados">
@@ -35,8 +39,11 @@
     <!-- Glightbox CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 
-    <!-- Favicon -->
+    <!-- App Icons -->
     <link rel="icon" type="image/png" href="assets/img/logo-rosa.png">
+    <link rel="apple-touch-icon" href="assets/img/logo-rosa.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#e93f66">
 
     <!-- Estilo principal (modo debug) -->
     <link rel="stylesheet" href="css/style.css">
@@ -49,6 +56,31 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Áurea - Eventos Personalizados",
+            "url": "https://aureaeventos.com/",
+            "logo": "https://aureaeventos.com/assets/img/logo-rosa.png",
+            "image": "https://aureaeventos.com/assets/img/logo-rosa.png",
+            "sameAs": [
+                "https://instagram.com/aurea_eventospersonalizados",
+                "https://www.facebook.com/p/Aurea-Eventos-Personalizados-100063625506661",
+                "https://wa.me/351913771563"
+            ],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "telephone": "+351913771563",
+                "availableLanguage": [
+                    "pt",
+                    "en"
+                ],
+                "areaServed": "PT"
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -79,9 +111,12 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" href="#topo" data-i18n="menu.home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testemunhos" data-i18n="menu.testimonials">Testemunhos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre" data-i18n="menu.about">Sobre Nós</a></li>
                     <li class="nav-item"><a class="nav-link" href="#galeria" data-i18n="menu.gallery">Galeria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#sobre" data-i18n="menu.about">Sobre</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contacto" data-i18n="menu.contact">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto" data-i18n="menu.contact">Orçamento</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicos" data-i18n="menu.services">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq" data-i18n="menu.faq">FAQ</a></li>
                 </ul>
 
                 <!-- Botões de idioma (apenas visível em MOBILE) -->
@@ -104,8 +139,8 @@
         <div class="content">
             <h1 data-i18n="hero.title">Áurea - Eventos Personalizados</h1>
             <p data-i18n="hero.subtitle">Decoração feita à medida, com um toque de luxo.</p>
-            <a href="#galeria" class="hero-btn mt-3" data-i18n="hero.button">
-                Clique para ver mais <i class="fas fa-arrow-down ms-2"></i>
+            <a href="#contacto" class="hero-btn mt-3" data-i18n="hero.button">
+                Peça já o seu orçamento <i class="fas fa-arrow-down ms-2"></i>
             </a>
         </div>
     </section>
@@ -142,11 +177,9 @@
                     tornar cada detalhe memorável.
                     Organizamos e decoramos festas de aniversário, batizados, comunhões, baby showers, casamentos e
                     muitos outros momentos únicos.</p>
-                <p><strong>Entre em contacto para pedir o seu
-                        <a href="#contacto" data-i18n="about.contact_cta">
-                            orçamento personalizado
-                        </a>!
-                    </strong></p>
+                    <a href="#contacto" data-i18n="about.contact_cta">
+                            Clique aqui!
+                    </a>
             </div>
         </div>
     </section>
@@ -159,14 +192,18 @@
                 <span class="visually-hidden" data-i18n="gallery.loading">A carregar imagens...</span>
             </div>
         </div>
-        <div id="gallery-container" class="row g-3 justify-content-center"></div>
+        <div class="swiper gallery-swiper d-none" aria-label="Galeria de eventos Áurea">
+            <div class="swiper-wrapper" id="gallery-wrapper"></div>
+            <div class="swiper-button-prev gallery-nav"></div>
+            <div class="swiper-button-next gallery-nav"></div>
+            <div class="swiper-pagination gallery-pagination"></div>
+        </div>
     </section>
 
-    <!-- Secção de Contacto -->
+    <!-- Secção de Orçamento -->
     <section id="contacto" class="container-fluid py-5">
-        <h2 class="text-center mb-4" data-i18n="contact.title">Fale connosco</h2>
-        <p class="text-center mb-4" data-i18n="contact.subtitle">Envie-nos uma mensagem ou peça um orçamento
-            personalizado.</p>
+        <h2 class="text-center mb-4" data-i18n="contact.title">Peça o seu orçamento</h2>
+        <p class="text-center mb-4" data-i18n="contact.subtitle">Preencha o formulário e receba uma proposta personalizada para o seu evento.</p>
 
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -332,13 +369,131 @@
                         </div>
 
                         <div class="gform-footer">
-                            <button type="submit" class="btn btn-primary" id="contact-submit" data-i18n="contact.send"></button>
+                            <button type="submit" class="btn btn-primary" id="contact-submit" data-i18n="contact.send">Enviar pedido</button>
                             <p class="gform-required-note" data-i18n="form.required.note"></p>
                             <p class="gform-status" role="status" aria-live="polite"></p>
                         </div>
                     </form>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="container-fluid py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4" data-i18n="services.title">Serviços e Especialidades</h2>
+            <p class="text-center mb-5 text-muted" data-i18n="services.subtitle">
+                Criamos experiências personalizadas para cada celebração, desde micro eventos intimistas a grandes
+                produções. Descubra como podemos tornar o seu momento inesquecível.
+            </p>
+            <div class="row g-4">
+                <article class="col-12 col-md-4">
+                    <div class="card h-100 shadow-sm border-0 service-card">
+                        <div class="card-body">
+                            <h3 class="h5" data-i18n="services.decor.title">Design & Decoração</h3>
+                            <p class="text-muted" data-i18n="services.decor.description">
+                                Cenários personalizados, conceito cromático e styling completo para cada evento.
+                            </p>
+                            <ul class="list-unstyled small mb-0">
+                                <li data-i18n="services.decor.items.0">Planeamento do conceito visual</li>
+                                <li data-i18n="services.decor.items.1">Flores frescas e artificiais premium</li>
+                                <li data-i18n="services.decor.items.2">Styling de mesas, doces e photobooth</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                <article class="col-12 col-md-4">
+                    <div class="card h-100 shadow-sm border-0 service-card">
+                        <div class="card-body">
+                            <h3 class="h5" data-i18n="services.planning.title">Coordenação de Evento</h3>
+                            <p class="text-muted" data-i18n="services.planning.description">
+                                Acompanhamento integral desde o briefing inicial até à desmontagem do evento.
+                            </p>
+                            <ul class="list-unstyled small mb-0">
+                                <li data-i18n="services.planning.items.0">Reuniões de alinhamento presenciais ou online</li>
+                                <li data-i18n="services.planning.items.1">Gestão de fornecedores parceiros</li>
+                                <li data-i18n="services.planning.items.2">Cronograma e acompanhamento no dia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                <article class="col-12 col-md-4">
+                    <div class="card h-100 shadow-sm border-0 service-card">
+                        <div class="card-body">
+                            <h3 class="h5" data-i18n="services.extras.title">Detalhes Complementares</h3>
+                            <p class="text-muted" data-i18n="services.extras.description">
+                                Soluções adicionais para completar a experiência com conforto e personalização.
+                            </p>
+                            <ul class="list-unstyled small mb-0">
+                                <li data-i18n="services.extras.items.0">Lembranças personalizadas</li>
+                                <li data-i18n="services.extras.items.1">Aluguer de mobiliário e peças decorativas</li>
+                                <li data-i18n="services.extras.items.2">Gestão de iluminação ambiente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="container-fluid py-5">
+        <div class="container">
+            <h2 class="text-center mb-4" data-i18n="faq.title">Perguntas Frequentes</h2>
+            <p class="text-center mb-5 text-muted" data-i18n="faq.subtitle">
+                Se procura detalhes sobre o processo, logística ou personalização, reunimos as respostas mais pedidas.
+            </p>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="faq-heading-1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq-collapse-1" aria-expanded="true" aria-controls="faq-collapse-1"
+                            data-i18n="faq.items.0.question">
+                            Quanto tempo antes devo reservar a decoração?
+                        </button>
+                    </h3>
+                    <div id="faq-collapse-1" class="accordion-collapse collapse show"
+                        aria-labelledby="faq-heading-1" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body" data-i18n="faq.items.0.answer">
+                            Recomendamos um mínimo de 3 meses para eventos de maior dimensão ou alta temporada. Para
+                            eventos intimistas conseguimos propostas rápidas em duas semanas.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="faq-heading-2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq-collapse-2" aria-expanded="false" aria-controls="faq-collapse-2"
+                            data-i18n="faq.items.1.question">
+                            Trabalham fora da vossa área habitual?
+                        </button>
+                    </h3>
+                    <div id="faq-collapse-2" class="accordion-collapse collapse" aria-labelledby="faq-heading-2"
+                        data-bs-parent="#faqAccordion">
+                        <div class="accordion-body" data-i18n="faq.items.1.answer">
+                            Sim! A Áurea desloca-se por todo o país. Os orçamentos incluem uma estimativa de logística e
+                            deslocação para garantir transparência de custos.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="faq-heading-3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq-collapse-3" aria-expanded="false" aria-controls="faq-collapse-3"
+                            data-i18n="faq.items.2.question">
+                            Posso personalizar o pacote de serviços?
+                        </button>
+                    </h3>
+                    <div id="faq-collapse-3" class="accordion-collapse collapse" aria-labelledby="faq-heading-3"
+                        data-bs-parent="#faqAccordion">
+                        <div class="accordion-body" data-i18n="faq.items.2.answer">
+                            Todos os pacotes são modulares. Escolhe apenas o que faz sentido para o teu evento e podemos
+                            adicionar extras como lembranças, iluminação ou suporte no dia.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -401,8 +556,13 @@
             <p data-i18n="footer.copyright">&copy; 2025 Áurea - Eventos Personalizados. Todos os direitos reservados.
             </p>
             <nav>
-                <a href="#sobre" data-i18n="footer.about">Sobre</a> |
-                <a href="#contacto" data-i18n="footer.contact">Contacto</a>
+                <a href="#topo" data-i18n="menu.home">Início</a> |
+                <a href="#testemunhos" data-i18n="menu.testimonials">Testemunhos</a> |
+                <a href="#sobre" data-i18n="footer.about">Sobre Nós</a> |
+                <a href="#galeria" data-i18n="menu.gallery">Galeria</a> |
+                <a href="#contacto" data-i18n="footer.contact">Orçamento</a> |
+                <a href="#servicos" data-i18n="footer.services">Serviços</a> |
+                <a href="#faq" data-i18n="footer.faq">FAQ</a>
             </nav>
         </div>
     </footer>
@@ -415,6 +575,39 @@
         </p>
         <button id="accept-cookies">Aceitar</button>
     </div>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Quanto tempo antes devo reservar a decoração?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Recomendamos um mínimo de 3 meses para eventos de maior dimensão ou alta temporada. Para eventos intimistas conseguimos propostas rápidas em duas semanas."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Trabalham fora da vossa área habitual?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sim, deslocamo-nos por todo o país. Os orçamentos incluem uma estimativa transparente de logística e deslocação."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Posso personalizar o pacote de serviços?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Todos os pacotes são modulares. Escolhe apenas o que precisas e adiciona extras como lembranças, iluminação ou suporte no dia."
+                    }
+                }
+            ]
+        }
+    </script>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

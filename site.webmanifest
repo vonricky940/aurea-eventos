@@ -1,0 +1,22 @@
+{
+  "name": "Áurea - Eventos Personalizados",
+  "short_name": "Áurea Eventos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e93f66",
+  "icons": [
+    {
+      "src": "/assets/img/logo-rosa.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/logo-rosa.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "lang": "pt",
+  "description": "Decoração e coordenação de eventos personalizados com assinatura Áurea."
+}
