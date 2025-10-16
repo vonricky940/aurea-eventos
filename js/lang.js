@@ -3,16 +3,16 @@ const translations = {
     // Navbar
     "menu.home": "Início",
     "menu.gallery": "Galeria",
-    "menu.about": "Sobre",
+    "menu.about": "Sobre Nós",
     "menu.services": "Serviços",
-    "menu.contact": "Contacto",
+    "menu.contact": "Orçamento",
     "menu.faq": "FAQ",
     "menu.testimonials": "Testemunhos",
 
     // Hero
     "hero.title": "Áurea - Eventos Personalizados",
     "hero.subtitle": "Decoração feita à medida, com um toque de luxo.",
-    "hero.button": "Clique para ver mais",
+    "hero.button": "Peça já o seu orçamento",
 
     // Testimonials
     "testimonials.title": "Testemunhos de Clientes",
@@ -62,9 +62,9 @@ const translations = {
     "faq.items.2.answer": "Todos os pacotes são modulares. Escolhe apenas o que faz sentido para o teu evento e podemos adicionar extras como lembranças, iluminação ou suporte no dia.",
 
     // Contact
-    "contact.title": "Fale connosco",
-    "contact.subtitle": "Envie-nos uma mensagem ou peça um orçamento personalizado.",
-    "contact.subtitle2": "Em alternativa, pode ligar-nos para o",
+    "contact.title": "Peça o seu orçamento",
+    "contact.subtitle": "Preencha o formulário e receba uma proposta personalizada para o seu evento.",
+    "contact.subtitle2": "Prefere falar connosco? Ligue para",
     "contact.name": "Nome",
     "contact.email": "Email",
     "contact.phone": "Telefone (opcional)",
@@ -75,7 +75,7 @@ const translations = {
     "contact.yes": "Sim",
     "contact.no": "Não",
     "contact.message": "Mensagem",
-    "contact.send": "Enviar",
+    "contact.send": "Enviar pedido",
     "contact.location": "Localização do evento",
     "contact.map_info": "Clique no mapa para escolher a localidade do evento.",
     "contact.has_venue": "Já alugou ou tem alguma quinta/restaurante para o evento?",
@@ -130,10 +130,10 @@ const translations = {
     "modal.ok": "Ok",
 
     // Footer
-    "footer.about": "Sobre",
+    "footer.about": "Sobre Nós",
     "footer.services": "Serviços",
     "footer.faq": "FAQ",
-    "footer.contact": "Contacto",
+    "footer.contact": "Orçamento",
     "footer.copyright": "© 2025 Áurea - Eventos Personalizados. Todos os direitos reservados."
   },
 
@@ -141,16 +141,16 @@ const translations = {
     // Navbar
     "menu.home": "Home",
     "menu.gallery": "Gallery",
-    "menu.about": "About",
+    "menu.about": "About Us",
     "menu.services": "Services",
-    "menu.contact": "Contact",
+    "menu.contact": "Quote",
     "menu.faq": "FAQ",
     "menu.testimonials": "Testimonials",
 
     // Hero
     "hero.title": "Áurea - Personalized Events",
     "hero.subtitle": "Custom decorations with a touch of luxury.",
-    "hero.button": "Click to see more",
+    "hero.button": "Request your quote",
 
     // Testimonials
     "testimonials.title": "Client Testimonials",
@@ -200,9 +200,9 @@ const translations = {
     "faq.items.2.answer": "Every package is modular. Select the essentials you need and add extras like favours, lighting, or on-the-day support.",
 
     // Contact
-    "contact.title": "Contact Us",
-    "contact.subtitle": "Send us a message or request a personalized quote.",
-    "contact.subtitle2": "Alternatively, you can call us at",
+    "contact.title": "Request Your Quote",
+    "contact.subtitle": "Fill out the form to receive a tailored proposal for your celebration.",
+    "contact.subtitle2": "Prefer to talk to us? Call",
     "contact.name": "Name",
     "contact.email": "Email",
     "contact.phone": "Phone (optional)",
@@ -213,7 +213,7 @@ const translations = {
     "contact.yes": "Yes",
     "contact.no": "No",
     "contact.message": "Message",
-    "contact.send": "Send",
+    "contact.send": "Send Request",
     "contact.location": "Event Location",
     "contact.map_info": "Click the map to choose the event location.",
     "contact.has_venue": "Have you already booked a venue or restaurant for the event?",
@@ -268,10 +268,10 @@ const translations = {
     "modal.ok": "Ok",
 
     // Footer
-    "footer.about": "About",
+    "footer.about": "About Us",
     "footer.services": "Services",
     "footer.faq": "FAQ",
-    "footer.contact": "Contact",
+    "footer.contact": "Quote",
     "footer.copyright": "© 2025 Áurea - Personalized Events. All rights reserved."
   }
 };

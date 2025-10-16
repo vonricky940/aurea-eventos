@@ -532,12 +532,24 @@ function setLanguage(lang) {
 }
 
 // Carregamento automático da galeria com layout quadrado e zoom
+let gallerySwiperInstance = null;
+
 async function loadGallery() {
     console.log("[Galeria] Início do carregamento via Cloudflare Worker.");
-    const galleryContainer = document.getElementById("gallery-container");
+    const galleryWrapper = document.getElementById("gallery-wrapper");
+    const gallerySwiperEl = document.querySelector(".gallery-swiper");
     const spinner = document.getElementById("gallery-spinner");
 
-    galleryContainer.innerHTML = ''; // limpar antes de carregar
+    if (!galleryWrapper || !gallerySwiperEl) {
+        console.warn("[Galeria] Estrutura do slider não encontrada.");
+        return;
+    }
+
+    galleryWrapper.innerHTML = '';
+    if (gallerySwiperInstance) {
+        gallerySwiperInstance.destroy(true, true);
+        gallerySwiperInstance = null;
+    }
 
     try {
         const response = await fetch("https://aurea-drive.vonricky940.workers.dev/");
@@ -547,47 +559,9 @@ async function loadGallery() {
             throw new Error("Nenhuma imagem recebida do Worker.");
         }
 
-        images.forEach(file => {
-            const imgUrl = file.url;
-            const baseName = (file.name || '')
-                .replace(/\.[^/.]+$/, '')
-                .replace(/[_-]+/g, ' ')
-                .replace(/\s+/g, ' ')
-                .trim();
-            const altText = baseName
-                ? `Decoração Áurea - ${baseName.charAt(0).toUpperCase()}${baseName.slice(1)}`
-                : "Decoração Áurea - Evento personalizado";
+        images.forEach(file => appendGallerySlide(file.url, file.name));
 
-            const col = document.createElement("div");
-            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
-
-            const wrapper = document.createElement("div");
-            wrapper.className = "gallery-image";
-
-            const a = document.createElement("a");
-            a.href = imgUrl;
-            a.className = "glightbox";
-            a.setAttribute("data-gallery", "aurea-gallery");
-            a.setAttribute("aria-label", altText);
-            a.addEventListener("click", e => e.preventDefault());
-
-            const img = document.createElement("img");
-            img.src = imgUrl;
-            img.alt = altText;
-            img.loading = "lazy";
-            img.decoding = "async";
-            img.className = "gallery-img";
-
-            a.appendChild(img);
-            wrapper.appendChild(a);
-            col.appendChild(wrapper);
-            galleryContainer.appendChild(col);
-        });
-
-        if (window.GLightbox) {
-            GLightbox({ selector: '.glightbox' });
-            console.log("[Galeria] GLightbox inicializado (Worker).");
-        }
+        initializeGallerySlider();
 
         console.log("[Galeria] Imagens carregadas com sucesso do Worker.");
     } catch (error) {
@@ -595,41 +569,98 @@ async function loadGallery() {
 
         for (let i = 1; i <= 18; i++) {
             const imgUrl = `assets/img/galeria/img${i}.jpg`;
-
-            const col = document.createElement("div");
-            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
-
-            const wrapper = document.createElement("div");
-            wrapper.className = "gallery-image";
-
-            const a = document.createElement("a");
-            a.href = imgUrl;
-            a.className = "glightbox";
-            a.setAttribute("data-gallery", "aurea-gallery");
-            a.addEventListener("click", e => e.preventDefault());
-
-            const img = document.createElement("img");
-            img.src = imgUrl;
-            img.alt = `Decoração Áurea - Evento ${i}`;
-            img.loading = "lazy";
-            img.decoding = "async";
-            img.className = "gallery-img";
-
-            a.appendChild(img);
-            wrapper.appendChild(a);
-            col.appendChild(wrapper);
-            galleryContainer.appendChild(col);
+            appendGallerySlide(imgUrl, `Evento ${i}`);
         }
 
-        if (window.GLightbox) {
-            GLightbox({ selector: '.glightbox' });
-            console.log("[Galeria] Fallback com GLightbox inicializado.");
-        }
+        initializeGallerySlider();
 
         console.log("[Galeria] Fallback local carregado com sucesso.");
     } finally {
         spinner.style.display = "none";
+        gallerySwiperEl.classList.remove("d-none");
     }
+}
+
+function appendGallerySlide(url, name) {
+    const galleryWrapper = document.getElementById("gallery-wrapper");
+    if (!galleryWrapper) return;
+
+    const baseName = (name || '')
+        .replace(/\.[^/.]+$/, '')
+        .replace(/[_-]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    const altText = baseName
+        ? `Decoração Áurea - ${baseName.charAt(0).toUpperCase()}${baseName.slice(1)}`
+        : "Decoração Áurea - Evento personalizado";
+
+    const slide = document.createElement("div");
+    slide.className = "swiper-slide";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "gallery-image";
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.className = "glightbox";
+    link.setAttribute("data-gallery", "aurea-gallery");
+    link.setAttribute("aria-label", altText);
+
+    const img = document.createElement("img");
+    img.src = url;
+    img.alt = altText;
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.className = "gallery-img";
+
+    link.appendChild(img);
+    wrapper.appendChild(link);
+    slide.appendChild(wrapper);
+    galleryWrapper.appendChild(slide);
+}
+
+function initializeGallerySlider() {
+    if (window.GLightbox) {
+        if (window.galleryLightboxInstance && typeof window.galleryLightboxInstance.destroy === 'function') {
+            window.galleryLightboxInstance.destroy();
+        }
+        window.galleryLightboxInstance = GLightbox({ selector: '.glightbox' });
+    }
+
+    gallerySwiperInstance = new Swiper('.gallery-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: true,
+        centeredSlides: true,
+        autoplay: {
+            delay: 4500,
+            disableOnInteraction: false
+        },
+        navigation: {
+            nextEl: '.gallery-swiper .swiper-button-next',
+            prevEl: '.gallery-swiper .swiper-button-prev'
+        },
+        pagination: {
+            el: '.gallery-swiper .swiper-pagination',
+            clickable: true
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 1.4,
+                spaceBetween: 28
+            },
+            992: {
+                slidesPerView: 2.2,
+                spaceBetween: 32
+            },
+            1400: {
+                slidesPerView: 2.6,
+                spaceBetween: 36
+            }
+        }
+    });
+
+    console.log('[Galeria] Slider inicializado.');
 }
 
 // Carregamento dos testemunhos no carrossel
