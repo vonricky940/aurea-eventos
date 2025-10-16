@@ -22,9 +22,9 @@ const translations = {
     "about.title": "Sobre Nós",
     "about.intro": "Áurea – Eventos Personalizados",
     "about.mission": "Fazemos o Acompanhamento e Decoração de Eventos Inesquecíveis",
-    "about.description": "A Áurea está presente nos momentos mais especiais da sua vida, para tornar cada detalhe memorável. Organizamos e decoramos festas de aniversário, batizados, comunhões, baby showers, casamentos e muitos outros momentos únicos.",
+    "about.description": "A Áurea está presente nos momentos mais especiais da sua vida, para tornar cada detalhe memorável. Organizamos e decoramos festas de aniversário, batizados, comunhões, baby showers, casamentos e muitos outros momentos únicos. Entre em contacto para pedir o seu orçamento personalizado!",
     "about.phone_label": "Telefone:",
-    "about.contact_cta": "Entre em contacto para pedir o seu orçamento personalizado!",
+    "about.contact_cta": "Clique aqui!",
 
     // Gallery
     "gallery.title": "Galeria de Eventos",
@@ -160,9 +160,9 @@ const translations = {
     "about.title": "About Us",
     "about.intro": "Áurea – Personalized Events",
     "about.mission": "We accompany and decorate unforgettable events",
-    "about.description": "Áurea is present in the most special moments of your life, to make every detail memorable. We organize and decorate birthday parties, baptisms, communions, baby showers, weddings, and many other unique moments.",
+    "about.description": "Áurea is present in the most special moments of your life, to make every detail memorable. We organize and decorate birthday parties, baptisms, communions, baby showers, weddings, and many other unique moments. Get in touch for your personalized quote!",
     "about.phone_label": "Phone:",
-    "about.contact_cta": "Get in touch for your personalized quote!",
+    "about.contact_cta": "Click here!",
 
     // Gallery
     "gallery.title": "Event Gallery",
