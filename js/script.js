@@ -631,7 +631,9 @@ function initializeGallerySlider() {
         slidesPerView: 1,
         spaceBetween: 24,
         loop: true,
-        centeredSlides: true,
+        centeredSlides: false,
+        slidesOffsetBefore: 0,
+        slidesOffsetAfter: 0,
         autoplay: {
             delay: 4500,
             disableOnInteraction: false
@@ -646,16 +648,16 @@ function initializeGallerySlider() {
         },
         breakpoints: {
             768: {
-                slidesPerView: 1.4,
-                spaceBetween: 28
+                slidesPerView: 1.2,
+                spaceBetween: 24
             },
             992: {
-                slidesPerView: 2.2,
-                spaceBetween: 32
+                slidesPerView: 2,
+                spaceBetween: 28
             },
-            1400: {
-                slidesPerView: 2.6,
-                spaceBetween: 36
+            1200: {
+                slidesPerView: 3,
+                spaceBetween: 32
             }
         }
     });
