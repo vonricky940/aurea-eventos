@@ -322,6 +322,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (formStartField) {
                     formStartField.value = String(formInitializedAt);
                 }
+                if (honeypotField) {
+                    honeypotField.value = '';
+                }
             } finally {
                 submitButton.disabled = false;
                 submitButton.textContent = originalText;
@@ -403,7 +406,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Idioma
-    const savedLang = localStorage.getItem("selectedLang") || "pt";
+    const queryLang = new URL(window.location.href).searchParams.get("lang");
+    const normalizedQueryLang = queryLang && ['pt', 'en'].includes(queryLang.toLowerCase()) ? queryLang.toLowerCase() : null;
+    if (normalizedQueryLang) {
+        localStorage.setItem("selectedLang", normalizedQueryLang);
+    }
+
+    const savedLang = normalizedQueryLang || localStorage.getItem("selectedLang") || "pt";
     changeLanguage(savedLang);
 
     // Galeria
@@ -461,6 +470,11 @@ function changeLanguage(lang) {
     console.log(`[Language] A mudar para: ${lang}`);
     localStorage.setItem("selectedLang", lang);
     setLanguage(lang);
+    const url = new URL(window.location.href);
+    if (url.searchParams.get("lang") !== lang) {
+        url.searchParams.set("lang", lang);
+        window.history.replaceState({}, "", url.toString());
+    }
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
 
     document.querySelectorAll(".language-selector button").forEach((btn) => {
@@ -535,6 +549,14 @@ async function loadGallery() {
 
         images.forEach(file => {
             const imgUrl = file.url;
+            const baseName = (file.name || '')
+                .replace(/\.[^/.]+$/, '')
+                .replace(/[_-]+/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+            const altText = baseName
+                ? `Decoração Áurea - ${baseName.charAt(0).toUpperCase()}${baseName.slice(1)}`
+                : "Decoração Áurea - Evento personalizado";
 
             const col = document.createElement("div");
             col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
@@ -546,12 +568,14 @@ async function loadGallery() {
             a.href = imgUrl;
             a.className = "glightbox";
             a.setAttribute("data-gallery", "aurea-gallery");
+            a.setAttribute("aria-label", altText);
             a.addEventListener("click", e => e.preventDefault());
 
             const img = document.createElement("img");
             img.src = imgUrl;
-            img.alt = file.name;
+            img.alt = altText;
             img.loading = "lazy";
+            img.decoding = "async";
             img.className = "gallery-img";
 
             a.appendChild(img);
@@ -586,8 +610,9 @@ async function loadGallery() {
 
             const img = document.createElement("img");
             img.src = imgUrl;
-            img.alt = `Imagem ${i}`;
+            img.alt = `Decoração Áurea - Evento ${i}`;
             img.loading = "lazy";
+            img.decoding = "async";
             img.className = "gallery-img";
 
             a.appendChild(img);

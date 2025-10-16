@@ -727,6 +727,30 @@ footer {
   pointer-events: none;
 }
 
+.service-card {
+  border-radius: 18px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px -30px rgba(14, 20, 40, 0.45);
+}
+
+.service-card .card-body ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.service-card .card-body ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #e93f66;
+}
+
 #successModal .modal-dialog {
   max-width: 420px;
 }
