@@ -535,11 +535,7 @@ footer {
   background: transparent;
   border: none;
   padding: 0;
-}
-
-.custom-google-form .gform-field.required label,
-.custom-google-form .gform-field.required .gform-field-label {
-  font-weight: 600;
+  margin-bottom: 1.25rem;
 }
 
 .custom-google-form label,
@@ -548,6 +544,7 @@ footer {
   font-size: 0.95rem;
   margin: 0;
   color: #1f1f1f;
+  font-weight: 500;
 }
 
 .custom-google-form .required-marker {
@@ -582,6 +579,12 @@ footer {
 .custom-google-form textarea {
   resize: vertical;
   min-height: 120px;
+}
+
+.custom-google-form input::placeholder,
+.custom-google-form textarea::placeholder,
+.custom-google-form select::placeholder {
+  color: #9aa3b1;
 }
 
 .custom-google-form select,
@@ -655,8 +658,9 @@ footer {
 
 .custom-google-form .gform-section h4 {
   font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  font-weight: 500;
+  color: #404552;
+  margin-bottom: 1.25rem;
 }
 
 .custom-google-form .gform-footer {
